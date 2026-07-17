@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Home Pour-Over, Dialled In – Brew &amp; Crumb Journal</title>
+  <meta name="description" content="Grind size, water temperature, and the bloom — our head barista's simple recipe for café-quality pour-over coffee at home. A Brew & Crumb brew guide." />
+  <meta property="og:title" content="The Home Pour-Over, Dialled In | Brew & Crumb" />
+  <meta property="og:type" content="article" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/effects.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <style>
+    .blog-layout { display:grid; grid-template-columns:1fr 340px; gap:56px; align-items:start; }
+    .article-body { font-size:1.02rem; line-height:1.85; }
+    .article-body h2 { margin:36px 0 14px; }
+    .article-body h3 { margin:28px 0 12px; }
+    .article-body p { margin-bottom:18px; color:var(--text); }
+    .article-body ul { margin:0 0 18px 0; padding-left:22px; list-style:disc; }
+    .article-body li { margin-bottom:8px; }
+    .article-hero img { width:100%; height:440px; object-fit:cover; border-radius:var(--radius-lg); box-shadow:0 16px 40px var(--shadow); }
+    .pull-quote { border-left:4px solid var(--primary); background:var(--cream); padding:22px 26px; border-radius:0 var(--radius) var(--radius) 0; font-family:var(--font-heading); font-size:1.2rem; font-style:italic; color:var(--dark); margin:28px 0; }
+    .recipe-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:26px; margin:28px 0; }
+    .recipe-card .rc-row { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid var(--border); font-size:0.95rem; }
+    .recipe-card .rc-row:last-child { border:none; }
+    .share-row { display:flex; gap:10px; align-items:center; margin-top:36px; padding-top:24px; border-top:1px solid var(--border); }
+    .share-row a { width:40px; height:40px; border-radius:50%; background:var(--cream); color:var(--primary); display:flex; align-items:center; justify-content:center; transition:all var(--transition); }
+    .share-row a:hover { background:var(--primary); color:#fff; }
+    .author-box { display:flex; gap:18px; align-items:center; background:var(--cream); border-radius:var(--radius-lg); padding:24px; margin-top:36px; }
+    .author-box img { width:72px; height:72px; border-radius:50%; object-fit:cover; border:2px solid var(--primary); flex-shrink:0; }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <div class="page-loader" role="status" aria-label="Loading"><div class="loader-spinner"></div></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
+        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      </a>
+      <ul class="nav-menu" id="navMenu" role="menubar">
+        <li class="dropdown" role="none">
+          <a href="index.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Home <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
+        <li class="dropdown" role="none">
+          <a href="menu.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Menu <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
+            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="reservations.html" class="nav-link" role="menuitem">Reservations</a></li>
+        <li role="none"><a href="pricing.html" class="nav-link" role="menuitem">Pricing</a></li>
+        <li role="none"><a href="blog.html" class="nav-link active" role="menuitem">Journal</a></li>
+        <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
+        <li class="nav-mobile-actions" role="none">
+          <div class="mobile-action-toggles">
+            <button class="theme-toggle theme-toggle--menu" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+            <button class="rtl-toggle theme-toggle theme-toggle--menu" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+          </div>
+          <div class="mobile-action-auth">
+            <a href="login.html" class="btn-nav-login">Login</a>
+            <a href="register.html" class="btn-nav-login">Register</a>
+          </div>
+          <a href="reservations.html" class="btn-nav-order" style="width:100%;justify-content:center;">Book a Table</a>
+          <div class="mobile-action-links">
+            <a href="reservations.html"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a>
+            <a href="admin-dashboard.html"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a>
+          </div>
+        </li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+        <button class="rtl-toggle theme-toggle" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+        <a href="reservations.html" class="btn-nav-order">Book a Table</a>
+        <div class="account-dropdown">
+          <button class="account-toggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user" aria-hidden="true"></i></button>
+          <ul class="account-menu" role="menu" aria-label="Account">
+            <li role="none"><a href="login.html" class="account-item" role="menuitem"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> Sign In</a></li>
+            <li role="none"><a href="register.html" class="account-item" role="menuitem"><i class="fas fa-user-plus" aria-hidden="true"></i> Create Account</a></li>
+            <li role="none" class="account-sep"><a href="reservations.html" class="account-item" role="menuitem"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a></li>
+            <li role="none"><a href="admin-dashboard.html" class="account-item account-item--staff" role="menuitem"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a></li>
+          </ul>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="float-field" data-float-icons="6" aria-hidden="true"></div>
+    <div class="container" data-aos="fade-up">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <span class="breadcrumb-item"><a href="index.html">Home</a></span>
+        <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+        <span class="breadcrumb-item"><a href="blog.html">Journal</a></span>
+        <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+        <span class="breadcrumb-item active">Brew Guide</span>
+      </nav>
+      <h1>The Home <span class="text-gradient">Pour-Over</span>, Dialled In</h1>
+      <p><i class="fas fa-calendar" aria-hidden="true"></i> June 24, 2025 &nbsp;·&nbsp; <i class="fas fa-user" aria-hidden="true"></i> Nora Adeyemi &nbsp;·&nbsp; <i class="fas fa-clock" aria-hidden="true"></i> 6 min read</p>
+    </div>
+  </header>
+
+  <!-- ===== ARTICLE ===== -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="blog-layout">
+        <!-- MAIN -->
+        <article>
+          <div class="article-hero" data-tilt data-crumb-burst data-aos="fade-up" style="position:relative;">
+            <img src="../assets/images/photo-1495474472287-4d71bcdd2085-w900.jpg" alt="Pour-over coffee being brewed by hand over a glass carafe" loading="eager" width="900" height="440" />
+            <div class="hero-steam-badge" aria-hidden="true" style="position:absolute;top:-16px;right:28px;width:52px;height:52px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.1rem;box-shadow:0 10px 26px rgba(155,106,67,0.4);">
+              <i class="fas fa-mug-hot"></i>
+              <div class="coffee-steam" style="position:absolute;top:-46px;left:4px;"><span class="wisp"></span><span class="wisp"></span><span class="wisp"></span></div>
+            </div>
+          </div>
+          <div class="article-body" data-aos="fade-up" style="margin-top:32px;">
+            <p>There's a quiet ritual to pour-over coffee that no machine can quite replicate. Just you, some good beans, and a few minutes of gentle attention. The good news? Café-quality filter at home isn't about expensive kit — it's about a handful of variables you can actually control.</p>
+
+            <h2>Start with Fresh, Good Beans</h2>
+            <p>Everything downstream depends on this. Buy whole beans, roasted within the last few weeks, and grind them just before you brew. A medium grind — think coarse sea salt — is your starting point for pour-over. Too fine and it turns bitter; too coarse and it runs thin and sour.</p>
+
+            <div class="pull-quote">"Coffee is 98% water. If your water tastes off, so will your cup — filtered is your friend."</div>
+
+            <h2>The Recipe We Use at the Bar</h2>
+            <p>We keep a ratio of roughly 1 gram of coffee to 16 grams of water. For a single mug, that's about this:</p>
+
+            <div class="recipe-card">
+              <div class="rc-row"><span>Coffee</span><strong>22 g, medium grind</strong></div>
+              <div class="rc-row"><span>Water</span><strong>350 g, just off the boil (94°C)</strong></div>
+              <div class="rc-row"><span>Bloom</span><strong>50 g water, wait 40 seconds</strong></div>
+              <div class="rc-row"><span>Total brew time</span><strong>2:45 – 3:15</strong></div>
+            </div>
+
+            <h3>1. The Bloom</h3>
+            <p>Pour just enough water to wet all the grounds — about twice the weight of your coffee — and wait. You'll see it puff up and bubble as trapped CO₂ escapes. This "bloom" lets the coffee brew evenly. Rushing it is the most common home mistake.</p>
+
+            <h3>2. Pour in Slow Circles</h3>
+            <p>Add the rest of the water in two or three slow, spiralling pours, keeping the bed level. Aim for a gentle, steady stream from the centre outward — you're rinsing flavour out, not blasting it.</p>
+
+            <h3>3. Taste &amp; Adjust</h3>
+            <ul>
+              <li><strong>Too sour or weak?</strong> Grind a little finer, or slow your pour.</li>
+              <li><strong>Too bitter or harsh?</strong> Grind a little coarser, or cool your water slightly.</li>
+              <li><strong>Just right?</strong> Write it down. Consistency is the whole game.</li>
+            </ul>
+
+            <p>Dial it in over a few mornings and you'll land on a cup that's clean, sweet, and unmistakably yours. And if you'd rather someone else fuss over the kettle — well, that's what we're here for.</p>
+
+            <div class="share-row">
+              <span style="font-weight:700;color:var(--dark);">Share:</span>
+              <a href="#" aria-label="Share on Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+              <a href="#" aria-label="Share on X"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+              <a href="#" aria-label="Share on Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+              <a href="#" aria-label="Share by email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+            </div>
+
+            <div class="author-box">
+              <img src="../assets/images/photo-1544005313-94ddf0286df2-w160.jpg" alt="Nora Adeyemi" loading="lazy" width="72" height="72" />
+              <div>
+                <div style="font-weight:700;color:var(--dark);">Nora Adeyemi</div>
+                <div style="font-size:0.85rem;color:var(--primary);font-weight:700;margin-bottom:6px;">Co-Founder &amp; Head Barista</div>
+                <p style="font-size:0.88rem;color:var(--text-muted);margin:0;">Nora has been pulling shots on Kettle Street since 2011 and still thinks the best cup is the one shared with someone.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- SIDEBAR -->
+        <aside data-aos="fade-left">
+          <div class="sidebar-widget">
+            <h4>Search</h4>
+            <form role="search" onsubmit="return false;" style="display:flex;gap:8px;">
+              <input type="search" class="form-control" placeholder="Search articles…" aria-label="Search articles" />
+              <button class="btn btn-primary btn-sm" type="submit" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></button>
+            </form>
+          </div>
+          <div class="sidebar-widget">
+            <h4>Popular Reads</h4>
+            <div class="side-post"><img src="../assets/images/photo-1509440159596-0249088772ff-w120.jpg" alt="Sourdough" loading="lazy" width="64" height="64" /><div><h5><a href="blog-details.html">Meet Our 12-Year-Old Sourdough Starter</a></h5><span class="date">Jun 12, 2025</span></div></div>
+            <div class="side-post"><img src="../assets/images/photo-1524350876685-274059332603-w120.jpg" alt="Colombia roast" loading="lazy" width="64" height="64" /><div><h5><a href="blog-details.html">This Month's Roast: Honey Colombia</a></h5><span class="date">May 30, 2025</span></div></div>
+            <div class="side-post"><img src="../assets/images/photo-1608198093002-ad4e005484ec-w120.jpg" alt="Cinnamon buns" loading="lazy" width="64" height="64" /><div><h5><a href="blog-details.html">Why Cardamom Belongs in Your Bun</a></h5><span class="date">May 4, 2025</span></div></div>
+          </div>
+          <div class="sidebar-widget">
+            <h4>Topics</h4>
+            <div class="tag-cloud">
+              <a href="blog.html">Brew Guides</a><a href="blog.html">Bakery</a><a href="blog.html">Origins</a>
+              <a href="blog.html">Espresso</a><a href="blog.html">Cold Brew</a><a href="blog.html">Sustainability</a><a href="blog.html">Recipes</a>
+            </div>
+          </div>
+          <div class="sidebar-widget" style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));border:none;position:relative;overflow:hidden;">
+            <div class="sprinkle-field" data-sprinkles="10" aria-hidden="true"></div>
+            <h4 style="color:#fff;position:relative;">Fresh Beans, Delivered</h4>
+            <p style="color:rgba(255,255,255,0.85);font-size:0.9rem;position:relative;">Put the theory into practice. Get this month's roast posted to your door.</p>
+            <a href="pricing.html" class="btn btn-outline-white btn-sm btn-magnetic" style="width:100%;justify-content:center;position:relative;">Bean Subscription</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
+              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            </a>
+          </div>
+          <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <nav class="footer-links" aria-label="Footer links">
+            <a href="about.html">Our Story</a><a href="menu.html">Menu</a><a href="reservations.html">Reservations</a>
+            <a href="pricing.html">Catering &amp; Plans</a><a href="blog.html">Journal</a><a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">The Menu</h4>
+          <nav class="footer-links" aria-label="Menu categories">
+            <a href="menu.html">Espresso &amp; Milk</a><a href="menu.html">Filter &amp; Pour Over</a><a href="menu.html">Bakery &amp; Pastries</a>
+            <a href="menu.html">All-Day Brunch</a><a href="menu.html">Cold Bar</a><a href="menu.html">Tea &amp; Matcha</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">Visit Us</h4>
+          <address style="font-style:normal;">
+            <div class="footer-contact-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
+            <div class="footer-contact-item"><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a></div>
+            <div class="footer-contact-item"><i class="fas fa-clock" aria-hidden="true"></i><span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
+          </address>
+          <div style="margin-top:20px;">
+            <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
+              <label for="newsletterEmail" class="sr-only">Email address</label>
+              <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
+              <button type="submit" class="btn btn-primary btn-sm" style="width:100%;"><i class="fas fa-paper-plane" aria-hidden="true"></i> Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Accessibility</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top btn-magnetic" aria-label="Back to top"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/effects.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

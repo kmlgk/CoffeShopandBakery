@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reserve a Table – Brew &amp; Crumb Coffee House</title>
+  <meta name="description" content="Book a cosy table at Brew & Crumb in seconds. Pick your party size, date and time, and we'll confirm by email. Tables for 1–8; catering and private hire available." />
+  <meta property="og:title" content="Reserve a Table | Brew & Crumb" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- AOS (scroll reveal) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/effects.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <style>
+    .reserve-grid { display:grid; grid-template-columns:1.5fr 1fr; gap:44px; align-items:start; }
+    .info-panel { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:30px; margin-bottom:24px; }
+    .field-label { font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:12px; display:block; }
+    .perk { display:flex; gap:14px; align-items:flex-start; margin-bottom:18px; }
+    .perk i { color:var(--primary); font-size:1.1rem; width:22px; text-align:center; margin-top:3px; flex-shrink:0; }
+    .reserve-steam-badge { position:absolute; top:-18px; right:30px; width:54px; height:54px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.1rem; box-shadow:0 10px 26px rgba(155,106,67,0.4); z-index:2; }
+    .reserve-steam-badge .coffee-steam { position:absolute; top:-44px; left:4px; }
+    @media (max-width:768px) { .reserve-steam-badge { display:none; } }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <div class="page-loader" role="status" aria-label="Loading"><div class="loader-spinner"></div></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
+        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      </a>
+      <ul class="nav-menu" id="navMenu" role="menubar">
+        <li class="dropdown" role="none">
+          <a href="index.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Home <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
+        <li class="dropdown" role="none">
+          <a href="menu.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Menu <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
+            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="reservations.html" class="nav-link active" role="menuitem">Reservations</a></li>
+        <li role="none"><a href="pricing.html" class="nav-link" role="menuitem">Pricing</a></li>
+        <li role="none"><a href="blog.html" class="nav-link" role="menuitem">Journal</a></li>
+        <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
+        <li class="nav-mobile-actions" role="none">
+          <div class="mobile-action-toggles">
+            <button class="theme-toggle theme-toggle--menu" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+            <button class="rtl-toggle theme-toggle theme-toggle--menu" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+          </div>
+          <div class="mobile-action-auth">
+            <a href="login.html" class="btn-nav-login">Login</a>
+            <a href="register.html" class="btn-nav-login">Register</a>
+          </div>
+          <a href="reservations.html" class="btn-nav-order" style="width:100%;justify-content:center;">Book a Table</a>
+          <div class="mobile-action-links">
+            <a href="reservations.html"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a>
+            <a href="admin-dashboard.html"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a>
+          </div>
+        </li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+        <button class="rtl-toggle theme-toggle" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+        <a href="reservations.html" class="btn-nav-order">Book a Table</a>
+        <div class="account-dropdown">
+          <button class="account-toggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user" aria-hidden="true"></i></button>
+          <ul class="account-menu" role="menu" aria-label="Account">
+            <li role="none"><a href="login.html" class="account-item" role="menuitem"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> Sign In</a></li>
+            <li role="none"><a href="register.html" class="account-item" role="menuitem"><i class="fas fa-user-plus" aria-hidden="true"></i> Create Account</a></li>
+            <li role="none" class="account-sep"><a href="reservations.html" class="account-item" role="menuitem"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a></li>
+            <li role="none"><a href="admin-dashboard.html" class="account-item account-item--staff" role="menuitem"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a></li>
+          </ul>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-aos="fade-up">
+        <span class="breadcrumb-item"><a href="index.html">Home</a></span>
+        <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+        <span class="breadcrumb-item active">Reservations</span>
+      </nav>
+      <h1 data-aos="fade-up" data-aos-delay="80">Reserve a Cosy Table</h1>
+      <p data-aos="fade-up" data-aos-delay="160">Small groups, quiet work sessions, or a weekend catch-up — book your spot and we'll have it ready with a fresh pot on the go.</p>
+    </div>
+  </header>
+
+  <!-- ===== RESERVATION ===== -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="reserve-grid">
+        <!-- LEFT: booking widget -->
+        <div style="position:relative;" data-aos="fade-up">
+          <div class="reserve-steam-badge" aria-hidden="true">
+            <i class="fas fa-mug-hot"></i>
+            <div class="coffee-steam"><span class="wisp"></span><span class="wisp"></span><span class="wisp"></span></div>
+          </div>
+          <div class="reserve-card">
+          <div class="reserve-steps" aria-hidden="true">
+            <div class="reserve-step active"><span class="rs-num">1</span> Party</div>
+            <span class="rs-line"></span>
+            <div class="reserve-step"><span class="rs-num">2</span> Date &amp; Time</div>
+            <span class="rs-line"></span>
+            <div class="reserve-step"><span class="rs-num">3</span> Details</div>
+          </div>
+
+          <form class="reserve-body" data-validate data-success="Table request received! We'll confirm by email within the hour. ☕" aria-label="Table reservation form" novalidate>
+            <!-- Party size -->
+            <span class="field-label">How many guests?</span>
+            <div class="chip-row" data-chip-group data-target="partySize" role="group" aria-label="Party size" style="margin-bottom:24px;">
+              <span class="chip" data-value="1">1</span>
+              <span class="chip selected" data-value="2">2</span>
+              <span class="chip" data-value="3">3</span>
+              <span class="chip" data-value="4">4</span>
+              <span class="chip" data-value="5">5</span>
+              <span class="chip" data-value="6">6</span>
+              <span class="chip" data-value="7">7</span>
+              <span class="chip" data-value="8">8</span>
+              <span class="chip" data-value="9+"><i class="fas fa-users" aria-hidden="true"></i> 9+</span>
+            </div>
+            <input type="hidden" name="partySize" value="2" />
+
+            <!-- Date + seating -->
+            <div class="form-row-2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div class="form-group">
+                <label class="form-label" for="resDate">Date <span aria-hidden="true">*</span></label>
+                <input type="date" id="resDate" class="form-control" required aria-required="true" />
+                <span class="form-error" role="alert">Please choose a date.</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="resSeat">Seating preference</label>
+                <select id="resSeat" class="form-control">
+                  <option value="any" selected>No preference</option>
+                  <option>Window nook</option>
+                  <option>Long communal table</option>
+                  <option>Quiet corner</option>
+                  <option>Outdoor bench</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Time slots -->
+            <span class="field-label" style="margin-top:8px;">Pick a time</span>
+            <div class="chip-row" data-chip-group data-target="resTime" role="group" aria-label="Reservation time" style="margin-bottom:8px;">
+              <span class="chip" data-value="08:00">8:00</span>
+              <span class="chip" data-value="09:00">9:00</span>
+              <span class="chip selected" data-value="10:00">10:00</span>
+              <span class="chip" data-value="11:00">11:00</span>
+              <span class="chip disabled" aria-disabled="true" title="Fully booked">12:00</span>
+              <span class="chip" data-value="13:00">13:00</span>
+              <span class="chip" data-value="14:00">14:00</span>
+              <span class="chip" data-value="15:00">15:00</span>
+              <span class="chip disabled" aria-disabled="true" title="Fully booked">16:00</span>
+              <span class="chip" data-value="17:00">17:00</span>
+            </div>
+            <input type="hidden" name="resTime" value="10:00" />
+            <p style="font-size:0.8rem;color:var(--text-muted);margin:6px 0 24px;"><i class="fas fa-circle-info" aria-hidden="true"></i> Greyed-out slots are fully booked. Tables are held for 15 minutes past your time.</p>
+
+            <!-- Contact details -->
+            <div class="form-row-2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div class="form-group">
+                <label class="form-label" for="resName">Full name <span aria-hidden="true">*</span></label>
+                <input type="text" id="resName" class="form-control" placeholder="Alex Rivera" required aria-required="true" />
+                <span class="form-error" role="alert">Please enter your name.</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="resPhone">Phone <span aria-hidden="true">*</span></label>
+                <input type="tel" id="resPhone" class="form-control" placeholder="+1 (555) 000-0000" required aria-required="true" />
+                <span class="form-error" role="alert">Please enter a phone number.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="resEmail">Email <span aria-hidden="true">*</span></label>
+              <input type="email" id="resEmail" class="form-control" placeholder="alex@example.com" required aria-required="true" />
+              <span class="form-error" role="alert">Please enter a valid email.</span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="resNotes">Anything we should know?</label>
+              <textarea id="resNotes" class="form-control" rows="3" placeholder="High chair, birthday, allergies, working session…"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg btn-magnetic" style="width:100%;justify-content:center;">
+              <i class="fas fa-calendar-check" aria-hidden="true"></i> Request Reservation
+            </button>
+            <p style="text-align:center;font-size:0.8rem;color:var(--text-muted);margin:14px 0 0;">No payment needed. This is a request — we'll confirm availability by email.</p>
+          </form>
+          </div>
+        </div>
+
+        <!-- RIGHT: hours + info -->
+        <aside data-aos="fade-left">
+          <div class="info-panel" data-aos="fade-left" data-aos-delay="0">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;">
+              <h4 style="margin:0;">Opening Hours</h4>
+              <span class="hours-open-pill badge-shimmer"><span class="dot" aria-hidden="true"></span> Open now</span>
+            </div>
+            <div class="hours-list">
+              <div class="hours-row"><span class="day">Monday</span><span class="time">7:00 – 19:00</span></div>
+              <div class="hours-row"><span class="day">Tuesday</span><span class="time">7:00 – 19:00</span></div>
+              <div class="hours-row"><span class="day">Wednesday</span><span class="time">7:00 – 19:00</span></div>
+              <div class="hours-row"><span class="day">Thursday</span><span class="time">7:00 – 19:00</span></div>
+              <div class="hours-row today"><span class="day">Friday</span><span class="time">7:00 – 19:00</span></div>
+              <div class="hours-row"><span class="day">Saturday</span><span class="time">8:00 – 18:00</span></div>
+              <div class="hours-row"><span class="day">Sunday</span><span class="time">8:00 – 18:00</span></div>
+            </div>
+          </div>
+
+          <div class="info-panel" data-aos="fade-left" data-aos-delay="80">
+            <h4 style="margin:0 0 18px;">Good to Know</h4>
+            <div class="perk"><i class="fas fa-users" aria-hidden="true"></i><div><strong>Groups of 1–8</strong><div style="font-size:0.86rem;color:var(--text-muted);">Larger parties? Give us a call and we'll sort a spot.</div></div></div>
+            <div class="perk"><i class="fas fa-clock" aria-hidden="true"></i><div><strong>15-minute hold</strong><div style="font-size:0.86rem;color:var(--text-muted);">We keep your table for 15 minutes past your slot.</div></div></div>
+            <div class="perk"><i class="fas fa-wifi" aria-hidden="true"></i><div><strong>Work-friendly</strong><div style="font-size:0.86rem;color:var(--text-muted);">Free Wi-Fi and plenty of plugs at the long table.</div></div></div>
+            <div class="perk" style="margin-bottom:0;"><i class="fas fa-cake-candles" aria-hidden="true"></i><div><strong>Celebrations welcome</strong><div style="font-size:0.86rem;color:var(--text-muted);">Tell us the occasion and we'll add a little something.</div></div></div>
+          </div>
+
+          <div class="info-panel" data-aos="fade-left" data-aos-delay="160" style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));border:none;color:#fff;position:relative;overflow:hidden;">
+            <div class="sprinkle-field" data-sprinkles="14" aria-hidden="true"></div>
+            <div style="position:relative;z-index:1;">
+              <h4 style="color:#fff;margin:0 0 8px;">Catering &amp; Private Hire</h4>
+              <p style="color:rgba(255,255,255,0.85);font-size:0.9rem;margin-bottom:18px;">Hosting an event or want the whole café? We do coffee carts, pastry platters, and evening hire.</p>
+              <a href="pricing.html" class="btn btn-outline-white btn-sm btn-magnetic"><i class="fas fa-arrow-right" aria-hidden="true"></i> See Catering Options</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
+              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            </a>
+          </div>
+          <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <nav class="footer-links" aria-label="Footer links">
+            <a href="about.html">Our Story</a><a href="menu.html">Menu</a><a href="reservations.html">Reservations</a>
+            <a href="pricing.html">Catering &amp; Plans</a><a href="blog.html">Journal</a><a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">The Menu</h4>
+          <nav class="footer-links" aria-label="Menu categories">
+            <a href="menu.html">Espresso &amp; Milk</a><a href="menu.html">Filter &amp; Pour Over</a><a href="menu.html">Bakery &amp; Pastries</a>
+            <a href="menu.html">All-Day Brunch</a><a href="menu.html">Cold Bar</a><a href="menu.html">Tea &amp; Matcha</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">Visit Us</h4>
+          <address style="font-style:normal;">
+            <div class="footer-contact-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
+            <div class="footer-contact-item"><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a></div>
+            <div class="footer-contact-item"><i class="fas fa-clock" aria-hidden="true"></i><span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
+          </address>
+          <div style="margin-top:20px;">
+            <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
+              <label for="newsletterEmail" class="sr-only">Email address</label>
+              <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
+              <button type="submit" class="btn btn-primary btn-sm" style="width:100%;"><i class="fas fa-paper-plane" aria-hidden="true"></i> Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Accessibility</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top btn-magnetic" aria-label="Back to top"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/effects.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

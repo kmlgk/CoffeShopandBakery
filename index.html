@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brew &amp; Crumb – Neighbourhood Coffee House &amp; Bakery</title>
+  <meta name="description" content="Brew & Crumb is a cosy neighbourhood coffee house and bakery — specialty espresso, fresh-baked pastries, and a warm place to linger. Reserve a table today." />
+  <link rel="canonical" href="pages/index.html" />
+  <!-- Instant redirect to the homepage inside /pages -->
+  <meta http-equiv="refresh" content="0; url=pages/index.html" />
+  <script>window.location.replace('pages/index.html');</script>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: 'Nunito Sans', 'Segoe UI', system-ui, sans-serif;
+      background: #F7EFE4; color: #4A3A30;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+    }
+    .wrap { padding: 24px; }
+    .logo {
+      width: 56px; height: 56px; margin: 0 auto 18px;
+      background: linear-gradient(135deg, #9B6A43, #74492A); color: #fff; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+      position: relative;
+      animation: logoPulse 2.4s ease-in-out infinite;
+    }
+    @keyframes logoPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+    .logo::before, .logo::after {
+      content: ''; position: absolute; bottom: 100%; width: 3px; height: 14px; border-radius: 50%;
+      background: linear-gradient(to top, rgba(155,106,67,0.5), transparent);
+      animation: stubSteam 2.6s ease-in infinite;
+    }
+    .logo::before { left: 18px; animation-delay: 0s; }
+    .logo::after  { left: 30px; animation-delay: 0.9s; }
+    @keyframes stubSteam {
+      0%   { transform: translateY(0) scaleX(1); opacity: 0; }
+      20%  { opacity: 0.7; }
+      100% { transform: translateY(-16px) scaleX(1.8); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) { .logo, .logo::before, .logo::after { animation: none; } }
+    h1 { font-family: 'Fraunces', Georgia, serif; font-size: 1.4rem; margin: 0 0 8px; color: #2A1E16; }
+    p  { color: #8A7565; font-size: .95rem; margin: 0 0 20px; }
+    a.enter {
+      display: inline-block; padding: 12px 28px; border-radius: 50px;
+      background: #9B6A43; color: #fff; text-decoration: none; font-weight: 700; font-size: .9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Fallback shown only if both the meta-refresh and JS redirect fail (e.g. JS disabled) -->
+  <div class="wrap">
+    <div class="logo">&#9749;</div>
+    <h1>Brew &amp; Crumb</h1>
+    <p>Warming up the homepage&hellip;</p>
+    <a class="enter" href="pages/index.html">Enter Café</a>
+  </div>
+</body>
+</html>

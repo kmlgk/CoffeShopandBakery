@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found – Brew &amp; Crumb</title>
+  <meta name="description" content="This page has gone cold. Let's get you back to something warm — head home or explore the Brew & Crumb menu." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/effects.css" />
+  <link rel="stylesheet" href="/assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="/assets/css/rtl.css" />
+  <style>
+    .err-wrap { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:100px 24px 60px;
+      background:linear-gradient(135deg,var(--cream) 0%,#F1E4D2 60%,#EAD9BF 100%); position:relative; overflow:hidden; }
+    .err-wrap::before { content:''; position:absolute; top:-120px; right:-120px; width:520px; height:520px; background:radial-gradient(circle,rgba(155,106,67,0.14) 0%,transparent 70%); border-radius:50%; }
+    .err-inner { position:relative; z-index:1; max-width:560px; }
+    .err-code { font-family:var(--font-heading); font-size:clamp(6rem,20vw,11rem); font-weight:700; line-height:1; color:var(--primary); letter-spacing:-4px; }
+    .err-code .cup { display:inline-block; transform:translateY(6px); position:relative; }
+    .err-code .cup .coffee-steam { position:absolute; top:-52px; left:50%; transform:translateX(-50%); }
+    .err-links { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; margin-top:30px; }
+    .err-quick { display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:34px; }
+    .err-quick a { font-size:0.85rem; font-weight:700; padding:8px 18px; border-radius:50px; background:var(--white); border:1px solid var(--border); color:var(--text); transition:all var(--transition); }
+    .err-quick a:hover { border-color:var(--primary); color:var(--primary); }
+    .float-controls { position:fixed; top:20px; right:20px; display:flex; gap:8px; z-index:10; }
+    .home-brand { position:fixed; top:22px; left:28px; z-index:10; }
+    /* Dark mode: the gradient uses fixed light stops, so re-tint for dark theme */
+    [data-theme="dark"] .err-wrap { background:linear-gradient(135deg,#17100A 0%,#241810 60%,#2C1E13 100%); }
+    [data-theme="dark"] .err-wrap::before { background:radial-gradient(circle,rgba(155,106,67,0.18) 0%,transparent 70%); }
+    /* RTL: brand flips to the right so it doesn't collide with the (left-moved) controls */
+    [dir="rtl"] .home-brand { left:auto; right:28px; }
+    /* Very small screens: keep just the logo to avoid brand/controls overlap */
+    @media (max-width:400px) { .home-brand .brand-text { display:none; } }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Page Loader -->
+  <div class="page-loader" role="status" aria-label="Loading"><div class="loader-spinner"></div></div>
+
+  <a href="/pages/index.html" class="navbar-brand home-brand" aria-label="Brew & Crumb Home">
+    <div class="brand-logo" aria-hidden="true"><img src="/assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+    <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+  </a>
+  <div class="float-controls">
+    <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+    <button class="rtl-toggle theme-toggle" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+  </div>
+
+  <main class="err-wrap">
+    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="float-field" data-float-icons="7" aria-hidden="true"></div>
+    <div class="sprinkle-field" data-sprinkles="18" aria-hidden="true"></div>
+    <div class="err-inner" data-aos="zoom-in" data-aos-duration="700">
+      <span class="sr-only">Error 404 — page not found.</span>
+      <div class="err-code" aria-hidden="true">4<span class="cup"><i class="fas fa-mug-hot"></i><span class="coffee-steam"><span class="wisp"></span><span class="wisp"></span><span class="wisp"></span></span></span>4</div>
+      <h1 style="margin:8px 0 12px;">This page went <span class="text-gradient">cold</span></h1>
+      <p style="color:var(--text-muted);font-size:1.05rem;">We couldn't find the page you were after — maybe it was a limited-time special. Let's pour you something fresh instead.</p>
+      <div class="err-links">
+        <a href="/pages/index.html" class="btn btn-primary btn-lg btn-magnetic"><i class="fas fa-house" aria-hidden="true"></i> Back Home</a>
+        <a href="/pages/menu.html" class="btn btn-outline btn-lg btn-magnetic"><i class="fas fa-book-open" aria-hidden="true"></i> View the Menu</a>
+      </div>
+      <div class="err-quick">
+        <a href="/pages/about.html">About</a>
+        <a href="/pages/reservations.html">Reservations</a>
+        <a href="/pages/blog.html">Journal</a>
+        <a href="/pages/contact.html">Contact</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="/assets/js/effects.js"></script>
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

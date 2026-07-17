@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation – Brew &amp; Crumb HTML Template</title>
+  <meta name="description" content="Installation, customization, and component reference for the Brew & Crumb coffee house & bakery HTML template." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="assets/css/rtl.css" />
+  <style>
+    .doc-layout { display:grid; grid-template-columns:250px 1fr; gap:48px; align-items:start; }
+    .doc-nav { position:sticky; top:100px; background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:18px; }
+    .doc-nav a { display:block; padding:9px 14px; border-radius:8px; font-size:0.9rem; font-weight:600; color:var(--text); transition:all var(--transition); }
+    .doc-nav a:hover { background:var(--cream); color:var(--primary); }
+    .doc-section { margin-bottom:52px; }
+    .doc-section h2 { margin-bottom:14px; padding-top:10px; }
+    .doc-section h3 { margin:26px 0 10px; }
+    .doc-section p, .doc-section li { color:var(--text); }
+    .doc-section ul { margin:0 0 16px 22px; list-style:disc; }
+    .doc-section li { margin-bottom:6px; }
+    pre { background:var(--dark); color:#F3E7D6; padding:18px 20px; border-radius:var(--radius); overflow-x:auto; font-size:0.86rem; line-height:1.6; margin:14px 0; }
+    pre code { font-family:'Consolas','Monaco',monospace; }
+    .inline-code { background:var(--cream-dark); color:var(--primary-dark); padding:2px 7px; border-radius:5px; font-family:'Consolas','Monaco',monospace; font-size:0.86em; }
+    .doc-table { width:100%; border-collapse:collapse; margin:14px 0; }
+    .doc-table th { text-align:left; background:var(--cream); padding:11px 14px; font-size:0.82rem; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); }
+    .doc-table td { padding:11px 14px; border-bottom:1px solid var(--border); font-size:0.9rem; }
+    .note { display:flex; gap:12px; background:rgba(110,139,110,0.12); border-left:4px solid var(--secondary); padding:16px 18px; border-radius:0 var(--radius) var(--radius) 0; margin:16px 0; }
+    .note i { color:var(--secondary); margin-top:3px; }
+    @media (max-width:860px){ .doc-layout { grid-template-columns:1fr; } .doc-nav { position:static; margin-bottom:24px; } }
+  </style>
+</head>
+<body>
+
+  <div class="page-loader" role="status" aria-label="Loading"><div class="loader-spinner"></div></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="pages/index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
+        <div class="brand-logo" aria-hidden="true"><img src="assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      </a>
+      <ul class="nav-menu" id="navMenu" role="menubar">
+        <li role="none"><a href="pages/index.html" class="nav-link" role="menuitem">Home</a></li>
+        <li role="none"><a href="pages/menu.html" class="nav-link" role="menuitem">Menu</a></li>
+        <li role="none"><a href="pages/reservations.html" class="nav-link" role="menuitem">Reservations</a></li>
+        <li role="none"><a href="documentation.html" class="nav-link active" role="menuitem">Docs</a></li>
+        <li class="nav-mobile-actions" role="none">
+          <div class="mobile-action-toggles">
+            <button class="theme-toggle theme-toggle--menu" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+            <button class="rtl-toggle theme-toggle theme-toggle--menu" aria-label="Switch to RTL" aria-pressed="false">RTL</button>
+          </div>
+        </li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+        <button class="rtl-toggle theme-toggle" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+        <a href="pages/index.html" class="btn-nav-order">View Site</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <span class="breadcrumb-item"><a href="pages/index.html">Home</a></span>
+        <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+        <span class="breadcrumb-item active">Documentation</span>
+      </nav>
+      <h1>Documentation</h1>
+      <p>Everything you need to install, customize, and extend the Brew &amp; Crumb template.</p>
+    </div>
+  </header>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="doc-layout">
+        <!-- SIDEBAR -->
+        <aside class="doc-nav" aria-label="Documentation sections">
+          <a href="#install"><i class="fas fa-download" aria-hidden="true"></i> Installation</a>
+          <a href="#structure"><i class="fas fa-folder-tree" aria-hidden="true"></i> File Structure</a>
+          <a href="#colors"><i class="fas fa-palette" aria-hidden="true"></i> Colors &amp; Fonts</a>
+          <a href="#pages"><i class="fas fa-file-lines" aria-hidden="true"></i> Pages</a>
+          <a href="#components"><i class="fas fa-cubes" aria-hidden="true"></i> Components</a>
+          <a href="#forms"><i class="fas fa-envelope" aria-hidden="true"></i> Forms &amp; Integrations</a>
+          <a href="#darkrtl"><i class="fas fa-circle-half-stroke" aria-hidden="true"></i> Dark Mode &amp; RTL</a>
+          <a href="#credits"><i class="fas fa-heart" aria-hidden="true"></i> Credits</a>
+        </aside>
+
+        <!-- CONTENT -->
+        <div>
+          <div class="doc-section" id="install">
+            <h2>Installation</h2>
+            <p>No build step required. This is a static HTML template — everything runs in the browser.</p>
+            <ul>
+              <li>Unzip the download to any folder.</li>
+              <li>Open <span class="inline-code">index.html</span> — it redirects to <span class="inline-code">pages/index.html</span>.</li>
+              <li>For a smoother dev experience, use a local server (e.g. VS Code <em>Live Server</em>).</li>
+            </ul>
+            <div class="note"><i class="fas fa-circle-info" aria-hidden="true"></i><div>Fonts and icons load from CDNs. For fully offline use, self-host them in <span class="inline-code">assets/fonts/</span> and swap the <span class="inline-code">&lt;link&gt;</span> tags.</div></div>
+          </div>
+
+          <div class="doc-section" id="structure">
+            <h2>File Structure</h2>
+            <pre><code>brew-and-crumb/
+├── index.html            → redirects to pages/index.html
+├── assets/
+│   ├── css/  style.css · dark-mode.css · rtl.css
+│   ├── js/   main.js · plugins/
+│   ├── images/  fonts/
+├── pages/    14 HTML pages
+├── documentation.html
+└── README.md</code></pre>
+          </div>
+
+          <div class="doc-section" id="colors">
+            <h2>Colors &amp; Fonts</h2>
+            <p>All theming lives in CSS variables at the top of <span class="inline-code">assets/css/style.css</span>:</p>
+            <pre><code>:root {
+  --primary:   #9B6A43;  /* roasted mocha */
+  --secondary: #6E8B6E;  /* café sage     */
+  --accent:    #D6A419;  /* honey gold    */
+  --cream:     #F7EFE4;
+  --dark:      #2A1E16;
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body:    'Nunito Sans', sans-serif;
+}</code></pre>
+            <p>Change a value once and it cascades everywhere. Dark-mode overrides live in
+            <span class="inline-code">dark-mode.css</span> under <span class="inline-code">[data-theme="dark"]</span>.</p>
+          </div>
+
+          <div class="doc-section" id="pages">
+            <h2>Pages</h2>
+            <table class="doc-table">
+              <thead><tr><th>File</th><th>Purpose</th></tr></thead>
+              <tbody>
+                <tr><td>index.html</td><td>Home 1 — Coffee House landing</td></tr>
+                <tr><td>home-2.html</td><td>Home 2 — Roastery / espresso bar variant</td></tr>
+                <tr><td>about.html</td><td>Story, values, timeline, team</td></tr>
+                <tr><td>menu.html</td><td>Full café menu (price-list)</td></tr>
+                <tr><td>menu-details.html</td><td>Signature espresso deep-dive</td></tr>
+                <tr><td>reservations.html</td><td>Table booking widget</td></tr>
+                <tr><td>blog.html · blog-details.html</td><td>The Journal + single article</td></tr>
+                <tr><td>contact.html</td><td>Form, map, opening hours</td></tr>
+                <tr><td>pricing.html</td><td>Bean subscriptions + catering</td></tr>
+                <tr><td>login.html · register.html</td><td>Auth pages</td></tr>
+                <tr><td>admin-dashboard.html</td><td>Admin panel — Overview, Analytics, Orders, Users, Messages</td></tr>
+                <tr><td>404.html · coming-soon.html</td><td>Error &amp; dual-mode launch page</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="doc-section" id="components">
+            <h2>Components</h2>
+            <p>Common building blocks (all in <span class="inline-code">style.css</span>):</p>
+            <ul>
+              <li><span class="inline-code">.btn</span> + <span class="inline-code">.btn-primary / -outline / -secondary / -lg / -sm</span> — buttons</li>
+              <li><span class="inline-code">.category-card · .feature-card · .menu-card · .blog-card · .pricing-card · .testimonial-card</span> — cards</li>
+              <li><span class="inline-code">.pricelist</span> — dotted-leader menu rows with <span class="inline-code">.pl-badge</span> dietary tags</li>
+              <li><span class="inline-code">.chip</span> + <span class="inline-code">[data-chip-group]</span> — selectable pills (party size, time slots)</li>
+              <li><span class="inline-code">.faq-item</span> — accordion (auto-wired in main.js)</li>
+              <li><span class="inline-code">.hours-list</span> — opening-hours table</li>
+              <li><span class="inline-code">[data-reveal]</span> — fade-up on scroll · <span class="inline-code">[data-count]</span> — animated counters</li>
+            </ul>
+          </div>
+
+          <div class="doc-section" id="forms">
+            <h2>Forms &amp; Integrations</h2>
+            <p>Any <span class="inline-code">&lt;form data-validate&gt;</span> gets client-side validation and a success
+            toast. Customize the toast message with <span class="inline-code">data-success="…"</span>.</p>
+            <p>To connect a form to a real backend, add an <span class="inline-code">action</span> and <span class="inline-code">method</span>:</p>
+            <pre><code>&lt;form action="https://formspree.io/f/your-id" method="POST" data-validate&gt;
+  ...
+&lt;/form&gt;</code></pre>
+            <ul>
+              <li><strong>Contact / reservations:</strong> Formspree or Netlify Forms.</li>
+              <li><strong>Newsletter:</strong> Mailchimp / ConvertKit embed on <span class="inline-code">.newsletter-form</span>.</li>
+              <li><strong>Map:</strong> swap the OpenStreetMap iframe in <span class="inline-code">contact.html</span> for a Google Maps embed.</li>
+            </ul>
+          </div>
+
+          <div class="doc-section" id="darkrtl">
+            <h2>Dark Mode &amp; RTL</h2>
+            <p>Both toggles live in the navbar and persist to <span class="inline-code">localStorage</span>
+            (<span class="inline-code">brew-theme</span> and <span class="inline-code">brew-dir</span>). Dark mode also respects the
+            visitor's OS preference on first visit.</p>
+            <p>To force a default, set attributes on the <span class="inline-code">&lt;html&gt;</span> tag:
+            <span class="inline-code">data-theme="dark"</span> or <span class="inline-code">dir="rtl"</span>.</p>
+          </div>
+
+          <div class="doc-section" id="credits">
+            <h2>Credits</h2>
+            <ul>
+              <li>Fonts — Fraunces &amp; Nunito Sans (Google Fonts, OFL)</li>
+              <li>Icons — Font Awesome 6 Free</li>
+              <li>Photos — Unsplash (demo only; replace before launch)</li>
+              <li>Map — OpenStreetMap</li>
+            </ul>
+            <p>Thanks for choosing Brew &amp; Crumb. Questions? See the support details in your purchase receipt.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-bottom" style="margin-top:0;border-top:none;">
+        <p>&copy; 2025 <a href="pages/index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <div class="footer-bottom-links"><a href="README.md">README</a><a href="pages/index.html">Live Preview</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" aria-label="Back to top"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brew &amp; Crumb – Neighbourhood Coffee House &amp; Bakery</title>
+  <meta name="description" content="A cosy neighbourhood coffee house and artisan bakery. Specialty espresso, slow-brewed filter, fresh sourdough and pastries — plus a warm corner to reserve. Visit Brew & Crumb today." />
+  <meta name="keywords" content="coffee shop, bakery, specialty coffee, espresso, café, brunch, table reservation, artisan pastries" />
+  <meta property="og:title" content="Brew & Crumb – Neighbourhood Coffee House & Bakery" />
+  <meta property="og:description" content="Specialty coffee, fresh-baked goods, and a cosy place to linger. Reserve your table today." />
+  <meta property="og:type" content="website" />
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- AOS (scroll reveal) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/effects.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <style>
+    .stats-band { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 60px 0; position: relative; overflow: hidden; }
+    .stats-band .divider { width: 1px; height: 60px; background: rgba(255,255,255,0.2); }
+    .filter-tabs { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 36px; justify-content: center; }
+    .filter-tab  { padding: 8px 22px; border-radius: 50px; border: 2px solid var(--border); font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: all 0.25s ease; background: var(--white); color: var(--text); }
+    .filter-tab:hover, .filter-tab.active { background: var(--primary); color: var(--white); border-color: var(--primary); }
+    .brand-strip { padding: 34px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; background: var(--white); position: relative; }
+    .brand-track { display: flex; gap: 44px; align-items: center; animation: marquee 24s linear infinite; white-space: nowrap; }
+    .brand-track span { font-family: var(--font-heading); font-size: 1.05rem; color: var(--text-muted); opacity: 0.7; font-style: italic; display: inline-flex; align-items: center; gap: 44px; }
+    .brand-track i { color: var(--accent); font-size: 0.7rem; opacity: 0.8; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .cta-section { background: linear-gradient(135deg, var(--secondary), #566E56); padding: 80px 0; text-align: center; position: relative; overflow: hidden; }
+    .hero-steam-badge { position: absolute; top: -18px; right: 54px; width: 58px; height: 58px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; box-shadow: 0 10px 26px rgba(155,106,67,0.4); z-index: 2; }
+    .hero-steam-badge .coffee-steam { position: absolute; top: -46px; left: 6px; }
+    .section-relative { position: relative; }
+    .specials-cake-slice { position: absolute; top: -18px; right: 6%; opacity: 0.9; }
+    @media (max-width: 768px) {
+      .stats-band { padding: 40px 0; }
+      .stats-band .divider { display: none; }
+      .specials-cake-slice { display: none; }
+    }
+  </style>
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Brew & Crumb",
+    "description": "Neighbourhood coffee house and artisan bakery serving specialty coffee and fresh-baked goods.",
+    "servesCuisine": ["Coffee", "Bakery", "Brunch"],
+    "url": "https://brewandcrumb.example",
+    "telephone": "+1-555-267-8932",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "18 Kettle Street",
+      "addressLocality": "Maple Grove",
+      "addressRegion": "OR",
+      "postalCode": "97005",
+      "addressCountry": "US"
+    },
+    "openingHours": "Mo-Fr 07:00-19:00, Sa-Su 08:00-18:00"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- Page Loader -->
+  <div class="page-loader" role="status" aria-label="Loading"><div class="loader-spinner"></div></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
+        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      </a>
+
+      <ul class="nav-menu" id="navMenu" role="menubar">
+        <li class="dropdown" role="none">
+          <a href="index.html" class="nav-link active" role="menuitem" aria-haspopup="true" aria-expanded="false">
+            Home <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
+        <li class="dropdown" role="none">
+          <a href="menu.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+            Menu <i class="fas fa-chevron-down" aria-hidden="true"></i>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
+            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="reservations.html" class="nav-link" role="menuitem">Reservations</a></li>
+        <li role="none"><a href="pricing.html" class="nav-link" role="menuitem">Pricing</a></li>
+        <li role="none"><a href="blog.html" class="nav-link" role="menuitem">Journal</a></li>
+        <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
+        <li class="nav-mobile-actions" role="none">
+          <div class="mobile-action-toggles">
+            <button class="theme-toggle theme-toggle--menu" aria-label="Toggle dark mode">
+              <i class="fas fa-moon" aria-hidden="true"></i>
+            </button>
+            <button class="rtl-toggle theme-toggle theme-toggle--menu" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+          </div>
+          <div class="mobile-action-auth">
+            <a href="login.html" class="btn-nav-login">Login</a>
+            <a href="register.html" class="btn-nav-login">Register</a>
+          </div>
+          <a href="reservations.html" class="btn-nav-order" style="width:100%;justify-content:center;">Book a Table</a>
+          <div class="mobile-action-links">
+            <a href="reservations.html"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a>
+            <a href="admin-dashboard.html"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a>
+          </div>
+        </li>
+      </ul>
+
+      <div class="navbar-actions">
+        <button class="theme-toggle" aria-label="Toggle dark mode">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </button>
+        <button class="rtl-toggle theme-toggle" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+        <a href="reservations.html" class="btn-nav-order">Book a Table</a>
+        <div class="account-dropdown">
+          <button class="account-toggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user" aria-hidden="true"></i></button>
+          <ul class="account-menu" role="menu" aria-label="Account">
+            <li role="none"><a href="login.html" class="account-item" role="menuitem"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> Sign In</a></li>
+            <li role="none"><a href="register.html" class="account-item" role="menuitem"><i class="fas fa-user-plus" aria-hidden="true"></i> Create Account</a></li>
+            <li role="none" class="account-sep"><a href="reservations.html" class="account-item" role="menuitem"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a></li>
+            <li role="none"><a href="admin-dashboard.html" class="account-item account-item--staff" role="menuitem"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a></li>
+          </ul>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero hero-v2" aria-labelledby="heroHeading" data-cursor-trail>
+    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="float-field" data-float-icons="7" aria-hidden="true"></div>
+    <div class="container" style="width:100%;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;" class="hero-grid">
+        <div class="hero-content" data-aos="fade-right" data-aos-duration="800">
+          <div class="hero-badge badge-shimmer">
+            <i class="fas fa-mug-saucer" aria-hidden="true"></i>
+            Roasted in-house · Baked before dawn
+          </div>
+          <h1 id="heroHeading">
+            Good Mornings<br>Start with a <span class="text-gradient">Warm Cup</span>
+          </h1>
+          <p class="lead">
+            A cosy neighbourhood coffee house and bakery on the corner of Kettle Street. Slow-poured espresso, fresh sourdough, and a comfy chair with your name on it.
+          </p>
+          <div class="hero-cta">
+            <a href="reservations.html" class="btn btn-primary btn-lg btn-magnetic">
+              <i class="fas fa-calendar-check" aria-hidden="true"></i> Reserve a Table
+            </a>
+            <a href="menu.html" class="btn btn-outline btn-lg btn-magnetic">
+              <i class="fas fa-book-open" aria-hidden="true"></i> View the Menu
+            </a>
+          </div>
+          <div class="hero-stats" aria-label="Café highlights">
+            <div class="stat-item">
+              <div class="number" data-count="30" data-suffix="+" aria-label="Over 30 coffees on the menu">0+</div>
+              <div class="label">Coffees on Menu</div>
+            </div>
+            <div class="stat-item">
+              <div class="number" data-count="14" data-suffix="" aria-label="14 years serving the neighbourhood">0</div>
+              <div class="label">Years on the Corner</div>
+            </div>
+            <div class="stat-item">
+              <div class="number" data-count="4" data-suffix=".9★" aria-label="4.9 star rating">0</div>
+              <div class="label">Guest Rating</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image-wrap" data-aos="fade-left" data-aos-duration="800" data-tilt data-crumb-burst style="position:relative;">
+          <div class="hero-art" aria-hidden="true">
+
+            <!-- Layer 1: back blob + halftone dots -->
+            <div class="hero-art-back">
+              <svg viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet">
+                <path d="M199,32 C266,20 344,55 368,120 C392,185 374,266 314,317 C254,368 162,380 101,339 C40,298 12,215 32,145 C52,75 132,44 199,32 Z" fill="var(--funky-2)"/>
+              </svg>
+            </div>
+            <div class="hero-art-dots"></div>
+            <svg class="hero-art-squiggle" style="top:10%;left:-6%;width:70px;" viewBox="0 0 100 40">
+              <path d="M4,30 Q26,4 50,30 T96,30" stroke="var(--funky-3)" stroke-width="7" stroke-linecap="round" fill="none"/>
+            </svg>
+
+            <!-- Layer 2: illustrated cup + steam + bakery props -->
+            <div class="hero-art-front">
+              <div class="hero-art-steam">
+                <span class="wisp-lg"></span><span class="wisp-lg"></span><span class="wisp-lg"></span>
+              </div>
+              <svg class="funky-cup-svg" viewBox="0 0 400 400">
+                <ellipse cx="200" cy="352" rx="150" ry="16" fill="rgba(42,30,22,0.12)"/>
+                <ellipse cx="198" cy="336" rx="150" ry="24" fill="#FFF7EC" stroke="#F0DFC8" stroke-width="2"/>
+                <path d="M300,196 C352,201 358,248 354,268 C350,296 322,313 292,310" fill="none" stroke="var(--funky-1)" stroke-width="24" stroke-linecap="round"/>
+                <path d="M300,196 C352,201 358,248 354,268 C350,296 322,313 292,310" fill="none" stroke="var(--funky-1-dark)" stroke-width="7" stroke-linecap="round" opacity="0.4"/>
+                <path d="M112,152 L288,152 L263,318 C261,332 249,332 240,332 L160,332 C151,332 139,332 137,318 Z" fill="var(--funky-1)"/>
+                <ellipse cx="152" cy="238" rx="12" ry="82" fill="#FFFFFF" opacity="0.16"/>
+                <ellipse cx="200" cy="152" rx="88" ry="17" fill="#3B2417"/>
+                <path d="M165,148 q17,-14 34,0 q17,14 34,0" fill="none" stroke="#6B4A34" stroke-width="4" stroke-linecap="round" opacity="0.7"/>
+                <ellipse cx="200" cy="152" rx="88" ry="17" fill="none" stroke="#FFD9C4" stroke-width="4" opacity="0.85"/>
+              </svg>
+            </div>
+
+            <img class="hero-art-prop hero-art-croissant" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 80'%3E%3Cpath d='M18,58 Q6,28 38,12 Q75,-4 104,22 Q82,16 66,32 Q50,48 30,54 Q22,57 18,58 Z' fill='%23D9A24B'/%3E%3Cpath d='M34,26 L48,42 M52,18 L66,36 M68,14 L82,30' stroke='%23B9863A' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E" alt="" width="120" height="80" />
+
+            <div class="hero-art-prop hero-art-cake cake-slice"></div>
+            <div class="hero-art-prop hero-art-bean-1"><div class="coffee-bean" style="--bean-rot:24deg;"></div></div>
+            <div class="hero-art-prop hero-art-bean-2"><div class="coffee-bean" style="--bean-rot:-18deg;"></div></div>
+
+            <div class="hero-art-sticker sticker-badge">Fresh<br>Daily</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="icing-drip" aria-hidden="true"></div>
+  </section>
+
+  <!-- ===== BRAND STRIP ===== -->
+  <div class="brand-strip marquee-fade" aria-hidden="true">
+    <div class="brand-track">
+      <span>Flat White <i class="fas fa-mug-hot"></i> Pour Over <i class="fas fa-mug-hot"></i> Cold Brew <i class="fas fa-mug-hot"></i> Sourdough <i class="fas fa-mug-hot"></i> Croissants <i class="fas fa-mug-hot"></i> Matcha <i class="fas fa-mug-hot"></i> Chai Latte <i class="fas fa-mug-hot"></i> Cinnamon Buns <i class="fas fa-mug-hot"></i></span>
+      <span>Flat White <i class="fas fa-mug-hot"></i> Pour Over <i class="fas fa-mug-hot"></i> Cold Brew <i class="fas fa-mug-hot"></i> Sourdough <i class="fas fa-mug-hot"></i> Croissants <i class="fas fa-mug-hot"></i> Matcha <i class="fas fa-mug-hot"></i> Chai Latte <i class="fas fa-mug-hot"></i> Cinnamon Buns <i class="fas fa-mug-hot"></i></span>
+    </div>
+  </div>
+
+  <!-- ===== MENU CATEGORIES ===== -->
+  <section class="section-pad bg-cream" aria-labelledby="categoriesHeading">
+    <div class="container">
+      <div class="section-header center" data-aos="fade-up">
+        <div class="badge-label">On the Counter</div>
+        <h2 id="categoriesHeading">Everything Made with Care</h2>
+        <div class="divider-line"></div>
+        <p>From the first grind of the morning to the last cinnamon bun, every item is prepared fresh in our little kitchen.</p>
+      </div>
+
+      <div class="filter-tabs" role="tablist" aria-label="Menu category filter" data-filter-group data-filter-target="#homeCats" data-aos="fade-up">
+        <button class="filter-tab active" role="tab" aria-selected="true" data-filter="all">All</button>
+        <button class="filter-tab" role="tab" aria-selected="false" data-filter="coffee">Coffee</button>
+        <button class="filter-tab" role="tab" aria-selected="false" data-filter="bakery">Bakery</button>
+        <button class="filter-tab" role="tab" aria-selected="false" data-filter="brunch">Brunch</button>
+        <button class="filter-tab" role="tab" aria-selected="false" data-filter="cold">Cold Bar</button>
+      </div>
+
+      <div id="homeCats" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;">
+        <article class="category-card" data-tilt data-crumb-burst data-category="coffee" data-aos="fade-up" data-aos-delay="0">
+          <div class="tilt-inner">
+          <div class="category-img">
+            <img src="../assets/images/photo-1511920170033-f8396924c348-w520.jpg" alt="Barista pouring latte art into a ceramic cup" loading="lazy" width="520" height="300" />
+            <span class="category-badge">Signature</span>
+          </div>
+          <div class="category-body">
+            <div class="category-icon" aria-hidden="true"><i class="fas fa-mug-hot"></i></div>
+            <h4>Espresso &amp; Milk</h4>
+            <p>Flat whites, cortados, and velvety lattes pulled from our house espresso blend.</p>
+            <a href="menu-details.html" class="category-link" aria-label="Explore espresso drinks">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          </div>
+        </article>
+
+        <article class="category-card" data-tilt data-crumb-burst data-category="coffee" data-aos="fade-up" data-aos-delay="80">
+          <div class="tilt-inner">
+          <div class="category-img">
+            <img src="../assets/images/photo-1495474472287-4d71bcdd2085-w520.jpg" alt="Pour-over coffee dripping through a filter" loading="lazy" width="520" height="300" />
+            <span class="category-badge">Slow Bar</span>
+          </div>
+          <div class="category-body">
+            <div class="category-icon" aria-hidden="true"><i class="fas fa-filter"></i></div>
+            <h4>Filter &amp; Pour Over</h4>
+            <p>Rotating single-origin beans brewed by hand — bright, clean, and full of character.</p>
+            <a href="menu.html" class="category-link" aria-label="Explore filter coffee">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          </div>
+        </article>
+
+        <article class="category-card" data-tilt data-crumb-burst data-category="bakery" data-aos="fade-up" data-aos-delay="160">
+          <div class="tilt-inner">
+          <div class="category-img">
+            <img src="../assets/images/photo-1509440159596-0249088772ff-w520.jpg" alt="Fresh croissants and pastries on a bakery rack" loading="lazy" width="520" height="300" />
+            <span class="category-badge">Fresh Daily</span>
+          </div>
+          <div class="category-body">
+            <div class="category-icon" aria-hidden="true"><i class="fas fa-bread-slice"></i></div>
+            <h4>Bakery &amp; Pastries</h4>
+            <p>Butter croissants, cinnamon buns, and crusty sourdough baked before the doors open.</p>
+            <a href="menu.html" class="category-link" aria-label="Explore bakery">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          </div>
+        </article>
+
+        <article class="category-card" data-tilt data-crumb-burst data-category="brunch" data-aos="fade-up" data-aos-delay="0">
+          <div class="tilt-inner">
+          <div class="category-img">
+            <img src="../assets/images/photo-1525351484163-7529414344d8-w520.jpg" alt="Avocado toast and brunch plate on a café table" loading="lazy" width="520" height="300" />
+          </div>
+          <div class="category-body">
+            <div class="category-icon" aria-hidden="true"><i class="fas fa-egg"></i></div>
+            <h4>All-Day Brunch</h4>
+            <p>Smashed avo toast, shakshuka, and granola bowls to go with your second cup.</p>
+            <a href="menu.html" class="category-link" aria-label="Explore brunch">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          </div>
+        </article>
+
+        <article class="category-card" data-tilt data-crumb-burst data-category="cold" data-aos="fade-up" data-aos-delay="80">
+          <div class="tilt-inner">
+          <div class="category-img">
+            <img src="../assets/images/photo-1461023058943-07fcbe16d735-w520.jpg" alt="Iced cold brew coffee in a tall glass" loading="lazy" width="520" height="300" />
+            <span class="category-badge">Chilled</span>
+          </div>
+          <div class="category-body">
+            <div class="category-icon" aria-hidden="true"><i class="fas fa-glass-water"></i></div>
+            <h4>Cold Bar</h4>
+            <p>24-hour cold brew, iced lattes, and seasonal fruit sodas for warmer afternoons.</p>
+            <a href="menu.html" class="category-link" aria-label="Explore cold drinks">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          </div>
+        </article>
+
+        <article class="category-card" data-tilt data-crumb-burst data-category="coffee" data-aos="fade-up" data-aos-delay="160">
+          <div class="tilt-inner">
+          <div class="category-img">
+            <img src="../assets/images/photo-1515823662972-da6a2e4d3002-w520.jpg" alt="Cup of matcha latte with leaf art" loading="lazy" width="520" height="300" />
+          </div>
+          <div class="category-body">
+            <div class="category-icon" aria-hidden="true"><i class="fas fa-leaf"></i></div>
+            <h4>Tea &amp; Matcha</h4>
+            <p>Loose-leaf teas, ceremonial matcha, and spiced chai for the non-coffee crowd.</p>
+            <a href="menu.html" class="category-link" aria-label="Explore tea and matcha">Explore <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+          </div>
+        </article>
+      </div>
+
+      <div style="text-align:center;margin-top:48px;" data-aos="fade-up">
+        <a href="menu.html" class="btn btn-outline btn-lg btn-magnetic">
+          <i class="fas fa-book-open" aria-hidden="true"></i> See the Full Menu
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS BAND ===== -->
+  <div class="stats-band" aria-label="Café achievements">
+    <div class="float-field" data-float-icons="5" aria-hidden="true" style="opacity:0.5;"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div style="display:flex;justify-content:space-around;align-items:center;flex-wrap:wrap;gap:32px;">
+        <div class="stat-item" style="text-align:center;" data-aos="zoom-in">
+          <div class="number" data-count="220" data-suffix="+" style="color:#fff;font-size:2.5rem;font-family:var(--font-heading);font-weight:700;">220+</div>
+          <div class="label" style="color:rgba(255,255,255,0.75);font-size:0.88rem;margin-top:4px;">Cups Poured Daily</div>
+        </div>
+        <div class="divider" aria-hidden="true"></div>
+        <div class="stat-item" style="text-align:center;" data-aos="zoom-in" data-aos-delay="100">
+          <div class="number" data-count="18" data-suffix="" style="color:#fff;font-size:2.5rem;font-family:var(--font-heading);font-weight:700;">18</div>
+          <div class="label" style="color:rgba(255,255,255,0.75);font-size:0.88rem;margin-top:4px;">Pastries Baked Fresh</div>
+        </div>
+        <div class="divider" aria-hidden="true"></div>
+        <div class="stat-item" style="text-align:center;" data-aos="zoom-in" data-aos-delay="200">
+          <div class="number" data-count="6" data-suffix="" style="color:#fff;font-size:2.5rem;font-family:var(--font-heading);font-weight:700;">6</div>
+          <div class="label" style="color:rgba(255,255,255,0.75);font-size:0.88rem;margin-top:4px;">Roasts on Rotation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== WHY US ===== -->
+  <section class="section-pad" aria-labelledby="featuresHeading">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;" class="features-grid">
+        <div>
+          <div class="section-header" data-aos="fade-right">
+            <div class="badge-label">Why Brew &amp; Crumb</div>
+            <h2 id="featuresHeading">A Third Place<br>Between Home &amp; Work</h2>
+            <div class="divider-line"></div>
+            <p>We're more than a coffee counter. We're the corner where regulars become friends, and every cup is made like it matters — because it does.</p>
+          </div>
+          <div style="display:grid;gap:20px;">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="0" style="display:flex;align-items:flex-start;gap:20px;padding:24px;">
+              <div class="feature-icon" style="flex-shrink:0;width:52px;height:52px;font-size:1.3rem;" aria-hidden="true"><i class="fas fa-seedling"></i></div>
+              <div>
+                <h4>Ethically Sourced Beans</h4>
+                <p>Direct-trade, single-origin coffee roasted weekly so every cup is at its peak freshness.</p>
+              </div>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="80" style="display:flex;align-items:flex-start;gap:20px;padding:24px;">
+              <div class="feature-icon" style="flex-shrink:0;width:52px;height:52px;font-size:1.3rem;" aria-hidden="true"><i class="fas fa-wheat-awn"></i></div>
+              <div>
+                <h4>Baked From Scratch</h4>
+                <p>Our sourdough starter is older than the café. Everything is made in-house, every single day.</p>
+              </div>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="160" style="display:flex;align-items:flex-start;gap:20px;padding:24px;">
+              <div class="feature-icon" style="flex-shrink:0;width:52px;height:52px;font-size:1.3rem;" aria-hidden="true"><i class="fas fa-couch"></i></div>
+              <div>
+                <h4>Room to Linger</h4>
+                <p>Free Wi-Fi, plenty of plugs, and comfy corners. Stay for one cup or the whole afternoon.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="position:relative;" data-aos="fade-left">
+          <img
+            src="../assets/images/photo-1442512595331-e89e73853f31-w620.jpg"
+            alt="Barista preparing coffee at a warm wooden café counter"
+            data-tilt
+            style="border-radius:var(--radius-xl);width:100%;height:500px;object-fit:cover;box-shadow:0 24px 60px var(--shadow-md);"
+            loading="lazy" width="620" height="500"
+          />
+          <div style="position:absolute;bottom:-20px;right:-20px;background:var(--primary);color:#fff;border-radius:var(--radius-lg);padding:24px 28px;text-align:center;box-shadow:0 12px 32px rgba(155,106,67,0.35);" aria-hidden="true">
+            <div style="font-family:var(--font-heading);font-size:2rem;font-weight:700;">14</div>
+            <div style="font-size:0.82rem;opacity:0.9;">Years on<br>the Corner</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DAILY SPECIALS ===== -->
+  <section class="section-pad bg-cream section-relative" aria-labelledby="specialsHeading">
+    <div class="cake-slice specials-cake-slice" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-header center" data-aos="fade-up">
+        <div class="badge-label">Today's Board</div>
+        <h2 id="specialsHeading">Daily Specials</h2>
+        <div class="divider-line"></div>
+        <p>Written on the chalkboard each morning — a rotating handful of seasonal favourites.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:24px;">
+        <article class="menu-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="0">
+          <div class="menu-img">
+            <img src="../assets/images/photo-1572442388796-11668a67e53d-w320.jpg" alt="Maple pecan latte with foam art" loading="lazy" width="320" height="220" />
+          </div>
+          <div class="menu-body">
+            <span class="menu-tag">Barista's Pick</span>
+            <h5>Maple Pecan Latte</h5>
+            <p>House espresso, steamed milk, real maple, and toasted pecan syrup.</p>
+            <div class="menu-price">$5.40</div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="80">
+          <div class="menu-img">
+            <img src="../assets/images/photo-1608198093002-ad4e005484ec-w320.jpg" alt="Fresh baked cinnamon bun with icing" loading="lazy" width="320" height="220" />
+          </div>
+          <div class="menu-body">
+            <span class="menu-tag">Fresh Batch</span>
+            <h5>Cardamom Cinnamon Bun</h5>
+            <p>Soft, laminated dough with cardamom sugar and a cream-cheese glaze.</p>
+            <div class="menu-price">$4.20</div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="160">
+          <div class="menu-img">
+            <img src="../assets/images/photo-1447933601403-0c6688de566e-w320.jpg" alt="Iced cold brew coffee with milk swirl" loading="lazy" width="320" height="220" />
+          </div>
+          <div class="menu-body">
+            <span class="menu-tag">Cold Bar</span>
+            <h5>24-Hour Cold Brew</h5>
+            <p>Slow-steeped overnight for a smooth, low-acid pour. Add oat milk for free.</p>
+            <div class="menu-price">$4.80 <span class="old">$5.50</span></div>
+          </div>
+        </article>
+
+        <article class="menu-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="240">
+          <div class="menu-img">
+            <img src="../assets/images/photo-1484723091739-30a097e8f929-w320.jpg" alt="Avocado toast topped with chilli and seeds" loading="lazy" width="320" height="220" />
+          </div>
+          <div class="menu-body">
+            <span class="menu-tag">Brunch</span>
+            <h5>Smashed Avo Sourdough</h5>
+            <p>Our sourdough, smashed avocado, chilli flakes, lemon, and toasted seeds.</p>
+            <div class="menu-price">$9.50</div>
+          </div>
+        </article>
+      </div>
+
+      <div style="text-align:center;margin-top:48px;" data-aos="fade-up">
+        <a href="menu.html" class="btn btn-primary btn-lg btn-magnetic">
+          <i class="fas fa-utensils" aria-hidden="true"></i> Browse the Whole Menu
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== AMBIENCE GALLERY ===== -->
+  <section class="section-pad" aria-labelledby="galleryHeading">
+    <div class="container">
+      <div class="section-header center" data-aos="fade-up">
+        <div class="badge-label">The Room</div>
+        <h2 id="galleryHeading">Come In &amp; Get Comfy</h2>
+        <div class="divider-line"></div>
+        <p>Warm timber, soft light, and the low hum of good conversation. Here's a peek at the corner we've made.</p>
+      </div>
+
+      <div class="gallery-grid" role="list" aria-label="Café ambience gallery">
+        <div class="gallery-item gallery-item-1" role="listitem" tabindex="0" aria-label="Cosy seating nook" data-aos="fade-up" data-aos-delay="0">
+          <img src="../assets/images/photo-1521017432531-fbd92d768814-w640.jpg" alt="Cosy window seating nook with cushions and plants" loading="lazy" width="640" height="500" />
+          <div class="gallery-overlay"><span>The Window Nook</span></div>
+        </div>
+        <div class="gallery-item gallery-item-2" role="listitem" tabindex="0" aria-label="Espresso machine" data-aos="fade-up" data-aos-delay="80">
+          <img src="../assets/images/photo-1500673922987-e212871fec22-w520.jpg" alt="Warm café lighting over the coffee bar" loading="lazy" width="520" height="250" />
+          <div class="gallery-overlay"><span>The Coffee Bar</span></div>
+        </div>
+        <div class="gallery-item gallery-item-3" role="listitem" tabindex="0" aria-label="Pastry display case" data-aos="fade-up" data-aos-delay="160">
+          <img src="../assets/images/photo-1517433670267-08bbd4be890f-w520.jpg" alt="Pastry display case full of fresh bakes" loading="lazy" width="520" height="250" />
+          <div class="gallery-overlay"><span>The Pastry Case</span></div>
+        </div>
+        <div class="gallery-item gallery-item-4" role="listitem" tabindex="0" aria-label="Latte on a table" data-aos="fade-up" data-aos-delay="0">
+          <img src="../assets/images/photo-1445116572660-236099ec97a0-w420.jpg" alt="Latte and open book on a wooden table" loading="lazy" width="420" height="250" />
+          <div class="gallery-overlay"><span>Slow Mornings</span></div>
+        </div>
+        <div class="gallery-item gallery-item-5" role="listitem" tabindex="0" aria-label="Communal table" data-aos="fade-up" data-aos-delay="80">
+          <img src="../assets/images/photo-1554118811-1e0d58224f24-w560.jpg" alt="Long communal table with hanging lights" loading="lazy" width="560" height="250" />
+          <div class="gallery-overlay"><span>The Long Table</span></div>
+        </div>
+        <div class="gallery-item gallery-item-6" role="listitem" tabindex="0" aria-label="Coffee beans" data-aos="fade-up" data-aos-delay="160">
+          <img src="../assets/images/photo-1447933601403-0c6688de566e-w520.jpg" alt="Roasted coffee beans close up" loading="lazy" width="520" height="250" />
+          <div class="gallery-overlay"><span>Roasted In-House</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESERVATION TEASER ===== -->
+  <section class="enquiry-section section-pad" aria-labelledby="reserveTeaserHeading">
+    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <div style="display:grid;grid-template-columns:1fr 1.1fr;gap:70px;align-items:center;" class="enquiry-grid">
+        <div data-aos="fade-right">
+          <div class="badge-label" style="background:rgba(155,106,67,0.25);color:var(--primary-light);">Save Your Seat</div>
+          <h2 id="reserveTeaserHeading" style="color:#fff;margin:16px 0;">Reserve a Cosy<br>Corner Table</h2>
+          <div class="divider-line"></div>
+          <p style="color:rgba(255,255,255,0.72);margin-bottom:32px;">Planning a catch-up or a quiet work session? Book a table in seconds — perfect for small groups of up to eight.</p>
+          <div style="display:flex;flex-direction:column;gap:18px;">
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div style="width:44px;height:44px;background:rgba(155,106,67,0.22);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;" aria-hidden="true"><i class="fas fa-clock" style="color:var(--primary-light);"></i></div>
+              <div><div style="color:#fff;font-weight:700;font-size:0.9rem;">Open Daily</div><div style="color:rgba(255,255,255,0.6);font-size:0.85rem;">Mon–Fri 7am–7pm · Weekends 8am–6pm</div></div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <div style="width:44px;height:44px;background:rgba(155,106,67,0.22);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;" aria-hidden="true"><i class="fas fa-users" style="color:var(--primary-light);"></i></div>
+              <div><div style="color:#fff;font-weight:700;font-size:0.9rem;">Groups Welcome</div><div style="color:rgba(255,255,255,0.6);font-size:0.85rem;">Tables for 1–8 · larger parties, just call</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card" data-aos="zoom-in">
+          <h3 style="margin-bottom:8px;">Quick Table Request</h3>
+          <p style="color:var(--text-muted);font-size:0.88rem;margin-bottom:24px;">Check availability in a tap. We'll confirm by email within the hour.</p>
+          <form data-validate data-success="Table request received! We'll confirm by email shortly. ☕" aria-label="Quick table reservation" novalidate>
+            <div class="form-row-2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div class="form-group">
+                <label class="form-label" for="rtName">Name <span aria-hidden="true">*</span></label>
+                <input type="text" id="rtName" class="form-control" placeholder="Alex Rivera" required aria-required="true" />
+                <span class="form-error" role="alert">Please enter your name.</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="rtGuests">Guests <span aria-hidden="true">*</span></label>
+                <select id="rtGuests" class="form-control" required aria-required="true">
+                  <option value="" disabled selected>Party size</option>
+                  <option>1</option><option>2</option><option>3</option><option>4</option>
+                  <option>5</option><option>6</option><option>7</option><option>8</option>
+                </select>
+                <span class="form-error" role="alert">Choose a party size.</span>
+              </div>
+            </div>
+            <div class="form-row-2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+              <div class="form-group">
+                <label class="form-label" for="rtDate">Date <span aria-hidden="true">*</span></label>
+                <input type="date" id="rtDate" class="form-control" required aria-required="true" />
+                <span class="form-error" role="alert">Pick a date.</span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="rtTime">Time <span aria-hidden="true">*</span></label>
+                <input type="time" id="rtTime" class="form-control" required aria-required="true" />
+                <span class="form-error" role="alert">Pick a time.</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="rtEmail">Email <span aria-hidden="true">*</span></label>
+              <input type="email" id="rtEmail" class="form-control" placeholder="alex@example.com" required aria-required="true" />
+              <span class="form-error" role="alert">Enter a valid email.</span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-magnetic" style="width:100%;justify-content:center;">
+              <i class="fas fa-calendar-check" aria-hidden="true"></i> Check Availability
+            </button>
+            <p style="text-align:center;margin:14px 0 0;font-size:0.82rem;color:var(--text-muted);">Need catering or a private hire? <a href="reservations.html">Full booking form →</a></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section-pad" aria-labelledby="testiHeading">
+    <div class="container">
+      <div class="section-header center" data-aos="fade-up">
+        <div class="badge-label">Kind Words</div>
+        <h2 id="testiHeading">Loved by the Neighbourhood</h2>
+        <div class="divider-line"></div>
+        <p>The regulars say it best. Here's what keeps them coming back for another cup.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;">
+        <article class="testimonial-card" data-tilt data-aos="fade-up" data-aos-delay="0">
+          <div class="quote-icon" aria-hidden="true">&ldquo;</div>
+          <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">Best flat white in town, hands down. I've made this my Monday-to-Friday office and the team knows my order by heart.</p>
+          <div class="testimonial-author">
+            <img class="author-avatar" src="../assets/images/avatar-32-s100.jpg" alt="Portrait of Priya N." loading="lazy" width="50" height="50" />
+            <div class="author-info"><div class="name">Priya N.</div><div class="role">Freelance Designer</div></div>
+          </div>
+        </article>
+        <article class="testimonial-card" data-tilt data-aos="fade-up" data-aos-delay="80">
+          <div class="quote-icon" aria-hidden="true">&ldquo;</div>
+          <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">The cinnamon buns are dangerous. Reserved the long table for my book club and the staff couldn't have been more welcoming.</p>
+          <div class="testimonial-author">
+            <img class="author-avatar" src="../assets/images/avatar-12-s100.jpg" alt="Portrait of Marcus L." loading="lazy" width="50" height="50" />
+            <div class="author-info"><div class="name">Marcus L.</div><div class="role">Book Club Host</div></div>
+          </div>
+        </article>
+        <article class="testimonial-card" data-tilt data-aos="fade-up" data-aos-delay="160">
+          <div class="quote-icon" aria-hidden="true">&ldquo;</div>
+          <div class="stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">A genuinely cosy spot with proper coffee. The single-origin pour-over changes weekly and it's always a treat.</p>
+          <div class="testimonial-author">
+            <img class="author-avatar" src="../assets/images/avatar-45-s100.jpg" alt="Portrait of Sofia K." loading="lazy" width="50" height="50" />
+            <div class="author-info"><div class="name">Sofia K.</div><div class="role">Local Regular</div></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== JOURNAL PREVIEW ===== -->
+  <section class="section-pad bg-cream" aria-labelledby="journalHeading">
+    <div class="container">
+      <div class="section-header center" data-aos="fade-up">
+        <div class="badge-label">From the Journal</div>
+        <h2 id="journalHeading">Stories from the Bar</h2>
+        <div class="divider-line"></div>
+        <p>Brew guides, seasonal menus, and the people behind the beans.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:28px;">
+        <article class="blog-card" data-tilt data-aos="fade-up" data-aos-delay="0">
+          <div class="blog-img">
+            <img src="../assets/images/photo-1495474472287-4d71bcdd2085-w500.jpg" alt="Pour over coffee being brewed by hand" loading="lazy" width="500" height="280" />
+            <span class="blog-category">Brew Guide</span>
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span><i class="fas fa-calendar" aria-hidden="true"></i> Jun 24, 2025</span>
+              <span><i class="fas fa-user" aria-hidden="true"></i> Nora, Head Barista</span>
+            </div>
+            <h4><a href="blog-details.html">The Home Pour-Over, Dialled In</a></h4>
+            <p>Grind size, water temperature, and the bloom — a simple recipe for café-quality filter at home.</p>
+            <a href="blog-details.html" class="read-more" aria-label="Read the pour-over guide">Read Article <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tilt data-aos="fade-up" data-aos-delay="80">
+          <div class="blog-img">
+            <img src="../assets/images/photo-1509440159596-0249088772ff-w500.jpg" alt="Baker shaping sourdough dough" loading="lazy" width="500" height="280" />
+            <span class="blog-category">Bakery</span>
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span><i class="fas fa-calendar" aria-hidden="true"></i> Jun 12, 2025</span>
+              <span><i class="fas fa-user" aria-hidden="true"></i> Sam, Head Baker</span>
+            </div>
+            <h4><a href="blog-details.html">Meet Our 12-Year-Old Sourdough Starter</a></h4>
+            <p>Every loaf begins with "Doughlores." Here's how we keep our wild starter alive and bubbling.</p>
+            <a href="blog-details.html" class="read-more" aria-label="Read about our sourdough starter">Read Article <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="blog-card" data-tilt data-aos="fade-up" data-aos-delay="160">
+          <div class="blog-img">
+            <img src="../assets/images/photo-1524350876685-274059332603-w500.jpg" alt="Coffee beans from a single origin farm" loading="lazy" width="500" height="280" />
+            <span class="blog-category">Origins</span>
+          </div>
+          <div class="blog-body">
+            <div class="blog-meta">
+              <span><i class="fas fa-calendar" aria-hidden="true"></i> May 30, 2025</span>
+              <span><i class="fas fa-user" aria-hidden="true"></i> Team Brew &amp; Crumb</span>
+            </div>
+            <h4><a href="blog-details.html">This Month's Roast: Honey-Process Colombia</a></h4>
+            <p>Notes of red apple, brown sugar, and cocoa. The story of the farm behind our house pour.</p>
+            <a href="blog-details.html" class="read-more" aria-label="Read about this month's roast">Read Article <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+      </div>
+
+      <div style="text-align:center;margin-top:48px;" data-aos="fade-up">
+        <a href="blog.html" class="btn btn-outline btn-lg btn-magnetic">
+          <i class="fas fa-book-open" aria-hidden="true"></i> Read the Journal
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-section">
+    <div class="sprinkle-field" data-sprinkles="26" aria-hidden="true"></div>
+    <div style="max-width:700px;margin:0 auto;padding:0 24px;position:relative;z-index:1;" data-aos="zoom-in">
+      <h2 style="color:#fff;margin-bottom:16px;">Your Table Is Waiting</h2>
+      <p style="color:rgba(255,255,255,0.9);margin-bottom:36px;font-size:1.05rem;">Whether it's a quiet morning coffee or a weekend catch-up, we've saved you a warm corner. Reserve in under a minute.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="reservations.html" class="btn btn-outline-white btn-lg btn-magnetic">
+          <i class="fas fa-calendar-check" aria-hidden="true"></i> Reserve a Table
+        </a>
+        <a href="contact.html" class="btn btn-lg btn-magnetic" style="background:#fff;color:var(--secondary);border-color:#fff;">
+          <i class="fas fa-location-dot" aria-hidden="true"></i> Find Us
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
+              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            </a>
+          </div>
+          <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <nav class="footer-links" aria-label="Footer links">
+            <a href="about.html">Our Story</a>
+            <a href="menu.html">Menu</a>
+            <a href="reservations.html">Reservations</a>
+            <a href="pricing.html">Catering &amp; Plans</a>
+            <a href="blog.html">Journal</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">The Menu</h4>
+          <nav class="footer-links" aria-label="Menu categories">
+            <a href="menu.html">Espresso &amp; Milk</a>
+            <a href="menu.html">Filter &amp; Pour Over</a>
+            <a href="menu.html">Bakery &amp; Pastries</a>
+            <a href="menu.html">All-Day Brunch</a>
+            <a href="menu.html">Cold Bar</a>
+            <a href="menu.html">Tea &amp; Matcha</a>
+          </nav>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Visit Us</h4>
+          <address style="font-style:normal;">
+            <div class="footer-contact-item">
+              <i class="fas fa-location-dot" aria-hidden="true"></i>
+              <span>18 Kettle Street, Maple Grove, OR 97005</span>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fas fa-phone" aria-hidden="true"></i>
+              <a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fas fa-clock" aria-hidden="true"></i>
+              <span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span>
+            </div>
+          </address>
+          <div style="margin-top:20px;">
+            <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
+              <label for="newsletterEmail" class="sr-only">Email address</label>
+              <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
+              <button type="submit" class="btn btn-primary btn-sm" style="width:100%;">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i> Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Accessibility</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top btn-magnetic" aria-label="Back to top">
+    <i class="fas fa-chevron-up" aria-hidden="true"></i>
+  </button>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/effects.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

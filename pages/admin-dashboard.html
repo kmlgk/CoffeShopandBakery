@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard – Brew &amp; Crumb</title>
+  <meta name="description" content="Brew & Crumb admin dashboard — analytics, orders, users, and messages for the coffee house & bakery." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/effects.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <style>
+    :root { --sidebar-w: 262px; --topbar-h: 68px; }
+    body { margin: 0; background: var(--cream); }
+
+    /* === SIDEBAR === */
+    .sidebar { position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh; background: var(--dark); display: flex; flex-direction: column; z-index: 200; transition: transform .3s ease; overflow-y: auto; }
+    .sidebar-brand { padding: 24px 20px; border-bottom: 1px solid rgba(255,255,255,.06); display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .sidebar-brand .brand-logo { width: 34px; height: 34px; }
+    .sidebar-brand .brand-text { color: #fff; font-family: var(--font-heading); font-size: 1.25rem; font-weight: 600; }
+    .sidebar-brand .brand-text span { color: var(--primary-light); }
+    .sidebar-section { padding: 18px 16px 6px; font-size: .66rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,.24); }
+    .sidebar-nav { display: flex; flex-direction: column; gap: 2px; padding: 0 10px; }
+    .sidebar-link { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-radius: var(--radius-sm); color: rgba(255,255,255,.58); font-size: .87rem; font-weight: 600; transition: all var(--transition); cursor: pointer; text-decoration: none; }
+    .sidebar-link:hover { background: rgba(255,255,255,.07); color: rgba(255,255,255,.92); }
+    .sidebar-link.active { background: var(--primary); color: #fff; }
+    .sidebar-link i { width: 18px; font-size: .92rem; flex-shrink: 0; }
+    .sidebar-badge { margin-left: auto; background: var(--secondary); color: #fff; font-size: .67rem; font-weight: 700; padding: 2px 7px; border-radius: 50px; flex-shrink: 0; }
+    .sidebar-footer { margin-top: auto; flex-shrink: 0; padding: 18px 16px; border-top: 1px solid rgba(255,255,255,.06); display: flex; align-items: center; gap: 12px; }
+    .sidebar-user-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); flex-shrink: 0; }
+    .sidebar-user-name { font-size: .84rem; font-weight: 700; color: #fff; }
+    .sidebar-user-role { font-size: .73rem; color: rgba(255,255,255,.4); }
+    .sidebar-logout { margin-left: auto; color: rgba(255,255,255,.38); font-size: .88rem; transition: color var(--transition); text-decoration: none; }
+    .sidebar-logout:hover { color: #FC8181; }
+
+    /* === LAYOUT === */
+    .admin-main { margin-left: var(--sidebar-w); min-height: 100vh; }
+
+    /* === TOPBAR === */
+    .topbar { position: sticky; top: 0; z-index: 100; height: var(--topbar-h); background: var(--white); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; padding: 0 28px; box-shadow: 0 2px 8px var(--shadow); }
+    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .topbar-title { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 600; color: var(--dark); }
+    .topbar-sub { font-size: .78rem; color: var(--text-muted); }
+    .topbar-search { display: flex; align-items: center; gap: 8px; background: var(--cream); border: 1px solid var(--border); border-radius: 50px; padding: 8px 16px; }
+    .topbar-search input { border: none; background: transparent; outline: none; font-size: .87rem; width: 200px; color: var(--dark); font-family: var(--font-body); }
+    .topbar-search i { color: var(--text-muted); font-size: .84rem; }
+    .topbar-right { display: flex; align-items: center; gap: 10px; }
+    .topbar-icon-btn { width: 38px; height: 38px; border-radius: 50%; background: var(--cream); border: 1px solid var(--border); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; position: relative; color: var(--text); font-size: .88rem; transition: all var(--transition); }
+    .topbar-icon-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .notif-dot { position: absolute; top: 6px; right: 6px; width: 8px; height: 8px; background: var(--secondary); border-radius: 50%; border: 2px solid var(--white); }
+    .topbar-avatar { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); cursor: pointer; }
+
+    /* === SECTIONS === */
+    .dash-section { display: none; }
+    .dash-section.active { display: block; }
+    .dash-content { padding: 28px; }
+
+    .panel { background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: 0 2px 8px var(--shadow); }
+    .panel-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 10px; }
+    .panel-header h4 { font-size: .98rem; color: var(--dark); margin: 0; font-weight: 700; }
+
+    /* Tables */
+    .data-table { width: 100%; border-collapse: collapse; }
+    .data-table th { padding: 11px 18px; text-align: left; font-size: .72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .9px; background: var(--cream); border-bottom: 1px solid var(--border); }
+    .data-table td { padding: 13px 18px; font-size: .87rem; color: var(--text); border-bottom: 1px solid var(--border); }
+    .data-table tbody tr:last-child td { border: none; }
+    .data-table tbody tr:hover td { background: rgba(155,106,67,.04); }
+    .tbl-overflow { overflow-x: auto; }
+
+    /* Badges */
+    .badge { padding: 3px 10px; border-radius: 50px; font-size: .71rem; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
+    .badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+    .badge.pending    { background: rgba(214,164,25,.16); color: #B7791F; } .badge.pending::before    { background: #B7791F; }
+    .badge.preparing  { background: rgba(155,106,67,.15); color: var(--primary); } .badge.preparing::before  { background: var(--primary); }
+    .badge.ready      { background: rgba(110,139,110,.18); color: #4F7050; } .badge.ready::before      { background: #4F7050; }
+    .badge.completed  { background: rgba(72,187,120,.15); color: #2F855A; } .badge.completed::before  { background: #2F855A; }
+    .badge.cancelled  { background: rgba(252,129,129,.15); color: #C53030; } .badge.cancelled::before  { background: #C53030; }
+    .badge.active     { background: rgba(72,187,120,.15); color: #2F855A; } .badge.active::before     { background: #2F855A; }
+    .badge.inactive   { background: rgba(160,160,160,.18); color: #718096; } .badge.inactive::before   { background: #A0AEC0; }
+    .badge.vip        { background: rgba(214,164,25,.16); color: #B7791F; } .badge.vip::before        { background: #D6A419; }
+    .badge.staff      { background: rgba(155,106,67,.15); color: var(--primary); } .badge.staff::before      { background: var(--primary); }
+    .badge.customer   { background: rgba(100,130,200,.12); color: #3755B0; } .badge.customer::before   { background: #3755B0; }
+
+    /* Action buttons */
+    .act-btn { width: 30px; height: 30px; border-radius: 6px; border: 1px solid var(--border); background: var(--white); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: .78rem; color: var(--text-muted); transition: all var(--transition); }
+    .act-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .act-btn.danger:hover { background: #FC8181; border-color: #FC8181; color: #fff; }
+    .act-btns { display: flex; gap: 5px; }
+
+    /* Cells */
+    .cell-user { display: flex; align-items: center; gap: 10px; }
+    .cell-user img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .cell-name { font-weight: 700; color: var(--dark); font-size: .86rem; }
+    .cell-email { font-size: .75rem; color: var(--text-muted); }
+    .cell-id { font-family: var(--font-heading); font-weight: 700; color: var(--primary); font-size: .88rem; }
+    .cb { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; }
+
+    /* Filter bar */
+    .filter-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .filter-input { display: flex; align-items: center; gap: 8px; background: var(--cream); border: 1px solid var(--border); border-radius: 50px; padding: 7px 14px; }
+    .filter-input input { border: none; background: transparent; outline: none; font-size: .85rem; color: var(--dark); font-family: var(--font-body); }
+    .filter-input i { color: var(--text-muted); font-size: .82rem; flex-shrink: 0; }
+    .filter-select { background: var(--cream); border: 1px solid var(--border); border-radius: 50px; padding: 7px 14px; font-size: .85rem; color: var(--dark); font-family: var(--font-body); outline: none; cursor: pointer; }
+
+    /* Tabs */
+    .tab-strip { display: flex; gap: 0; border-bottom: 1px solid var(--border); padding: 0 20px; overflow-x: auto; }
+    .tab-btn { padding: 12px 15px; font-size: .82rem; font-weight: 700; color: var(--text-muted); background: transparent; border: none; border-bottom: 2px solid transparent; cursor: pointer; font-family: var(--font-body); transition: all var(--transition); margin-bottom: -1px; white-space: nowrap; }
+    .tab-btn.active { color: var(--primary); border-color: var(--primary); }
+    .tab-btn:hover:not(.active) { color: var(--dark); }
+
+    /* Pagination */
+    .pagination { display: flex; align-items: center; gap: 4px; }
+    .page-btn { min-width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--border); background: var(--white); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; font-size: .82rem; font-weight: 700; color: var(--text-muted); transition: all var(--transition); font-family: var(--font-body); padding: 0 8px; }
+    .page-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .page-btn:hover:not(.active):not([disabled]) { border-color: var(--primary); color: var(--primary); }
+    .page-btn[disabled] { opacity: .4; cursor: not-allowed; }
+
+    /* Stat cards */
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .stat-card { background: var(--white); border-radius: var(--radius-lg); padding: 22px 24px; border: 1px solid var(--border); box-shadow: 0 2px 8px var(--shadow); position: relative; overflow: hidden; }
+    .stat-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+    .stat-card.c1::after { background: var(--primary); }
+    .stat-card.c2::after { background: var(--secondary); }
+    .stat-card.c3::after { background: var(--accent); }
+    .stat-card.c4::after { background: #48BB78; }
+    .stat-icon { width: 46px; height: 46px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; margin-bottom: 16px; }
+    .stat-card.c1 .stat-icon { background: rgba(155,106,67,.12); color: var(--primary); }
+    .stat-card.c2 .stat-icon { background: rgba(110,139,110,.14); color: var(--secondary); }
+    .stat-card.c3 .stat-icon { background: rgba(214,164,25,.14); color: #B7791F; }
+    .stat-card.c4 .stat-icon { background: rgba(72,187,120,.12); color: #48BB78; }
+    .stat-value { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--dark); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: .81rem; color: var(--text-muted); margin-bottom: 12px; }
+    .stat-trend { font-size: .77rem; font-weight: 700; display: flex; align-items: center; gap: 4px; }
+    .stat-trend.up { color: #48BB78; }
+    .stat-trend.dn { color: #FC8181; }
+    .stat-trend.eq { color: var(--text-muted); }
+
+    /* Charts */
+    .chart-card { background: var(--white); border-radius: var(--radius-lg); padding: 24px; border: 1px solid var(--border); box-shadow: 0 2px 8px var(--shadow); }
+    .chart-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+    .chart-title { font-weight: 700; color: var(--dark); font-size: .98rem; }
+    .period-group { display: flex; gap: 4px; }
+    .period-btn { padding: 5px 11px; border: 1px solid var(--border); border-radius: 50px; font-size: .74rem; font-weight: 700; cursor: pointer; transition: all var(--transition); background: var(--white); color: var(--text-muted); font-family: var(--font-body); }
+    .period-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 160px; }
+    .bar-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+    .bar { width: 100%; border-radius: 4px 4px 0 0; background: linear-gradient(to top, var(--primary), var(--primary-light)); transition: height .5s ease; }
+    .bar.alt { background: linear-gradient(to top, var(--secondary), #93AE93); }
+    .bar-lbl { font-size: .71rem; color: var(--text-muted); }
+    .chart-legend { display: flex; gap: 16px; margin-top: 14px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: .77rem; color: var(--text-muted); }
+    .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .prog-list { display: flex; flex-direction: column; gap: 16px; }
+    .prog-labels { display: flex; justify-content: space-between; font-size: .81rem; margin-bottom: 6px; }
+    .prog-name { font-weight: 700; color: var(--dark-soft); }
+    .prog-track { height: 7px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .prog-fill { height: 100%; border-radius: 4px; }
+
+    /* Donut */
+    .donut-wrap { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .donut-legend { display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 160px; }
+    .donut-legend-item { display: flex; align-items: center; gap: 8px; font-size: .82rem; }
+    .donut-legend-color { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .donut-legend-label { color: var(--text-muted); flex: 1; }
+    .donut-legend-val { font-weight: 700; color: var(--dark); }
+
+    /* Mini metric cards */
+    .mini-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .mini-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 18px 20px; box-shadow: 0 2px 8px var(--shadow); }
+    .mini-label { font-size: .77rem; color: var(--text-muted); margin-bottom: 6px; }
+    .mini-value { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; color: var(--dark); line-height: 1; margin-bottom: 4px; }
+    .mini-change { font-size: .75rem; font-weight: 700; }
+    .mini-change.up { color: #48BB78; }
+    .mini-change.dn { color: #FC8181; }
+
+    .charts-row { display: grid; gap: 20px; grid-template-columns: 2fr 1fr; margin-top: 20px; }
+    .lower-row  { display: grid; gap: 20px; grid-template-columns: 1.6fr 1fr; margin-top: 20px; }
+    .two-col    { display: grid; gap: 20px; grid-template-columns: 1fr 1fr; margin-top: 20px; }
+
+    /* Messages */
+    .msg-layout { display: grid; grid-template-columns: 340px 1fr; min-height: calc(100vh - var(--topbar-h)); }
+    .msg-sidebar { border-right: 1px solid var(--border); overflow-y: auto; background: var(--white); }
+    .msg-sidebar-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+    .msg-sidebar-header h5 { margin: 0; font-size: .95rem; font-weight: 700; color: var(--dark); }
+    .msg-compose-btn { padding: 6px 14px; background: var(--primary); color: #fff; border: none; border-radius: 50px; font-size: .78rem; font-weight: 700; cursor: pointer; font-family: var(--font-body); transition: background var(--transition); }
+    .msg-compose-btn:hover { background: var(--dark); }
+    .msg-list-search { padding: 12px 16px; border-bottom: 1px solid var(--border); }
+    .msg-list-search .filter-input { border-radius: 8px; }
+    .msg-list-search .filter-input input { width: 100%; }
+    .msg-item { display: flex; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background var(--transition); position: relative; }
+    .msg-item:hover { background: var(--cream); }
+    .msg-item.active-msg { background: rgba(155,106,67,.06); border-left: 3px solid var(--primary); padding-left: 15px; }
+    .msg-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
+    .msg-body { flex: 1; min-width: 0; }
+    .msg-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px; }
+    .msg-name { font-size: .86rem; font-weight: 700; color: var(--dark); }
+    .msg-time { font-size: .72rem; color: var(--text-muted); }
+    .msg-subject { font-size: .82rem; color: var(--dark-soft); margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .msg-item.unread .msg-subject { font-weight: 700; color: var(--dark); }
+    .msg-preview { font-size: .78rem; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .msg-unread-dot { position: absolute; top: 50%; right: 14px; transform: translateY(-50%); width: 8px; height: 8px; background: var(--primary); border-radius: 50%; flex-shrink: 0; }
+    .msg-item:not(.unread) .msg-unread-dot { display: none; }
+    .msg-detail { display: flex; flex-direction: column; background: var(--white); overflow-y: auto; }
+    .msg-detail-header { padding: 22px 28px 18px; border-bottom: 1px solid var(--border); }
+    .msg-detail-subject { font-family: var(--font-heading); font-size: 1.15rem; font-weight: 700; color: var(--dark); margin: 0 0 14px; }
+    .msg-detail-meta { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .msg-detail-sender { display: flex; align-items: center; gap: 10px; }
+    .msg-detail-sender img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+    .msg-detail-from { font-size: .86rem; font-weight: 700; color: var(--dark); }
+    .msg-detail-email { font-size: .76rem; color: var(--text-muted); }
+    .msg-detail-date { font-size: .79rem; color: var(--text-muted); margin-left: auto; }
+    .msg-detail-actions { display: flex; gap: 6px; }
+    .msg-body-text { padding: 24px 28px; flex: 1; line-height: 1.9; font-size: .9rem; color: var(--text); }
+    .msg-reply { padding: 20px 28px; border-top: 1px solid var(--border); background: var(--cream); }
+    .msg-reply label { font-size: .82rem; font-weight: 700; color: var(--dark); display: block; margin-bottom: 8px; }
+    .msg-reply textarea { width: 100%; min-height: 90px; border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; font-family: var(--font-body); font-size: .88rem; color: var(--dark); background: var(--white); resize: vertical; outline: none; box-sizing: border-box; transition: border-color var(--transition); }
+    .msg-reply textarea:focus { border-color: var(--primary); }
+    .msg-reply-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 10px; }
+
+    /* Responsive */
+    @media (max-width: 1200px) { .mini-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 1024px) {
+      .sidebar { transform: translateX(-100%); }
+      .sidebar.open { transform: translateX(0); }
+      .admin-main { margin-left: 0; min-width: 0; max-width: 100vw; overflow-x: hidden; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+      .charts-row, .lower-row, .two-col { grid-template-columns: 1fr; }
+      .msg-layout { grid-template-columns: 1fr; }
+      .msg-detail { display: none; }
+      .msg-layout.show-detail .msg-sidebar { display: none; }
+      .msg-layout.show-detail .msg-detail { display: flex; }
+      .dash-content, .dash-section, .panel { min-width: 0; }
+      .charts-row > *, .lower-row > *, .two-col > *, .stat-grid > *, .mini-grid > * { min-width: 0; }
+      .tbl-overflow { max-width: 100%; }
+    }
+    @media (max-width: 640px) {
+      .stat-grid { grid-template-columns: 1fr; }
+      .mini-grid { grid-template-columns: 1fr; }
+      .topbar-search { display: none; }
+      .dash-content { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar" id="adminSidebar" role="navigation" aria-label="Admin navigation">
+  <div class="sidebar-brand">
+    <span class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></span>
+    <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+  </div>
+
+  <div class="sidebar-section">Main</div>
+  <nav class="sidebar-nav">
+    <a href="#" class="sidebar-link active" data-section="overview"><i class="fas fa-table-columns"></i> Overview</a>
+    <a href="#" class="sidebar-link" data-section="analytics"><i class="fas fa-chart-line"></i> Analytics</a>
+    <a href="#" class="sidebar-link" data-section="orders"><i class="fas fa-bag-shopping"></i> Orders <span class="sidebar-badge">9</span></a>
+    <a href="#" class="sidebar-link" data-section="users"><i class="fas fa-users"></i> Users</a>
+    <a href="#" class="sidebar-link" data-section="messages"><i class="fas fa-envelope"></i> Messages <span class="sidebar-badge">4</span></a>
+  </nav>
+
+  <div class="sidebar-section">Shortcuts</div>
+  <nav class="sidebar-nav">
+    <a href="reservations.html" class="sidebar-link"><i class="fas fa-calendar-check"></i> Reservations</a>
+    <a href="index.html" class="sidebar-link"><i class="fas fa-arrow-up-right-from-square"></i> View Site</a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <img src="../assets/images/photo-1544005313-94ddf0286df2-w80.jpg" alt="Nora Adeyemi" class="sidebar-user-avatar" loading="lazy" width="38" height="38" />
+    <div>
+      <div class="sidebar-user-name">Nora Adeyemi</div>
+      <div class="sidebar-user-role">Owner · Admin</div>
+    </div>
+    <a href="login.html" class="sidebar-logout" title="Logout" aria-label="Logout"><i class="fas fa-right-from-bracket"></i></a>
+  </div>
+</aside>
+
+<!-- ===== MAIN ===== -->
+<div class="admin-main">
+
+  <!-- TOPBAR -->
+  <header class="topbar" role="banner">
+    <div class="topbar-left">
+      <button id="sidebarToggle" style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--dark);padding:4px;" aria-label="Toggle sidebar" aria-controls="adminSidebar"><i class="fas fa-bars"></i></button>
+      <div>
+        <div class="topbar-title" id="topbarTitle">Dashboard</div>
+        <div class="topbar-sub" id="topbarSub">Overview</div>
+      </div>
+      <div class="topbar-search" role="search">
+        <i class="fas fa-search"></i>
+        <label for="adminSearch" style="display:none;">Search</label>
+        <input type="search" id="adminSearch" placeholder="Search orders, users…" aria-label="Search admin" />
+      </div>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle topbar-icon-btn" aria-label="Toggle dark mode"><i class="fas fa-moon"></i></button>
+      <button class="rtl-toggle topbar-icon-btn" aria-label="Toggle RTL" title="Toggle RTL">RTL</button>
+      <div class="topbar-icon-btn" role="button" tabindex="0" aria-label="Notifications (4 new)"><i class="fas fa-bell"></i><div class="notif-dot"></div></div>
+      <img src="../assets/images/photo-1544005313-94ddf0286df2-w80.jpg" alt="Nora Adeyemi" class="topbar-avatar" loading="lazy" width="38" height="38" />
+    </div>
+  </header>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="dash-section active" id="sec-overview" aria-label="Overview">
+    <div class="dash-content">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+        <div style="position:relative;">
+          <h2 style="margin:0 0 4px;font-size:1.45rem;position:relative;display:inline-block;">Good morning, Nora! ☕<span class="coffee-steam" style="position:absolute;top:-38px;right:-10px;width:30px;height:40px;"><span class="wisp"></span><span class="wisp"></span><span class="wisp"></span></span></h2>
+          <p style="margin:0;color:var(--text-muted);font-size:.87rem;">Friday, July 3, 2025 · Here's how the café's doing today.</p>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-outline btn-sm" onclick="showToast('Report exported!','success')"><i class="fas fa-download"></i> Export</button>
+          <a href="reservations.html" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> New Reservation</a>
+        </div>
+      </div>
+
+      <div class="stat-grid" role="list" aria-label="Key statistics">
+        <div class="stat-card c1" role="listitem" data-aos="fade-up" data-aos-delay="0">
+          <div class="stat-icon"><i class="fas fa-mug-hot"></i></div>
+          <div class="stat-value">218</div>
+          <div class="stat-label">Orders Today</div>
+          <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 9% vs yesterday</div>
+        </div>
+        <div class="stat-card c2" role="listitem" data-aos="fade-up" data-aos-delay="80">
+          <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+          <div class="stat-value">$1,940</div>
+          <div class="stat-label">Revenue Today</div>
+          <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 6.4% vs yesterday</div>
+        </div>
+        <div class="stat-card c3" role="listitem" data-aos="fade-up" data-aos-delay="160">
+          <div class="stat-icon"><i class="fas fa-calendar-check"></i></div>
+          <div class="stat-value">14</div>
+          <div class="stat-label">Reservations Today</div>
+          <div class="stat-trend up"><i class="fas fa-arrow-up"></i> 3 more than usual</div>
+        </div>
+        <div class="stat-card c4" role="listitem" data-aos="fade-up" data-aos-delay="240">
+          <div class="stat-icon"><i class="fas fa-star"></i></div>
+          <div class="stat-value">4.9</div>
+          <div class="stat-label">Average Rating</div>
+          <div class="stat-trend eq"><i class="fas fa-equals"></i> Stable this week</div>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card" data-aos="fade-up">
+          <div class="chart-header">
+            <span class="chart-title">Revenue This Week</span>
+            <div class="period-group">
+              <button class="period-btn">7D</button>
+              <button class="period-btn active">30D</button>
+              <button class="period-btn">90D</button>
+            </div>
+          </div>
+          <div class="bar-chart" aria-label="Revenue bar chart">
+            <div class="bar-wrap"><div class="bar" style="height:70%;" title="Mon $1,540"></div><div class="bar-lbl">Mon</div></div>
+            <div class="bar-wrap"><div class="bar" style="height:82%;" title="Tue $1,760"></div><div class="bar-lbl">Tue</div></div>
+            <div class="bar-wrap"><div class="bar alt" style="height:60%;" title="Wed $1,270"></div><div class="bar-lbl">Wed</div></div>
+            <div class="bar-wrap"><div class="bar" style="height:88%;" title="Thu $1,845"></div><div class="bar-lbl">Thu</div></div>
+            <div class="bar-wrap"><div class="bar" style="height:100%;" title="Fri $1,940"></div><div class="bar-lbl">Fri</div></div>
+            <div class="bar-wrap"><div class="bar" style="height:94%;" title="Sat $1,880"></div><div class="bar-lbl">Sat</div></div>
+            <div class="bar-wrap"><div class="bar alt" style="height:78%;" title="Sun $1,620"></div><div class="bar-lbl">Sun</div></div>
+          </div>
+          <div class="chart-legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--primary);"></div>Weekdays</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--secondary);"></div>Weekend</div>
+          </div>
+        </div>
+        <div class="chart-card" data-aos="fade-up" data-aos-delay="120">
+          <div class="chart-header"><span class="chart-title">Top Sellers</span></div>
+          <div class="prog-list">
+            <div><div class="prog-labels"><span class="prog-name">Flat White</span><span style="color:var(--primary);font-weight:700;font-size:.81rem;">34%</span></div><div class="prog-track"><div class="prog-fill" style="width:34%;background:var(--primary);"></div></div></div>
+            <div><div class="prog-labels"><span class="prog-name">Cardamom Bun</span><span style="color:var(--secondary);font-weight:700;font-size:.81rem;">24%</span></div><div class="prog-track"><div class="prog-fill" style="width:24%;background:var(--secondary);"></div></div></div>
+            <div><div class="prog-labels"><span class="prog-name">Cold Brew</span><span style="color:#B7791F;font-weight:700;font-size:.81rem;">21%</span></div><div class="prog-track"><div class="prog-fill" style="width:21%;background:var(--accent);"></div></div></div>
+            <div><div class="prog-labels"><span class="prog-name">Croissant</span><span style="color:#48BB78;font-weight:700;font-size:.81rem;">14%</span></div><div class="prog-track"><div class="prog-fill" style="width:14%;background:#48BB78;"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lower-row">
+        <div class="panel" data-aos="fade-up">
+          <div class="panel-header">
+            <h4>Recent Orders</h4>
+            <a href="#" class="btn btn-outline btn-sm" style="font-size:.79rem;" onclick="switchSection('orders');return false;">View All <i class="fas fa-arrow-right"></i></a>
+          </div>
+          <div class="tbl-overflow">
+            <table class="data-table" aria-label="Recent orders">
+              <thead><tr><th>Order</th><th>Customer</th><th>Items</th><th>Time</th><th>Total</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td><span class="cell-id">#BC-4821</span></td><td><div class="cell-user"><img src="../assets/images/avatar-32-s60.jpg" alt="Priya N." loading="lazy" width="34" height="34"/><div><div class="cell-name">Priya N.</div></div></div></td><td>2× Flat White, Croissant</td><td>08:24</td><td><strong>$13.00</strong></td><td><span class="badge ready">Ready</span></td></tr>
+                <tr><td><span class="cell-id">#BC-4820</span></td><td><div class="cell-user"><img src="../assets/images/avatar-12-s60.jpg" alt="Marcus L." loading="lazy" width="34" height="34"/><div><div class="cell-name">Marcus L.</div></div></div></td><td>Bean Subscription — 1kg</td><td>08:10</td><td><strong>$54.00</strong></td><td><span class="badge preparing">Preparing</span></td></tr>
+                <tr><td><span class="cell-id">#BC-4819</span></td><td><div class="cell-user"><img src="../assets/images/avatar-45-s60.jpg" alt="Sofia K." loading="lazy" width="34" height="34"/><div><div class="cell-name">Sofia K.</div></div></div></td><td>Catering — Coffee Cart</td><td>07:58</td><td><strong>$390.00</strong></td><td><span class="badge pending">Pending</span></td></tr>
+                <tr><td><span class="cell-id">#BC-4818</span></td><td><div class="cell-user"><img src="../assets/images/avatar-5-s60.jpg" alt="Theo P." loading="lazy" width="34" height="34"/><div><div class="cell-name">Theo P.</div></div></div></td><td>Cold Brew, Cardamom Bun</td><td>07:41</td><td><strong>$9.00</strong></td><td><span class="badge completed">Completed</span></td></tr>
+                <tr><td><span class="cell-id">#BC-4817</span></td><td><div class="cell-user"><img src="../assets/images/avatar-20-s60.jpg" alt="Ana R." loading="lazy" width="34" height="34"/><div><div class="cell-name">Ana R.</div></div></div></td><td>Smashed Avo Sourdough</td><td>07:30</td><td><strong>$9.50</strong></td><td><span class="badge completed">Completed</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel" data-aos="fade-up" data-aos-delay="120">
+          <div class="panel-header">
+            <h4>Recent Messages <span style="font-size:.76rem;color:var(--secondary);font-weight:700;margin-left:6px;">4 unread</span></h4>
+            <a href="#" class="btn btn-outline btn-sm" style="font-size:.79rem;" onclick="switchSection('messages');return false;">View All</a>
+          </div>
+          <div>
+            <div class="msg-item unread" onclick="switchSection('messages')" style="cursor:pointer;">
+              <img src="../assets/images/avatar-29-s80.jpg" alt="Emma T." class="msg-avatar" loading="lazy" width="40" height="40"/>
+              <div class="msg-body"><div class="msg-top"><span class="msg-name">Emma Torres</span><span class="msg-time">10:24 AM</span></div><div class="msg-subject">Private hire enquiry</div><div class="msg-preview">Hi! Could we book the café for an evening…</div></div>
+              <div class="msg-unread-dot"></div>
+            </div>
+            <div class="msg-item unread" onclick="switchSection('messages')" style="cursor:pointer;">
+              <img src="../assets/images/avatar-61-s80.jpg" alt="Marcus T." class="msg-avatar" loading="lazy" width="40" height="40"/>
+              <div class="msg-body"><div class="msg-top"><span class="msg-name">Marcus Thompson</span><span class="msg-time">9:05 AM</span></div><div class="msg-subject">Office coffee cart — 120 cups</div><div class="msg-preview">We'd love the cart for our launch on…</div></div>
+              <div class="msg-unread-dot"></div>
+            </div>
+            <div class="msg-item" onclick="switchSection('messages')" style="cursor:pointer;">
+              <img src="../assets/images/avatar-47-s80.jpg" alt="Amara L." class="msg-avatar" loading="lazy" width="40" height="40"/>
+              <div class="msg-body"><div class="msg-top"><span class="msg-name">Amara Liu</span><span class="msg-time">Yesterday</span></div><div class="msg-subject">Thank you!</div><div class="msg-preview">The cardamom buns were a total hit…</div></div>
+            </div>
+            <div class="msg-item unread" onclick="switchSection('messages')" style="cursor:pointer;">
+              <img src="../assets/images/avatar-15-s80.jpg" alt="James O." class="msg-avatar" loading="lazy" width="40" height="40"/>
+              <div class="msg-body"><div class="msg-top"><span class="msg-name">James Okafor</span><span class="msg-time">Yesterday</span></div><div class="msg-subject">Subscription pause request</div><div class="msg-preview">Could I pause my beans for two weeks…</div></div>
+              <div class="msg-unread-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel" style="margin-top:20px;" data-aos="fade-up">
+        <div class="panel-header">
+          <h4>Today's Reservations</h4>
+          <a href="reservations.html" class="btn btn-outline btn-sm" style="font-size:.79rem;">Reservations Page</a>
+        </div>
+        <div class="tbl-overflow">
+          <table class="data-table" aria-label="Today's reservations">
+            <thead><tr><th>Time</th><th>Guest</th><th>Party</th><th>Seating</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><strong>09:00</strong></td><td>Priya Nair</td><td>2</td><td>Window nook</td><td><span class="badge completed">Seated</span></td></tr>
+              <tr><td><strong>10:30</strong></td><td>Book Club (M. Lee)</td><td>6</td><td>Long table</td><td><span class="badge ready">Confirmed</span></td></tr>
+              <tr><td><strong>13:00</strong></td><td>Sofia Kaur</td><td>3</td><td>Quiet corner</td><td><span class="badge ready">Confirmed</span></td></tr>
+              <tr><td><strong>15:30</strong></td><td>Daniel Osei</td><td>4</td><td>No preference</td><td><span class="badge pending">Pending</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ANALYTICS ===== -->
+  <section class="dash-section" id="sec-analytics" aria-label="Analytics">
+    <div class="dash-content">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h2 style="margin:0 0 4px;font-size:1.45rem;">Analytics</h2>
+          <p style="margin:0;color:var(--text-muted);font-size:.87rem;">Performance &amp; trends · July 2025</p>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <select class="filter-select"><option>Last 30 days</option><option>Last 90 days</option><option>This year</option></select>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Report exported!','success')"><i class="fas fa-download"></i> Export</button>
+        </div>
+      </div>
+
+      <div class="mini-grid">
+        <div class="mini-card" data-aos="fade-up" data-aos-delay="0"><div class="mini-label">Total Revenue</div><div class="mini-value">$47,180</div><div class="mini-change up"><i class="fas fa-arrow-up"></i> 7.9% vs last month</div></div>
+        <div class="mini-card" data-aos="fade-up" data-aos-delay="60"><div class="mini-label">Avg Order Value</div><div class="mini-value">$8.90</div><div class="mini-change up"><i class="fas fa-arrow-up"></i> 2.1% vs last month</div></div>
+        <div class="mini-card" data-aos="fade-up" data-aos-delay="120"><div class="mini-label">Active Subscriptions</div><div class="mini-value">312</div><div class="mini-change up"><i class="fas fa-arrow-up"></i> 18 new this month</div></div>
+        <div class="mini-card" data-aos="fade-up" data-aos-delay="180"><div class="mini-label">Table Turnover</div><div class="mini-value">62%</div><div class="mini-change dn"><i class="fas fa-arrow-down"></i> 1.4% vs last month</div></div>
+      </div>
+
+      <div class="charts-row">
+        <div class="chart-card" data-aos="fade-up">
+          <div class="chart-header">
+            <span class="chart-title">Monthly Revenue</span>
+            <div class="period-group"><button class="period-btn active">2025</button><button class="period-btn">2024</button></div>
+          </div>
+          <div class="bar-chart" aria-label="Monthly revenue">
+            <div class="bar-wrap"><div class="bar" style="height:58%;"></div><div class="bar-lbl">Jan</div></div>
+            <div class="bar-wrap"><div class="bar" style="height:64%;"></div><div class="bar-lbl">Feb</div></div>
+            <div class="bar-wrap"><div class="bar" style="height:72%;"></div><div class="bar-lbl">Mar</div></div>
+            <div class="bar-wrap"><div class="bar" style="height:68%;"></div><div class="bar-lbl">Apr</div></div>
+            <div class="bar-wrap"><div class="bar" style="height:84%;"></div><div class="bar-lbl">May</div></div>
+            <div class="bar-wrap"><div class="bar" style="height:100%;"></div><div class="bar-lbl">Jun</div></div>
+            <div class="bar-wrap"><div class="bar alt" style="height:46%;"></div><div class="bar-lbl">Jul</div></div>
+          </div>
+        </div>
+        <div class="chart-card" data-aos="fade-up" data-aos-delay="120">
+          <div class="chart-header"><span class="chart-title">Revenue by Category</span></div>
+          <div class="donut-wrap">
+            <svg width="150" height="150" viewBox="0 0 42 42" class="donut-svg" role="img" aria-label="Revenue split donut chart">
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="var(--border)" stroke-width="6"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#9B6A43" stroke-width="6" stroke-dasharray="46 54" stroke-dashoffset="25"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#6E8B6E" stroke-width="6" stroke-dasharray="27 73" stroke-dashoffset="79"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#D6A419" stroke-width="6" stroke-dasharray="17 83" stroke-dashoffset="52"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#48BB78" stroke-width="6" stroke-dasharray="10 90" stroke-dashoffset="35"></circle>
+            </svg>
+            <div class="donut-legend">
+              <div class="donut-legend-item"><span class="donut-legend-color" style="background:#9B6A43;"></span><span class="donut-legend-label">Coffee &amp; Drinks</span><span class="donut-legend-val">46%</span></div>
+              <div class="donut-legend-item"><span class="donut-legend-color" style="background:#6E8B6E;"></span><span class="donut-legend-label">Bakery</span><span class="donut-legend-val">27%</span></div>
+              <div class="donut-legend-item"><span class="donut-legend-color" style="background:#D6A419;"></span><span class="donut-legend-label">Beans &amp; Retail</span><span class="donut-legend-val">17%</span></div>
+              <div class="donut-legend-item"><span class="donut-legend-color" style="background:#48BB78;"></span><span class="donut-legend-label">Catering</span><span class="donut-legend-val">10%</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="chart-card" data-aos="fade-up">
+          <div class="chart-header"><span class="chart-title">Busiest Hours</span></div>
+          <div class="prog-list">
+            <div><div class="prog-labels"><span class="prog-name">7–9 AM</span><span style="color:var(--primary);font-weight:700;font-size:.81rem;">Peak</span></div><div class="prog-track"><div class="prog-fill" style="width:92%;background:var(--primary);"></div></div></div>
+            <div><div class="prog-labels"><span class="prog-name">9–12 PM</span><span style="color:var(--text-muted);font-weight:700;font-size:.81rem;">Busy</span></div><div class="prog-track"><div class="prog-fill" style="width:68%;background:var(--secondary);"></div></div></div>
+            <div><div class="prog-labels"><span class="prog-name">12–3 PM</span><span style="color:var(--text-muted);font-weight:700;font-size:.81rem;">Steady</span></div><div class="prog-track"><div class="prog-fill" style="width:54%;background:var(--accent);"></div></div></div>
+            <div><div class="prog-labels"><span class="prog-name">3–7 PM</span><span style="color:var(--text-muted);font-weight:700;font-size:.81rem;">Quiet</span></div><div class="prog-track"><div class="prog-fill" style="width:36%;background:#48BB78;"></div></div></div>
+          </div>
+        </div>
+        <div class="chart-card" data-aos="fade-up" data-aos-delay="120">
+          <div class="chart-header"><span class="chart-title">New vs Returning</span></div>
+          <div class="prog-list">
+            <div><div class="prog-labels"><span class="prog-name">Returning customers</span><span style="color:var(--primary);font-weight:700;font-size:.81rem;">64%</span></div><div class="prog-track"><div class="prog-fill" style="width:64%;background:var(--primary);"></div></div></div>
+            <div><div class="prog-labels"><span class="prog-name">New customers</span><span style="color:var(--secondary);font-weight:700;font-size:.81rem;">36%</span></div><div class="prog-track"><div class="prog-fill" style="width:36%;background:var(--secondary);"></div></div></div>
+          </div>
+          <p style="margin:20px 0 0;font-size:.84rem;color:var(--text-muted);"><i class="fas fa-circle-info" style="color:var(--primary);"></i> Loyalty members now make up 41% of all orders — up from 33% a year ago.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ORDERS ===== -->
+  <section class="dash-section" id="sec-orders" aria-label="Orders">
+    <div class="dash-content">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h2 style="margin:0 0 4px;font-size:1.45rem;">Orders</h2>
+          <p style="margin:0;color:var(--text-muted);font-size:.87rem;">Café, online bean, and catering orders</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="showToast('New order form would open here.','info')"><i class="fas fa-plus"></i> New Order</button>
+      </div>
+
+      <div class="panel" data-aos="fade-up">
+        <div class="tab-strip" role="tablist" aria-label="Order status filter">
+          <button class="tab-btn active" role="tab" aria-selected="true" onclick="setOrderTab(this)">All <span style="opacity:.6;">(9)</span></button>
+          <button class="tab-btn" role="tab" aria-selected="false" onclick="setOrderTab(this)">Pending <span style="opacity:.6;">(2)</span></button>
+          <button class="tab-btn" role="tab" aria-selected="false" onclick="setOrderTab(this)">Preparing <span style="opacity:.6;">(2)</span></button>
+          <button class="tab-btn" role="tab" aria-selected="false" onclick="setOrderTab(this)">Ready <span style="opacity:.6;">(1)</span></button>
+          <button class="tab-btn" role="tab" aria-selected="false" onclick="setOrderTab(this)">Completed <span style="opacity:.6;">(3)</span></button>
+        </div>
+        <div class="panel-header" style="border-bottom:1px solid var(--border);">
+          <div class="filter-bar">
+            <div class="filter-input"><i class="fas fa-search"></i><input type="search" placeholder="Search orders…" aria-label="Search orders" /></div>
+            <select class="filter-select" aria-label="Filter by type"><option>All types</option><option>In-café</option><option>Bean order</option><option>Catering</option></select>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Orders exported!','success')"><i class="fas fa-download"></i> Export</button>
+        </div>
+        <div class="tbl-overflow">
+          <table class="data-table" aria-label="All orders">
+            <thead><tr>
+              <th><input type="checkbox" class="cb" aria-label="Select all" /></th>
+              <th>Order</th><th>Customer</th><th>Items</th><th>Type</th><th>Date</th><th>Total</th><th>Status</th><th>Actions</th>
+            </tr></thead>
+            <tbody>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select order" /></td><td><span class="cell-id">#BC-4821</span></td><td><div class="cell-user"><img src="../assets/images/avatar-32-s60.jpg" alt="Priya N." loading="lazy" width="34" height="34"/><div><div class="cell-name">Priya Nair</div><div class="cell-email">priya@email.com</div></div></div></td><td>2× Flat White, Croissant</td><td>In-café</td><td>Jul 3</td><td><strong>$13.00</strong></td><td><span class="badge ready">Ready</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select order" /></td><td><span class="cell-id">#BC-4820</span></td><td><div class="cell-user"><img src="../assets/images/avatar-12-s60.jpg" alt="Marcus L." loading="lazy" width="34" height="34"/><div><div class="cell-name">Marcus Lee</div><div class="cell-email">marcus@email.com</div></div></div></td><td>Bean Subscription — 1kg</td><td>Bean order</td><td>Jul 3</td><td><strong>$54.00</strong></td><td><span class="badge preparing">Preparing</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select order" /></td><td><span class="cell-id">#BC-4819</span></td><td><div class="cell-user"><img src="../assets/images/avatar-45-s60.jpg" alt="Sofia K." loading="lazy" width="34" height="34"/><div><div class="cell-name">Sofia Kaur</div><div class="cell-email">sofia@events.co</div></div></div></td><td>Catering — Coffee Cart</td><td>Catering</td><td>Jul 9</td><td><strong>$390.00</strong></td><td><span class="badge pending">Pending</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select order" /></td><td><span class="cell-id">#BC-4818</span></td><td><div class="cell-user"><img src="../assets/images/avatar-5-s60.jpg" alt="Theo P." loading="lazy" width="34" height="34"/><div><div class="cell-name">Theo Park</div><div class="cell-email">theo@email.com</div></div></div></td><td>Cold Brew, Cardamom Bun</td><td>In-café</td><td>Jul 3</td><td><strong>$9.00</strong></td><td><span class="badge completed">Completed</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Invoice"><i class="fas fa-file-invoice"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select order" /></td><td><span class="cell-id">#BC-4817</span></td><td><div class="cell-user"><img src="../assets/images/avatar-20-s60.jpg" alt="Ana R." loading="lazy" width="34" height="34"/><div><div class="cell-name">Ana Rivas</div><div class="cell-email">ana@email.com</div></div></div></td><td>Smashed Avo Sourdough</td><td>In-café</td><td>Jul 3</td><td><strong>$9.50</strong></td><td><span class="badge completed">Completed</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Invoice"><i class="fas fa-file-invoice"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select order" /></td><td><span class="cell-id">#BC-4816</span></td><td><div class="cell-user"><img src="../assets/images/avatar-8-s60.jpg" alt="Daniel O." loading="lazy" width="34" height="34"/><div><div class="cell-name">Daniel Osei</div><div class="cell-email">daniel@email.com</div></div></div></td><td>3× Latte, 2× Danish</td><td>In-café</td><td>Jul 3</td><td><strong>$23.00</strong></td><td><span class="badge preparing">Preparing</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select order" /></td><td><span class="cell-id">#BC-4815</span></td><td><div class="cell-user"><img src="../assets/images/avatar-25-s60.jpg" alt="Grace W." loading="lazy" width="34" height="34"/><div><div class="cell-name">Grace Wu</div><div class="cell-email">grace@email.com</div></div></div></td><td>Honey Colombia — 250g</td><td>Bean order</td><td>Jul 2</td><td><strong>$18.00</strong></td><td><span class="badge completed">Completed</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Invoice"><i class="fas fa-file-invoice"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select order" /></td><td><span class="cell-id">#BC-4814</span></td><td><div class="cell-user"><img src="../assets/images/avatar-33-s60.jpg" alt="Ben H." loading="lazy" width="34" height="34"/><div><div class="cell-name">Ben Harding</div><div class="cell-email">ben@email.com</div></div></div></td><td>Pastry Platter (serves 10)</td><td>Catering</td><td>Jul 5</td><td><strong>$45.00</strong></td><td><span class="badge pending">Pending</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select order" /></td><td><span class="cell-id">#BC-4813</span></td><td><div class="cell-user"><img src="../assets/images/avatar-52-s60.jpg" alt="Lena F." loading="lazy" width="34" height="34"/><div><div class="cell-name">Lena Fischer</div><div class="cell-email">lena@email.com</div></div></div></td><td>Matcha Latte</td><td>In-café</td><td>Jul 2</td><td><strong>$5.20</strong></td><td><span class="badge cancelled">Cancelled</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn danger" title="Delete"><i class="fas fa-trash"></i></button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-header" style="border-top:1px solid var(--border);border-bottom:none;">
+          <span style="font-size:.82rem;color:var(--text-muted);">Showing 1–9 of 42 orders</span>
+          <div class="pagination">
+            <button class="page-btn" disabled aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+            <button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button>
+            <button class="page-btn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== USERS ===== -->
+  <section class="dash-section" id="sec-users" aria-label="Users">
+    <div class="dash-content">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h2 style="margin:0 0 4px;font-size:1.45rem;">Users</h2>
+          <p style="margin:0;color:var(--text-muted);font-size:.87rem;">Customers, loyalty members &amp; staff</p>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="showToast('Invite user form would open here.','info')"><i class="fas fa-user-plus"></i> Add User</button>
+      </div>
+
+      <div class="mini-grid" style="margin-bottom:20px;">
+        <div class="mini-card" data-aos="fade-up" data-aos-delay="0"><div class="mini-label">Total Users</div><div class="mini-value">1,284</div><div class="mini-change up"><i class="fas fa-arrow-up"></i> 24 this week</div></div>
+        <div class="mini-card" data-aos="fade-up" data-aos-delay="60"><div class="mini-label">Loyalty Members</div><div class="mini-value">526</div><div class="mini-change up"><i class="fas fa-arrow-up"></i> 41% of base</div></div>
+        <div class="mini-card" data-aos="fade-up" data-aos-delay="120"><div class="mini-label">Subscribers</div><div class="mini-value">312</div><div class="mini-change up"><i class="fas fa-arrow-up"></i> 18 this month</div></div>
+        <div class="mini-card" data-aos="fade-up" data-aos-delay="180"><div class="mini-label">Staff Accounts</div><div class="mini-value">9</div><div class="mini-change up"><i class="fas fa-equals"></i> No change</div></div>
+      </div>
+
+      <div class="panel" data-aos="fade-up">
+        <div class="panel-header">
+          <div class="filter-bar">
+            <div class="filter-input"><i class="fas fa-search"></i><input type="search" placeholder="Search users…" aria-label="Search users" /></div>
+            <select class="filter-select" aria-label="Filter by role"><option>All roles</option><option>Customer</option><option>VIP</option><option>Staff</option></select>
+          </div>
+          <button class="btn btn-outline btn-sm" onclick="showToast('Users exported!','success')"><i class="fas fa-download"></i> Export</button>
+        </div>
+        <div class="tbl-overflow">
+          <table class="data-table" aria-label="All users">
+            <thead><tr>
+              <th><input type="checkbox" class="cb" aria-label="Select all" /></th>
+              <th>User</th><th>Role</th><th>Orders</th><th>Joined</th><th>Status</th><th>Actions</th>
+            </tr></thead>
+            <tbody>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/avatar-32-s60.jpg" alt="Priya N." loading="lazy" width="34" height="34"/><div><div class="cell-name">Priya Nair</div><div class="cell-email">priya@email.com</div></div></div></td><td><span class="badge vip">VIP</span></td><td>48</td><td>Mar 2022</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button><button class="act-btn danger" title="Suspend"><i class="fas fa-ban"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/avatar-12-s60.jpg" alt="Marcus L." loading="lazy" width="34" height="34"/><div><div class="cell-name">Marcus Lee</div><div class="cell-email">marcus@email.com</div></div></div></td><td><span class="badge customer">Customer</span></td><td>12</td><td>Jan 2024</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button><button class="act-btn danger" title="Suspend"><i class="fas fa-ban"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/photo-1595152772835-219674b2a8a6-w60.jpg" alt="Sam W." loading="lazy" width="34" height="34"/><div><div class="cell-name">Sam Whitlock</div><div class="cell-email">sam@brewandcrumb.example</div></div></div></td><td><span class="badge staff">Staff</span></td><td>—</td><td>2011</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/avatar-45-s60.jpg" alt="Sofia K." loading="lazy" width="34" height="34"/><div><div class="cell-name">Sofia Kaur</div><div class="cell-email">sofia@events.co</div></div></div></td><td><span class="badge customer">Customer</span></td><td>6</td><td>Nov 2024</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button><button class="act-btn danger" title="Suspend"><i class="fas fa-ban"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/avatar-52-s60.jpg" alt="Lena F." loading="lazy" width="34" height="34"/><div><div class="cell-name">Lena Fischer</div><div class="cell-email">lena@email.com</div></div></div></td><td><span class="badge customer">Customer</span></td><td>2</td><td>Jun 2025</td><td><span class="badge inactive">Inactive</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button><button class="act-btn danger" title="Suspend"><i class="fas fa-ban"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/avatar-25-s60.jpg" alt="Grace W." loading="lazy" width="34" height="34"/><div><div class="cell-name">Grace Wu</div><div class="cell-email">grace@email.com</div></div></div></td><td><span class="badge vip">VIP</span></td><td>33</td><td>Aug 2023</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button><button class="act-btn danger" title="Suspend"><i class="fas fa-ban"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/avatar-8-s60.jpg" alt="Daniel O." loading="lazy" width="34" height="34"/><div><div class="cell-name">Daniel Osei</div><div class="cell-email">daniel@email.com</div></div></div></td><td><span class="badge customer">Customer</span></td><td>9</td><td>Feb 2024</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button><button class="act-btn danger" title="Suspend"><i class="fas fa-ban"></i></button></div></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="panel-header" style="border-top:1px solid var(--border);border-bottom:none;">
+          <span style="font-size:.82rem;color:var(--text-muted);">Showing 1–7 of 1,284 users</span>
+          <div class="pagination">
+            <button class="page-btn" disabled aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+            <button class="page-btn active">1</button><button class="page-btn">2</button><button class="page-btn">3</button>
+            <button class="page-btn" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MESSAGES ===== -->
+  <section class="dash-section" id="sec-messages" aria-label="Messages">
+    <div class="msg-layout" id="msgLayout">
+      <!-- Inbox list -->
+      <div class="msg-sidebar">
+        <div class="msg-sidebar-header">
+          <h5>Inbox <span style="font-size:.76rem;color:var(--secondary);font-weight:700;">4 unread</span></h5>
+          <button class="msg-compose-btn" onclick="showToast('Compose window would open here.','info')"><i class="fas fa-pen"></i> Compose</button>
+        </div>
+        <div class="msg-list-search"><div class="filter-input"><i class="fas fa-search"></i><input type="search" placeholder="Search messages…" aria-label="Search messages" /></div></div>
+
+        <div class="msg-item unread" onclick="openMsg(this,'Emma Torres','emma@email.com','../assets/images/avatar-29-s80.jpg','Private hire enquiry','10:24 AM','Hi there! We are looking to host a small evening gathering for about 30 people next month and wondered if you offer private café hire. Could you share availability and pricing? Thanks so much — we love your space!')">
+          <img src="../assets/images/avatar-29-s80.jpg" alt="Emma Torres" class="msg-avatar" loading="lazy" width="40" height="40"/>
+          <div class="msg-body"><div class="msg-top"><span class="msg-name">Emma Torres</span><span class="msg-time">10:24 AM</span></div><div class="msg-subject">Private hire enquiry</div><div class="msg-preview">Hi there! We're looking to host a small…</div></div>
+          <div class="msg-unread-dot"></div>
+        </div>
+        <div class="msg-item unread" onclick="openMsg(this,'Marcus Thompson','marcus@bizco.com','../assets/images/avatar-61-s80.jpg','Office coffee cart — 120 cups','9:05 AM','Morning! We are launching a new product on the 18th and would love your mobile coffee cart for the morning. Around 120 drinks expected. Are you available, and what would that cost? Happy to add pastries too.')">
+          <img src="../assets/images/avatar-61-s80.jpg" alt="Marcus Thompson" class="msg-avatar" loading="lazy" width="40" height="40"/>
+          <div class="msg-body"><div class="msg-top"><span class="msg-name">Marcus Thompson</span><span class="msg-time">9:05 AM</span></div><div class="msg-subject">Office coffee cart — 120 cups</div><div class="msg-preview">We'd love the cart for our launch on…</div></div>
+          <div class="msg-unread-dot"></div>
+        </div>
+        <div class="msg-item" onclick="openMsg(this,'Amara Liu','amara@email.com','../assets/images/avatar-47-s80.jpg','Thank you!','Yesterday','Just wanted to say the cardamom buns you set aside for our book club were a total hit. Everyone asked where they were from! We will definitely be back — thank you for the warm welcome.')">
+          <img src="../assets/images/avatar-47-s80.jpg" alt="Amara Liu" class="msg-avatar" loading="lazy" width="40" height="40"/>
+          <div class="msg-body"><div class="msg-top"><span class="msg-name">Amara Liu</span><span class="msg-time">Yesterday</span></div><div class="msg-subject">Thank you!</div><div class="msg-preview">The cardamom buns were a total hit…</div></div>
+        </div>
+        <div class="msg-item unread" onclick="openMsg(this,'James Okafor','james@email.com','../assets/images/avatar-15-s80.jpg','Subscription pause request','Yesterday','Hi! I am away for a couple of weeks and would like to pause my bean subscription so nothing arrives while I am gone. Can you pause the next two deliveries and resume after? Account is under this email. Cheers!')">
+          <img src="../assets/images/avatar-15-s80.jpg" alt="James Okafor" class="msg-avatar" loading="lazy" width="40" height="40"/>
+          <div class="msg-body"><div class="msg-top"><span class="msg-name">James Okafor</span><span class="msg-time">Yesterday</span></div><div class="msg-subject">Subscription pause request</div><div class="msg-preview">Could I pause my beans for two weeks…</div></div>
+          <div class="msg-unread-dot"></div>
+        </div>
+        <div class="msg-item" onclick="openMsg(this,'Grace Wu','grace@email.com','../assets/images/avatar-25-s80.jpg','Any decaf beans?','Mon','Love the Honey Colombia! Do you sell your Midnight Decaf as retail bags too? I would like to add one to my next subscription box if possible.')">
+          <img src="../assets/images/avatar-25-s80.jpg" alt="Grace Wu" class="msg-avatar" loading="lazy" width="40" height="40"/>
+          <div class="msg-body"><div class="msg-top"><span class="msg-name">Grace Wu</span><span class="msg-time">Mon</span></div><div class="msg-subject">Any decaf beans?</div><div class="msg-preview">Do you sell your Midnight Decaf as…</div></div>
+        </div>
+      </div>
+
+      <!-- Detail pane -->
+      <div class="msg-detail">
+        <div class="msg-detail-header">
+          <button class="btn btn-outline btn-sm" style="display:none;margin-bottom:14px;" id="msgBackBtn" onclick="document.getElementById('msgLayout').classList.remove('show-detail')"><i class="fas fa-arrow-left"></i> Inbox</button>
+          <h3 class="msg-detail-subject" id="msgDetailSubject">Private hire enquiry</h3>
+          <div class="msg-detail-meta">
+            <div class="msg-detail-sender">
+              <img src="../assets/images/avatar-29-s80.jpg" alt="Emma Torres" id="msgDetailAvatar" />
+              <div>
+                <div class="msg-detail-from" id="msgDetailName">Emma Torres</div>
+                <div class="msg-detail-email" id="msgDetailEmail">emma@email.com</div>
+              </div>
+            </div>
+            <span class="msg-detail-date" id="msgDetailDate">Today, 10:24 AM</span>
+            <div class="msg-detail-actions">
+              <button class="act-btn" title="Archive"><i class="fas fa-box-archive"></i></button>
+              <button class="act-btn danger" title="Delete"><i class="fas fa-trash"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="msg-body-text" id="msgDetailBody">Hi there! We're looking to host a small evening gathering for about 30 people next month and wondered if you offer private café hire. Could you share availability and pricing? Thanks so much — we love your space!</div>
+        <div class="msg-reply">
+          <label for="msgReplyText">Reply to <span id="msgReplyTo">Emma Torres</span></label>
+          <textarea id="msgReplyText" placeholder="Type your reply…"></textarea>
+          <div class="msg-reply-actions">
+            <button class="btn btn-outline btn-sm"><i class="fas fa-paperclip"></i> Attach</button>
+            <button class="btn btn-primary btn-sm" onclick="sendReply()"><i class="fas fa-paper-plane"></i> Send Reply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script src="../assets/js/effects.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+  /* === Section switching === */
+  const sectionMeta = {
+    overview:  { title: 'Dashboard', sub: 'Overview' },
+    analytics: { title: 'Analytics', sub: 'Performance & trends' },
+    orders:    { title: 'Orders',    sub: 'Manage all orders' },
+    users:     { title: 'Users',     sub: 'Customers & staff' },
+    messages:  { title: 'Messages',  sub: 'Inbox' },
+  };
+  function switchSection(key) {
+    document.querySelectorAll('.dash-section').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById('sec-' + key);
+    if (target) target.classList.add('active');
+    document.querySelectorAll('.sidebar-link[data-section]').forEach(l => l.classList.toggle('active', l.dataset.section === key));
+    const meta = sectionMeta[key] || {};
+    document.getElementById('topbarTitle').textContent = meta.title || key;
+    document.getElementById('topbarSub').textContent = meta.sub || '';
+    if (window.innerWidth <= 1024) document.getElementById('adminSidebar').classList.remove('open');
+    window.scrollTo({ top: 0 });
+    // Sections are display:none until activated, so AOS's initial offset scan
+    // misses their [data-aos] children — recalculate now that they're visible.
+    if (typeof AOS !== 'undefined') AOS.refreshHard();
+  }
+  document.querySelectorAll('.sidebar-link[data-section]').forEach(link => {
+    link.addEventListener('click', function (e) { e.preventDefault(); switchSection(this.dataset.section); });
+  });
+
+  /* === Sidebar mobile toggle === */
+  document.getElementById('sidebarToggle').addEventListener('click', () => {
+    document.getElementById('adminSidebar').classList.toggle('open');
+  });
+
+  /* === Period buttons === */
+  document.querySelectorAll('.period-group').forEach(group => {
+    group.querySelectorAll('.period-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.period-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  });
+
+  /* === Orders tab switcher === */
+  function setOrderTab(btn) {
+    const strip = btn.closest('.tab-strip');
+    if (!strip) return;
+    strip.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+    btn.classList.add('active'); btn.setAttribute('aria-selected', 'true');
+  }
+
+  /* === Select-all checkboxes === */
+  document.querySelectorAll('thead .cb').forEach(master => {
+    master.addEventListener('change', function () {
+      const table = this.closest('table');
+      table.querySelectorAll('tbody .cb').forEach(cb => { cb.checked = master.checked; });
+    });
+  });
+
+  /* === Messages === */
+  function openMsg(el, name, email, avatar, subject, time, body) {
+    document.querySelectorAll('.msg-item').forEach(m => m.classList.remove('active-msg'));
+    el.classList.add('active-msg');
+    el.classList.remove('unread');
+    const dot = el.querySelector('.msg-unread-dot');
+    if (dot) dot.style.display = 'none';
+    document.getElementById('msgDetailSubject').textContent = subject;
+    document.getElementById('msgDetailAvatar').src = avatar;
+    document.getElementById('msgDetailAvatar').alt = name;
+    document.getElementById('msgDetailName').textContent = name;
+    document.getElementById('msgDetailEmail').textContent = email;
+    document.getElementById('msgDetailDate').textContent = 'Today, ' + time;
+    document.getElementById('msgDetailBody').textContent = body;
+    document.getElementById('msgReplyTo').textContent = name;
+    document.getElementById('msgReplyText').value = '';
+    document.getElementById('msgLayout').classList.add('show-detail');
+    if (window.innerWidth <= 1024) { const b = document.getElementById('msgBackBtn'); if (b) b.style.display = 'inline-flex'; }
+  }
+  function sendReply() {
+    const text = document.getElementById('msgReplyText').value.trim();
+    if (!text) { showToast('Please write a reply first.', 'error'); return; }
+    showToast('Reply sent!', 'success');
+    document.getElementById('msgReplyText').value = '';
+  }
+
+  /* === Pagination visual feedback === */
+  document.querySelectorAll('.pagination').forEach(pag => {
+    pag.querySelectorAll('.page-btn:not([disabled])').forEach(btn => {
+      btn.addEventListener('click', function () {
+        if (this.querySelector('i')) return;
+        pag.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  });
+</script>
+</body>
+</html>

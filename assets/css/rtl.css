@@ -1,0 +1,143 @@
+/* ==========================================================================
+   Brew & Crumb — Coffee & Bakery — RTL (Right-to-Left) Support
+   Selector: [dir="rtl"] on <html>
+   ========================================================================== */
+
+[dir="rtl"] body { direction: rtl; text-align: right; }
+
+/* === Navbar === */
+[dir="rtl"] .navbar-inner    { flex-direction: row-reverse; }
+[dir="rtl"] .navbar-brand    { flex-direction: row-reverse; }
+[dir="rtl"] .nav-menu        { flex-direction: row-reverse; }
+[dir="rtl"] .navbar-actions  { flex-direction: row-reverse; }
+[dir="rtl"] .dropdown-menu   { left: auto; right: 0; }
+
+/* === Hero === */
+[dir="rtl"] .hero-content         { text-align: right; }
+[dir="rtl"] .hero-cta             { justify-content: flex-end; }
+[dir="rtl"] .hero-stats           { flex-direction: row-reverse; }
+[dir="rtl"] .hero-float-card.card-1 { left: auto; right: -30px; }
+[dir="rtl"] .hero-float-card.card-2 { right: auto; left: -20px; }
+
+/* === Section Header === */
+[dir="rtl"] .section-header         { text-align: right; }
+[dir="rtl"] .section-header.center  { text-align: center; }
+[dir="rtl"] .divider-line           { margin: 16px 0 24px; }
+[dir="rtl"] .center .divider-line   { margin: 16px auto 24px; }
+
+/* === Cards & Links === */
+[dir="rtl"] .category-link   { flex-direction: row-reverse; }
+[dir="rtl"] .category-link i { transform: rotate(180deg); }
+[dir="rtl"] .category-badge  { right: auto; left: 14px; }
+[dir="rtl"] .blog-category   { left: auto; right: 14px; }
+[dir="rtl"] .blog-meta       { flex-direction: row-reverse; }
+[dir="rtl"] .read-more       { flex-direction: row-reverse; }
+[dir="rtl"] .read-more i     { transform: rotate(180deg); }
+[dir="rtl"] .feature-card    { text-align: right; }
+
+/* === Menu Card === */
+[dir="rtl"] .menu-card       { flex-direction: row-reverse; }
+[dir="rtl"] .menu-price .old { margin-left: 0; margin-right: 6px; }
+
+/* === Price list === */
+[dir="rtl"] .pl-badge { margin-left: 0; margin-right: 8px; }
+
+/* === Testimonials === */
+[dir="rtl"] .testimonial-author { flex-direction: row-reverse; }
+
+/* === FAQ === */
+[dir="rtl"] .faq-question { flex-direction: row-reverse; }
+
+/* === Process Steps === */
+[dir="rtl"] .process-step    { text-align: right; }
+[dir="rtl"] .step-connector  { right: auto; left: -50%; }
+
+/* === Reservation === */
+[dir="rtl"] .reserve-steps    { flex-direction: row-reverse; }
+[dir="rtl"] .reserve-step     { flex-direction: row-reverse; }
+[dir="rtl"] .chip-row         { justify-content: flex-start; }
+[dir="rtl"] .side-post        { flex-direction: row-reverse; }
+
+/* === Buttons === */
+[dir="rtl"] .btn { flex-direction: row-reverse; }
+
+/* === Select arrow === */
+[dir="rtl"] select.form-control {
+  background-position: left 16px center;
+  padding-right: 18px;
+  padding-left: 42px;
+}
+
+/* === Breadcrumb === */
+[dir="rtl"] .breadcrumb     { flex-direction: row-reverse; }
+[dir="rtl"] .breadcrumb-sep { transform: rotate(180deg); }
+
+/* === Pricing === */
+[dir="rtl"] .pricing-features li { flex-direction: row-reverse; }
+
+/* === Footer === */
+[dir="rtl"] .footer-links a,
+[dir="rtl"] .footer-contact-item   { text-align: right; }
+[dir="rtl"] .footer-contact-item   { flex-direction: row-reverse; }
+[dir="rtl"] .footer-socials        { flex-direction: row-reverse; }
+[dir="rtl"] .footer-bottom         { flex-direction: row-reverse; }
+[dir="rtl"] .footer-bottom-links   { flex-direction: row-reverse; }
+
+/* === Back to Top === */
+[dir="rtl"] .back-to-top { right: auto; left: 30px; }
+
+/* === Auth pages === */
+[dir="rtl"] .float-controls { right: auto; left: 20px; }
+[dir="rtl"] .pw-toggle { right: auto; left: 14px; }
+[dir="rtl"] .pw-wrap .a-input { padding-right: 18px; padding-left: 44px; }
+[dir="rtl"] .a-input            { text-align: right; }
+[dir="rtl"] .a-input::placeholder { text-align: right; }
+[dir="rtl"] .auth-note .fa-arrow-left { display: inline-block; transform: scaleX(-1); }
+[dir="rtl"] .auth-page { direction: rtl; }
+
+/* === Admin Dashboard === */
+[dir="rtl"] .sidebar { left: auto; right: 0; }
+[dir="rtl"] .admin-main { margin-left: 0; margin-right: var(--sidebar-w); }
+[dir="rtl"] .sidebar-nav { direction: rtl; }
+[dir="rtl"] .sidebar-link { flex-direction: row-reverse; text-align: right; }
+[dir="rtl"] .sidebar-badge { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .sidebar-footer { flex-direction: row-reverse; }
+[dir="rtl"] .sidebar-logout { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .topbar { flex-direction: row-reverse; }
+[dir="rtl"] .topbar-left,
+[dir="rtl"] .topbar-right { flex-direction: row-reverse; }
+[dir="rtl"] .notif-dot { right: auto; left: 6px; }
+[dir="rtl"] .data-table th { text-align: right; }
+[dir="rtl"] .cell-user,
+[dir="rtl"] .msg-item,
+[dir="rtl"] .msg-detail-sender,
+[dir="rtl"] .donut-legend-item { flex-direction: row-reverse; }
+[dir="rtl"] .prog-track { direction: rtl; }
+[dir="rtl"] .msg-sidebar { border-right: none; border-left: 1px solid var(--border); }
+[dir="rtl"] .msg-item.active-msg { border-left: none; border-right: 3px solid var(--primary); padding-left: 18px; padding-right: 15px; }
+[dir="rtl"] .msg-unread-dot { right: auto; left: 14px; }
+[dir="rtl"] .msg-detail-date { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .msg-reply-actions { justify-content: flex-start; }
+[dir="rtl"] .pagination .fa-chevron-left::before  { content: '\f054'; }
+[dir="rtl"] .pagination .fa-chevron-right::before { content: '\f053'; }
+
+@media (max-width: 1024px) {
+  [dir="rtl"] .sidebar { transform: translateX(100%); }
+  [dir="rtl"] .sidebar.open { transform: translateX(0); }
+  [dir="rtl"] .admin-main { margin-right: 0; }
+  [dir="rtl"] .msg-sidebar { border-left: none; }
+}
+
+/* === Mobile overrides for RTL === */
+@media (max-width: 768px) {
+  [dir="rtl"] .hero-float-card.card-1 { right: 0; left: auto; }
+  [dir="rtl"] .hero-float-card.card-2 { left: 0; right: auto; }
+  [dir="rtl"] .menu-card { flex-direction: column; }
+
+  /* Re-assert column drawer for RTL (desktop row-reverse rule outranks the media rule) */
+  [dir="rtl"] .nav-menu          { flex-direction: column; }
+  [dir="rtl"] .nav-menu .nav-link { text-align: right; padding: 14px 4px; }
+  [dir="rtl"] .nav-link .fa-chevron-down { margin-left: 0; margin-right: 5px; }
+  [dir="rtl"] .dropdown-menu     { padding: 4px 12px 4px 0; }
+  [dir="rtl"] .dropdown-item     { text-align: right; }
+}

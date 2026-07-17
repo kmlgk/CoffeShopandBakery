@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bean Subscriptions &amp; Catering – Pricing | Brew &amp; Crumb</title>
+  <meta name="description" content="Fresh-roasted bean subscriptions delivered on your schedule, plus catering and private-hire packages for events. Simple, honest pricing from Brew & Crumb." />
+  <meta property="og:title" content="Pricing | Brew & Crumb" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/effects.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <style>
+    .toggle-wrap { display:inline-flex; gap:6px; padding:6px; background:var(--cream); border:1px solid var(--border); border-radius:50px; }
+    .save-flag { font-size:0.72rem; font-weight:700; color:var(--secondary); background:rgba(110,139,110,0.16); padding:3px 10px; border-radius:50px; margin-left:6px; }
+    .cta-section { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); padding: 80px 0; text-align:center; position: relative; overflow: hidden; }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <div class="page-loader" role="status" aria-label="Loading"><div class="loader-spinner"></div></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
+        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      </a>
+      <ul class="nav-menu" id="navMenu" role="menubar">
+        <li class="dropdown" role="none">
+          <a href="index.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Home <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
+        <li class="dropdown" role="none">
+          <a href="menu.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Menu <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
+            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="reservations.html" class="nav-link" role="menuitem">Reservations</a></li>
+        <li role="none"><a href="pricing.html" class="nav-link active" role="menuitem">Pricing</a></li>
+        <li role="none"><a href="blog.html" class="nav-link" role="menuitem">Journal</a></li>
+        <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
+        <li class="nav-mobile-actions" role="none">
+          <div class="mobile-action-toggles">
+            <button class="theme-toggle theme-toggle--menu" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+            <button class="rtl-toggle theme-toggle theme-toggle--menu" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+          </div>
+          <div class="mobile-action-auth">
+            <a href="login.html" class="btn-nav-login">Login</a>
+            <a href="register.html" class="btn-nav-login">Register</a>
+          </div>
+          <a href="reservations.html" class="btn-nav-order" style="width:100%;justify-content:center;">Book a Table</a>
+          <div class="mobile-action-links">
+            <a href="reservations.html"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a>
+            <a href="admin-dashboard.html"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a>
+          </div>
+        </li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+        <button class="rtl-toggle theme-toggle" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+        <a href="reservations.html" class="btn-nav-order">Book a Table</a>
+        <div class="account-dropdown">
+          <button class="account-toggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user" aria-hidden="true"></i></button>
+          <ul class="account-menu" role="menu" aria-label="Account">
+            <li role="none"><a href="login.html" class="account-item" role="menuitem"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> Sign In</a></li>
+            <li role="none"><a href="register.html" class="account-item" role="menuitem"><i class="fas fa-user-plus" aria-hidden="true"></i> Create Account</a></li>
+            <li role="none" class="account-sep"><a href="reservations.html" class="account-item" role="menuitem"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a></li>
+            <li role="none"><a href="admin-dashboard.html" class="account-item account-item--staff" role="menuitem"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a></li>
+          </ul>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="float-field" data-float-icons="6" aria-hidden="true"></div>
+    <div class="container" data-aos="fade-up">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <span class="breadcrumb-item"><a href="index.html">Home</a></span>
+        <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+        <span class="breadcrumb-item active">Pricing</span>
+      </nav>
+      <h1>Subscriptions &amp; <span class="text-gradient">Catering</span></h1>
+      <p>Fresh beans on your schedule, or a coffee cart for your next event. Honest pricing, cancel anytime.</p>
+    </div>
+  </header>
+
+  <!-- ===== BEAN SUBSCRIPTIONS ===== -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-header center">
+        <div class="badge-label">Bean Subscriptions</div>
+        <h2>Never Run Out of Great Coffee</h2>
+        <div class="divider-line"></div>
+        <p>Pick your rhythm — pause, skip, or cancel any time. Every bag is roasted the day it ships.</p>
+        <div style="margin-top:24px;">
+          <div class="toggle-wrap" role="group" aria-label="Billing frequency">
+            <button class="toggle-btn active" data-price-toggle="monthly">Monthly</button>
+            <button class="toggle-btn" data-price-toggle="annual">Pay Yearly <span class="save-flag">Save 12%</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;align-items:stretch;" class="pricing-grid">
+        <!-- Solo -->
+        <div class="pricing-card" data-tilt data-aos="fade-up" data-aos-delay="0">
+          <div class="pricing-icon" aria-hidden="true"><i class="fas fa-mug-hot"></i></div>
+          <div class="pricing-name">The Daily Cup</div>
+          <div class="pricing-desc">For the one-cup-a-day drinker.</div>
+          <div class="pricing-price">
+            <span class="price-amount" data-price-monthly>$16</span>
+            <span class="price-amount" data-price-annual style="display:none;">$169</span>
+            <div class="price-suffix"><span data-price-monthly>per month · 1× 250g bag</span><span data-price-annual style="display:none;">per year · 1 bag / month</span></div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check" aria-hidden="true"></i> One 250g bag each month</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Roasted the day it ships</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Free local delivery</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> 10% off in-café refills</li>
+            <li class="disabled"><i class="fas fa-xmark" aria-hidden="true"></i> Rotating single origins</li>
+          </ul>
+          <a href="register.html" class="btn btn-outline" style="width:100%;justify-content:center;">Choose Plan</a>
+        </div>
+
+        <!-- Duo (popular) -->
+        <div class="pricing-card popular" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="80">
+          <span class="popular-badge badge-shimmer">Most Popular</span>
+          <div class="pricing-icon" aria-hidden="true"><i class="fas fa-mug-saucer"></i></div>
+          <div class="pricing-name">The Household</div>
+          <div class="pricing-desc">Enough for two keen coffee drinkers.</div>
+          <div class="pricing-price">
+            <span class="price-amount" data-price-monthly>$29</span>
+            <span class="price-amount" data-price-annual style="display:none;">$305</span>
+            <div class="price-suffix"><span data-price-monthly>per month · 2× 250g bags</span><span data-price-annual style="display:none;">per year · 2 bags / month</span></div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check" aria-hidden="true"></i> Two 250g bags each month</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Rotating single origins</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Roasted the day it ships</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Free local + flat-rate national delivery</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> 10% off everything in-café</li>
+          </ul>
+          <a href="register.html" class="btn btn-primary" style="width:100%;justify-content:center;">Choose Plan</a>
+        </div>
+
+        <!-- Office -->
+        <div class="pricing-card" data-tilt data-aos="fade-up" data-aos-delay="160">
+          <div class="pricing-icon" aria-hidden="true"><i class="fas fa-building"></i></div>
+          <div class="pricing-name">The Office</div>
+          <div class="pricing-desc">Keep the whole team caffeinated.</div>
+          <div class="pricing-price">
+            <span class="price-amount" data-price-monthly>$89</span>
+            <span class="price-amount" data-price-annual style="display:none;">$939</span>
+            <div class="price-suffix"><span data-price-monthly>per month · 2kg + supplies</span><span data-price-annual style="display:none;">per year · 2kg / month</span></div>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check" aria-hidden="true"></i> 2kg of beans each month</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Choose your roast &amp; grind</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Filters &amp; cups included</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Priority next-day delivery</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Free annual barista workshop</li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center;">Talk to Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATERING ===== -->
+  <section class="section-pad bg-cream">
+    <div class="container">
+      <div class="section-header center">
+        <div class="badge-label">Catering &amp; Events</div>
+        <h2>Bring the Café to Your Event</h2>
+        <div class="divider-line"></div>
+        <p>Weddings, launches, markets, and office mornings — we'll bring the coffee, the pastries, and the good vibes.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;" class="pricing-grid">
+        <div class="pricing-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="0">
+          <div class="pricing-icon" aria-hidden="true"><i class="fas fa-box-open"></i></div>
+          <div class="pricing-name">Pastry Platter</div>
+          <div class="pricing-desc">Drop-off of fresh bakes for the table.</div>
+          <div class="pricing-price"><span class="price-amount">$45</span><div class="price-suffix">serves 8–10 · from</div></div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check" aria-hidden="true"></i> Mixed croissants &amp; pastries</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Sliced banana &amp; walnut loaf</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Vegetarian &amp; vegan options</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Next-day local drop-off</li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center;">Enquire</a>
+        </div>
+        <div class="pricing-card popular" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="80">
+          <span class="popular-badge badge-shimmer">Most Booked</span>
+          <div class="pricing-icon" aria-hidden="true"><i class="fas fa-truck"></i></div>
+          <div class="pricing-name">Mobile Coffee Cart</div>
+          <div class="pricing-desc">A barista &amp; cart at your venue.</div>
+          <div class="pricing-price"><span class="price-amount">$390</span><div class="price-suffix">up to 3 hrs · from</div></div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check" aria-hidden="true"></i> Pro barista + full espresso setup</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Up to 120 drinks</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> All milks &amp; syrups included</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Custom cup branding available</li>
+          </ul>
+          <a href="contact.html" class="btn btn-primary" style="width:100%;justify-content:center;">Enquire</a>
+        </div>
+        <div class="pricing-card" data-tilt data-aos="fade-up" data-aos-delay="160">
+          <div class="pricing-icon" aria-hidden="true"><i class="fas fa-champagne-glasses"></i></div>
+          <div class="pricing-name">Private Café Hire</div>
+          <div class="pricing-desc">The whole room, just for you.</div>
+          <div class="pricing-price"><span class="price-amount">$650</span><div class="price-suffix">evening hire · from</div></div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check" aria-hidden="true"></i> Exclusive use, up to 40 guests</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Coffee, tea &amp; soft bar</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Grazing table of bakes</li>
+            <li><i class="fas fa-check" aria-hidden="true"></i> Dedicated host &amp; setup</li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline" style="width:100%;justify-content:center;">Enquire</a>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--text-muted);font-size:0.85rem;margin-top:28px;">All catering prices are starting points — tell us your headcount and we'll build a quick quote.</p>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="section-pad">
+    <div class="container" style="max-width:820px;">
+      <div class="section-header center">
+        <div class="badge-label">Good to Know</div>
+        <h2>Pricing Questions</h2>
+        <div class="divider-line"></div>
+      </div>
+      <div class="faq-item open" data-aos="fade-up" data-aos-delay="0"><div class="faq-question">Can I pause or cancel my subscription? <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Absolutely — manage everything from your account. Pause for a holiday, skip a delivery, or cancel outright with no fees or fuss.</div></div></div>
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="60"><div class="faq-question">How far in advance should I book catering? <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Two weeks is ideal for the coffee cart and private hire; pastry platters we can often turn around in 48 hours. Busy weekends book up fast, so earlier is safer.</div></div></div>
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="120"><div class="faq-question">Do you cater dietary requirements? <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Yes. We always offer vegan and vegetarian options, and can accommodate gluten-free and common allergies with a little notice — just tell us when you enquire.</div></div></div>
+      <div class="faq-item" data-aos="fade-up" data-aos-delay="180"><div class="faq-question">Is delivery really free? <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span></div>
+        <div class="faq-answer"><div class="faq-answer-inner">Local delivery (within Maple Grove) is free on all subscriptions. Nationwide is a flat rate, and it's included free on the Household plan and up.</div></div></div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-section">
+    <div class="sprinkle-field" data-sprinkles="22" aria-hidden="true"></div>
+    <div style="max-width:700px;margin:0 auto;padding:0 24px;position:relative;z-index:1;" data-aos="zoom-in">
+      <h2 style="color:#fff;margin-bottom:16px;">Not Sure Which to Pick?</h2>
+      <p style="color:rgba(255,255,255,0.9);margin-bottom:36px;font-size:1.05rem;">Tell us how much coffee you get through and what you've got planned — we'll point you to the right option.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn-outline-white btn-lg btn-magnetic"><i class="fas fa-envelope" aria-hidden="true"></i> Get in Touch</a>
+        <a href="register.html" class="btn btn-lg btn-magnetic" style="background:#fff;color:var(--primary);border-color:#fff;"><i class="fas fa-user-plus" aria-hidden="true"></i> Create Account</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
+              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            </a>
+          </div>
+          <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <nav class="footer-links" aria-label="Footer links">
+            <a href="about.html">Our Story</a><a href="menu.html">Menu</a><a href="reservations.html">Reservations</a>
+            <a href="pricing.html">Catering &amp; Plans</a><a href="blog.html">Journal</a><a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">The Menu</h4>
+          <nav class="footer-links" aria-label="Menu categories">
+            <a href="menu.html">Espresso &amp; Milk</a><a href="menu.html">Filter &amp; Pour Over</a><a href="menu.html">Bakery &amp; Pastries</a>
+            <a href="menu.html">All-Day Brunch</a><a href="menu.html">Cold Bar</a><a href="menu.html">Tea &amp; Matcha</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">Visit Us</h4>
+          <address style="font-style:normal;">
+            <div class="footer-contact-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
+            <div class="footer-contact-item"><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a></div>
+            <div class="footer-contact-item"><i class="fas fa-clock" aria-hidden="true"></i><span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
+          </address>
+          <div style="margin-top:20px;">
+            <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
+              <label for="newsletterEmail" class="sr-only">Email address</label>
+              <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
+              <button type="submit" class="btn btn-primary btn-sm" style="width:100%;"><i class="fas fa-paper-plane" aria-hidden="true"></i> Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Accessibility</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top btn-magnetic" aria-label="Back to top"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/effects.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

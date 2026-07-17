@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signature Espresso – Kettle Street Blend | Brew &amp; Crumb</title>
+  <meta name="description" content="Meet the Kettle Street Blend — our signature house espresso. Tasting notes, the farms behind it, brew sizes and prices, plus answers to the questions we hear most." />
+  <meta property="og:title" content="Signature Espresso | Brew & Crumb" />
+  <meta property="og:type" content="product" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- AOS (scroll reveal) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/effects.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <style>
+    .detail-layout { display:grid; grid-template-columns:1.6fr 1fr; gap:56px; align-items:start; }
+    .gallery-main { position:relative; }
+    .gallery-main > img { width:100%; height:420px; object-fit:cover; border-radius:var(--radius-lg); box-shadow:0 16px 40px var(--shadow); }
+    .gallery-steam-badge { position:absolute; top:-18px; right:26px; width:54px; height:54px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.1rem; box-shadow:0 10px 26px rgba(155,106,67,0.4); z-index:2; }
+    .gallery-steam-badge .coffee-steam { position:absolute; top:-44px; left:4px; }
+    .thumbs { display:flex; gap:12px; margin-top:14px; }
+    .thumbnail-img { width:90px; height:70px; object-fit:cover; border-radius:var(--radius-sm); border:2px solid var(--border); cursor:pointer; transition:all var(--transition); }
+    .thumbnail-img:hover, .thumbnail-img.active { border-color:var(--primary); }
+    .order-box { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:28px; box-shadow:0 10px 32px var(--shadow); }
+    .sticky-order { position:sticky; top:calc(var(--nav-height) + 20px); }
+    .flavour-row { display:flex; flex-wrap:wrap; gap:8px; }
+    .flavour-btn { padding:9px 16px; border-radius:50px; border:2px solid var(--border); background:var(--white); color:var(--text); font-size:0.82rem; font-weight:700; cursor:pointer; transition:all var(--transition); }
+    .flavour-btn:hover { border-color:var(--primary); color:var(--primary); }
+    .flavour-btn.selected { background:var(--primary); color:#fff; border-color:var(--primary); }
+    .size-table { width:100%; border-collapse:collapse; }
+    .size-table th { text-align:left; background:var(--cream); color:var(--text-muted); font-size:0.78rem; text-transform:uppercase; letter-spacing:1px; padding:12px 16px; }
+    .size-table td { padding:14px 16px; border-bottom:1px solid var(--border); font-size:0.92rem; }
+    .info-pill { display:inline-flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:700; color:var(--secondary); background:rgba(110,139,110,0.14); padding:6px 14px; border-radius:50px; }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <div class="page-loader" role="status" aria-label="Loading"><div class="loader-spinner"></div></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
+        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      </a>
+      <ul class="nav-menu" id="navMenu" role="menubar">
+        <li class="dropdown" role="none">
+          <a href="index.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Home <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
+        <li class="dropdown" role="none">
+          <a href="menu.html" class="nav-link active" role="menuitem" aria-haspopup="true" aria-expanded="false">Menu <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
+            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="reservations.html" class="nav-link" role="menuitem">Reservations</a></li>
+        <li role="none"><a href="pricing.html" class="nav-link" role="menuitem">Pricing</a></li>
+        <li role="none"><a href="blog.html" class="nav-link" role="menuitem">Journal</a></li>
+        <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
+        <li class="nav-mobile-actions" role="none">
+          <div class="mobile-action-toggles">
+            <button class="theme-toggle theme-toggle--menu" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+            <button class="rtl-toggle theme-toggle theme-toggle--menu" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+          </div>
+          <div class="mobile-action-auth">
+            <a href="login.html" class="btn-nav-login">Login</a>
+            <a href="register.html" class="btn-nav-login">Register</a>
+          </div>
+          <a href="reservations.html" class="btn-nav-order" style="width:100%;justify-content:center;">Book a Table</a>
+          <div class="mobile-action-links">
+            <a href="reservations.html"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a>
+            <a href="admin-dashboard.html"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a>
+          </div>
+        </li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+        <button class="rtl-toggle theme-toggle" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+        <a href="reservations.html" class="btn-nav-order">Book a Table</a>
+        <div class="account-dropdown">
+          <button class="account-toggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user" aria-hidden="true"></i></button>
+          <ul class="account-menu" role="menu" aria-label="Account">
+            <li role="none"><a href="login.html" class="account-item" role="menuitem"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> Sign In</a></li>
+            <li role="none"><a href="register.html" class="account-item" role="menuitem"><i class="fas fa-user-plus" aria-hidden="true"></i> Create Account</a></li>
+            <li role="none" class="account-sep"><a href="reservations.html" class="account-item" role="menuitem"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a></li>
+            <li role="none"><a href="admin-dashboard.html" class="account-item account-item--staff" role="menuitem"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a></li>
+          </ul>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="sprinkle-field" data-sprinkles="16" aria-hidden="true"></div>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-aos="fade-up">
+        <span class="breadcrumb-item"><a href="index.html">Home</a></span>
+        <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+        <span class="breadcrumb-item"><a href="menu.html">Menu</a></span>
+        <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+        <span class="breadcrumb-item active">Kettle Street Blend</span>
+      </nav>
+      <h1 data-aos="fade-up" data-aos-delay="80">Our Signature Espresso</h1>
+      <p data-aos="fade-up" data-aos-delay="160">The Kettle Street Blend — the cup that started it all, and still the heart of everything we pour.</p>
+    </div>
+  </header>
+
+  <!-- ===== DETAIL ===== -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="detail-layout">
+        <!-- LEFT: gallery + copy -->
+        <div>
+          <div class="gallery-main" data-aos="fade-up">
+            <div class="gallery-steam-badge" aria-hidden="true">
+              <i class="fas fa-mug-hot"></i>
+              <div class="coffee-steam"><span class="wisp"></span><span class="wisp"></span><span class="wisp"></span></div>
+            </div>
+            <img id="mainShot" src="../assets/images/photo-1510707577719-ae7c14805e3a-w760.jpg" alt="Cup of Kettle Street Blend espresso with rich crema" data-tilt data-crumb-burst loading="eager" width="760" height="420" />
+            <div class="thumbs">
+              <img class="thumbnail-img active" src="../assets/images/photo-1510707577719-ae7c14805e3a-w200.jpg" alt="Espresso shot" data-full="../assets/images/photo-1510707577719-ae7c14805e3a-w760.jpg" />
+              <img class="thumbnail-img" src="../assets/images/photo-1494314671902-399b18174975-w200.jpg" alt="Latte with art" data-full="../assets/images/photo-1494314671902-399b18174975-w760.jpg" />
+              <img class="thumbnail-img" src="../assets/images/photo-1447933601403-0c6688de566e-w200.jpg" alt="Roasted beans" data-full="../assets/images/photo-1447933601403-0c6688de566e-w760.jpg" />
+              <img class="thumbnail-img" src="../assets/images/photo-1442512595331-e89e73853f31-w200.jpg" alt="Barista at the bar" data-full="../assets/images/photo-1442512595331-e89e73853f31-w760.jpg" />
+            </div>
+          </div>
+
+          <div style="margin-top:44px;" data-aos="fade-up">
+            <span class="info-pill badge-shimmer"><i class="fas fa-award" aria-hidden="true"></i> House Signature since 2011</span>
+            <h2 style="margin:18px 0 12px;">Balanced, Comforting, Endlessly Drinkable</h2>
+            <p>The Kettle Street Blend is built for milk but confident enough to drink straight. We blend a washed Colombia for sweetness and clarity with a natural Brazilian for body and that unmistakable chocolatey finish. It's the flavour our regulars taste in their sleep.</p>
+            <p>Roasted in small batches on our drum roaster and rested for five days before it ever hits the hopper, it pulls a syrupy shot with a deep hazelnut crema — forgiving enough for a home machine, refined enough for the pros.</p>
+
+            <h3 style="margin:32px 0 14px;">Tasting Notes</h3>
+            <div class="flavour-row" role="list" aria-label="Tasting notes">
+              <span class="flavour-btn selected" role="listitem">Cocoa</span>
+              <span class="flavour-btn" role="listitem">Toasted Hazelnut</span>
+              <span class="flavour-btn" role="listitem">Brown Sugar</span>
+              <span class="flavour-btn" role="listitem">Baked Apple</span>
+              <span class="flavour-btn" role="listitem">Smooth Finish</span>
+            </div>
+
+            <h3 style="margin:32px 0 14px;">Sizes &amp; Prices</h3>
+            <table class="size-table" aria-label="Sizes and prices">
+              <thead><tr><th>Format</th><th>Detail</th><th>Price</th></tr></thead>
+              <tbody>
+                <tr><td>Single Shot</td><td>In-café, any milk</td><td>$3.20</td></tr>
+                <tr><td>Double / Flat White</td><td>In-café, any milk</td><td>$4.60</td></tr>
+                <tr><td>Retail Bag — 250g</td><td>Whole bean or ground</td><td>$16.00</td></tr>
+                <tr><td>Retail Bag — 1kg</td><td>Best value for regulars</td><td>$54.00</td></tr>
+              </tbody>
+            </table>
+
+            <h3 style="margin:36px 0 16px;">Questions We Hear a Lot</h3>
+            <div class="faq-item open" data-aos="fade-up" data-aos-delay="0"><div class="faq-question">Is this blend good for filter too? <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span></div>
+              <div class="faq-answer"><div class="faq-answer-inner">It's tuned for espresso and milk, but it makes a lovely, comforting cafetière or moka pot. For pour-over, we'd point you to our single-origin shelf.</div></div></div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="80"><div class="faq-question">How fresh are the retail bags? <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span></div>
+              <div class="faq-answer"><div class="faq-answer-inner">Every bag is stamped with its roast date and rested, not stale — we sell within two weeks of roasting and recommend using within a month of opening.</div></div></div>
+            <div class="faq-item" data-aos="fade-up" data-aos-delay="160"><div class="faq-question">Do you grind to order? <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span></div>
+              <div class="faq-answer"><div class="faq-answer-inner">We do — tell us your brew method at the counter (espresso, filter, French press, moka) and we'll dial the grind in for you.</div></div></div>
+          </div>
+        </div>
+
+        <!-- RIGHT: order box -->
+        <aside class="sticky-order">
+          <div class="order-box glass-panel" data-aos="fade-left">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+              <div class="stars" aria-label="4.9 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+              <span style="font-size:0.82rem;color:var(--text-muted);">312 reviews</span>
+            </div>
+            <h3 style="margin:0 0 4px;">Kettle Street Blend</h3>
+            <div class="menu-price" style="font-size:1.6rem;margin-bottom:18px;">$16.00 <span style="font-size:0.85rem;color:var(--text-muted);font-family:var(--font-body);font-weight:400;">/ 250g bag</span></div>
+
+            <label class="form-label" for="grindSel">Grind for</label>
+            <select id="grindSel" class="form-control" style="margin-bottom:16px;">
+              <option>Whole bean</option><option>Espresso</option><option>Filter / Pour over</option><option>French press</option><option>Moka pot</option>
+            </select>
+
+            <label class="form-label" for="qtySel">Quantity</label>
+            <select id="qtySel" class="form-control" style="margin-bottom:20px;">
+              <option>1 bag</option><option>2 bags</option><option>3 bags</option><option>1kg bag</option>
+            </select>
+
+            <a href="reservations.html" class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:10px;"><i class="fas fa-mug-hot" aria-hidden="true"></i> Order at the Café</a>
+            <a href="pricing.html" class="btn btn-outline" style="width:100%;justify-content:center;"><i class="fas fa-box" aria-hidden="true"></i> Subscribe &amp; Save 10%</a>
+
+            <div style="margin-top:22px;padding-top:18px;border-top:1px solid var(--border);display:grid;gap:12px;">
+              <div style="display:flex;gap:10px;align-items:center;font-size:0.86rem;color:var(--text-muted);"><i class="fas fa-truck" style="color:var(--primary);width:18px;" aria-hidden="true"></i> Free local delivery over $30</div>
+              <div style="display:flex;gap:10px;align-items:center;font-size:0.86rem;color:var(--text-muted);"><i class="fas fa-fire" style="color:var(--primary);width:18px;" aria-hidden="true"></i> Roasted this week on Kettle Street</div>
+              <div style="display:flex;gap:10px;align-items:center;font-size:0.86rem;color:var(--text-muted);"><i class="fas fa-seedling" style="color:var(--primary);width:18px;" aria-hidden="true"></i> Direct-trade, 100% Arabica</div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RELATED ===== -->
+  <section class="section-pad bg-cream" aria-labelledby="relHead">
+    <div class="container">
+      <div class="section-header center">
+        <div class="badge-label">You Might Also Like</div>
+        <h2 id="relHead">More from the Shelf</h2>
+        <div class="divider-line"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;">
+        <article class="category-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="0">
+          <div class="category-img"><img src="../assets/images/photo-1524350876685-274059332603-w520.jpg" alt="Honey Colombia beans" loading="lazy" width="520" height="300" /><span class="category-badge">Single Origin</span></div>
+          <div class="category-body"><h4>Honey Colombia</h4><p>Red apple, caramel, cocoa. Bright and sweet — a filter favourite.</p><a href="home-2.html" class="category-link">View <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+        </article>
+        <article class="category-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="80">
+          <div class="category-img"><img src="../assets/images/photo-1497515114629-f71d768fd07c-w520.jpg" alt="Ethiopia Yirgacheffe beans" loading="lazy" width="520" height="300" /></div>
+          <div class="category-body"><h4>Ethiopia Yirgacheffe</h4><p>Jasmine, bergamot, peach. Light, floral, and delicate.</p><a href="home-2.html" class="category-link">View <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+        </article>
+        <article class="category-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="160">
+          <div class="category-img"><img src="../assets/images/photo-1461023058943-07fcbe16d735-w520.jpg" alt="Cold brew" loading="lazy" width="520" height="300" /><span class="category-badge">Cold Bar</span></div>
+          <div class="category-body"><h4>24-Hour Cold Brew</h4><p>Smooth, low-acid, and ready to pour over ice all summer.</p><a href="menu.html" class="category-link">View <i class="fas fa-arrow-right" aria-hidden="true"></i></a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
+              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            </a>
+          </div>
+          <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <nav class="footer-links" aria-label="Footer links">
+            <a href="about.html">Our Story</a><a href="menu.html">Menu</a><a href="reservations.html">Reservations</a>
+            <a href="pricing.html">Catering &amp; Plans</a><a href="blog.html">Journal</a><a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">The Menu</h4>
+          <nav class="footer-links" aria-label="Menu categories">
+            <a href="menu.html">Espresso &amp; Milk</a><a href="menu.html">Filter &amp; Pour Over</a><a href="menu.html">Bakery &amp; Pastries</a>
+            <a href="menu.html">All-Day Brunch</a><a href="menu.html">Cold Bar</a><a href="menu.html">Tea &amp; Matcha</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">Visit Us</h4>
+          <address style="font-style:normal;">
+            <div class="footer-contact-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
+            <div class="footer-contact-item"><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a></div>
+            <div class="footer-contact-item"><i class="fas fa-clock" aria-hidden="true"></i><span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
+          </address>
+          <div style="margin-top:20px;">
+            <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
+              <label for="newsletterEmail" class="sr-only">Email address</label>
+              <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
+              <button type="submit" class="btn btn-primary btn-sm" style="width:100%;"><i class="fas fa-paper-plane" aria-hidden="true"></i> Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Accessibility</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top btn-magnetic" aria-label="Back to top"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/effects.js"></script>
+  <script src="../assets/js/main.js"></script>
+  <script>
+    // Thumbnail → main image swap
+    document.querySelectorAll('.thumbnail-img').forEach(t => {
+      t.addEventListener('click', () => {
+        document.querySelectorAll('.thumbnail-img').forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        const main = document.getElementById('mainShot');
+        if (main && t.dataset.full) main.src = t.dataset.full;
+      });
+    });
+    // Tasting-note pills act as a single highlighted choice
+    document.querySelectorAll('.flavour-btn').forEach(b => {
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.flavour-btn').forEach(x => x.classList.remove('selected'));
+        b.classList.add('selected');
+      });
+    });
+  </script>
+</body>
+</html>

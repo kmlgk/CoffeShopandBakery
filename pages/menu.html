@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu – Coffee, Bakery &amp; Brunch | Brew &amp; Crumb</title>
+  <meta name="description" content="The full Brew & Crumb menu — espresso and milk drinks, hand-brewed filter, fresh bakery and pastries, all-day brunch, and our cold bar. Prices and tasting notes inside." />
+  <meta property="og:title" content="Menu | Brew & Crumb" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- AOS (scroll reveal) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/effects.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <style>
+    .menu-nav { position:sticky; top:var(--nav-height); z-index:80; background:var(--white); border-bottom:1px solid var(--border); }
+    .menu-nav-inner { display:flex; gap:6px; overflow-x:auto; padding:14px 0; }
+    .menu-nav a { flex-shrink:0; padding:9px 20px; border-radius:50px; font-size:0.85rem; font-weight:700; color:var(--text); border:2px solid var(--border); transition:all var(--transition); }
+    .menu-nav a:hover { border-color:var(--primary); color:var(--primary); }
+    .menu-section-head { display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+    .menu-section-head .mi { width:52px; height:52px; border-radius:var(--radius); background:linear-gradient(135deg,rgba(155,106,67,0.15),rgba(155,106,67,0.05)); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; position:relative; }
+
+    /* Menu section banner — background photo + scrim behind each category title */
+    .menu-banner {
+      position: relative; overflow: hidden; border-radius: var(--radius-xl);
+      margin-bottom: 32px; padding: 40px 36px; min-height: 200px;
+      display: flex; align-items: center;
+      background-size: cover; background-position: center;
+      box-shadow: 0 16px 40px var(--shadow-md);
+    }
+    .menu-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(115deg, rgba(42,30,22,0.92) 0%, rgba(42,30,22,0.72) 40%, rgba(42,30,22,0.28) 100%);
+    }
+    [data-theme="dark"] .menu-banner::before {
+      background: linear-gradient(115deg, rgba(12,8,5,0.94) 0%, rgba(12,8,5,0.78) 40%, rgba(12,8,5,0.35) 100%);
+    }
+    .menu-banner .menu-section-head { position: relative; z-index: 1; margin-bottom: 0; }
+    .menu-banner .mi { background: rgba(255,255,255,0.14); color: #fff; backdrop-filter: blur(6px); }
+    .menu-banner h2 { color: #fff !important; }
+    .menu-banner .menu-section-desc { color: rgba(255,255,255,0.82) !important; max-width: 560px; margin-top: 6px !important; }
+    @media (max-width: 640px) {
+      .menu-banner { padding: 28px 22px; }
+    }
+    .menu-split { display:grid; grid-template-columns:1fr 1fr; gap:16px 56px; }
+    .cta-section { background: linear-gradient(135deg, var(--secondary), #566E56); padding: 80px 0; text-align:center; position:relative; overflow:hidden; }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <div class="page-loader" role="status" aria-label="Loading"><div class="loader-spinner"></div></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
+        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      </a>
+      <ul class="nav-menu" id="navMenu" role="menubar">
+        <li class="dropdown" role="none">
+          <a href="index.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Home <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
+        <li class="dropdown" role="none">
+          <a href="menu.html" class="nav-link active" role="menuitem" aria-haspopup="true" aria-expanded="false">Menu <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
+            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="reservations.html" class="nav-link" role="menuitem">Reservations</a></li>
+        <li role="none"><a href="pricing.html" class="nav-link" role="menuitem">Pricing</a></li>
+        <li role="none"><a href="blog.html" class="nav-link" role="menuitem">Journal</a></li>
+        <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
+        <li class="nav-mobile-actions" role="none">
+          <div class="mobile-action-toggles">
+            <button class="theme-toggle theme-toggle--menu" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+            <button class="rtl-toggle theme-toggle theme-toggle--menu" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+          </div>
+          <div class="mobile-action-auth">
+            <a href="login.html" class="btn-nav-login">Login</a>
+            <a href="register.html" class="btn-nav-login">Register</a>
+          </div>
+          <a href="reservations.html" class="btn-nav-order" style="width:100%;justify-content:center;">Book a Table</a>
+          <div class="mobile-action-links">
+            <a href="reservations.html"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a>
+            <a href="admin-dashboard.html"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a>
+          </div>
+        </li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+        <button class="rtl-toggle theme-toggle" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+        <a href="reservations.html" class="btn-nav-order">Book a Table</a>
+        <div class="account-dropdown">
+          <button class="account-toggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user" aria-hidden="true"></i></button>
+          <ul class="account-menu" role="menu" aria-label="Account">
+            <li role="none"><a href="login.html" class="account-item" role="menuitem"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> Sign In</a></li>
+            <li role="none"><a href="register.html" class="account-item" role="menuitem"><i class="fas fa-user-plus" aria-hidden="true"></i> Create Account</a></li>
+            <li role="none" class="account-sep"><a href="reservations.html" class="account-item" role="menuitem"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a></li>
+            <li role="none"><a href="admin-dashboard.html" class="account-item account-item--staff" role="menuitem"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a></li>
+          </ul>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <header class="page-header">
+    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb" data-aos="fade-up">
+        <span class="breadcrumb-item"><a href="index.html">Home</a></span>
+        <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+        <span class="breadcrumb-item active">Menu</span>
+      </nav>
+      <h1 data-aos="fade-up" data-aos-delay="80">The Full Menu</h1>
+      <p data-aos="fade-up" data-aos-delay="160">Everything we brew and bake, all in one place. Dietary notes are marked — just ask our team for the day's specials.</p>
+    </div>
+  </header>
+
+  <!-- ===== SECTION QUICK-NAV ===== -->
+  <div class="menu-nav" aria-label="Jump to menu section">
+    <div class="container">
+      <nav class="menu-nav-inner">
+        <a href="#espresso">Espresso &amp; Milk</a>
+        <a href="#filter">Filter &amp; Pour Over</a>
+        <a href="#cold">Cold Bar</a>
+        <a href="#tea">Tea &amp; Matcha</a>
+        <a href="#bakery">Bakery</a>
+        <a href="#brunch">Brunch</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ===== ESPRESSO & MILK ===== -->
+  <section class="section-pad" id="espresso" aria-labelledby="espressoHead">
+    <div class="container">
+      <div class="menu-banner" data-aos="fade-up" style="background-image:url('../assets/images/photo-1511920170033-f8396924c348-w520.jpg');">
+        <div class="menu-section-head">
+          <div class="mi" aria-hidden="true"><i class="fas fa-mug-hot"></i><div class="coffee-steam" style="position:absolute;top:-44px;left:3px;"><span class="wisp"></span><span class="wisp"></span><span class="wisp"></span></div></div>
+          <div>
+            <h2 id="espressoHead" style="margin:0;">Espresso &amp; Milk</h2>
+            <p class="menu-section-desc" style="margin:0;font-size:0.95rem;">Pulled from our house Kettle Street blend — a rich, chocolatey espresso built for milk, dialled in shot-by-shot by hand. Oat, soy &amp; almond +$0.60.</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-split">
+        <div class="pricelist" data-aos="fade-right">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Espresso</span><span class="pl-dots"></span><span class="pl-price">$3.20</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">Macchiato</span><span class="pl-dots"></span><span class="pl-price">$3.60</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="160"><span class="pl-name">Cortado</span><span class="pl-dots"></span><span class="pl-price">$4.00</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="240"><span class="pl-name">Flat White <span class="pl-badge">Signature</span></span><span class="pl-dots"></span><span class="pl-price">$4.60</span></div>
+        </div>
+        <div class="pricelist" data-aos="fade-left">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Cappuccino</span><span class="pl-dots"></span><span class="pl-price">$4.40</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">Café Latte</span><span class="pl-dots"></span><span class="pl-price">$4.80</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="160"><span class="pl-name">Mocha</span><span class="pl-dots"></span><span class="pl-price">$5.00</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="240"><span class="pl-name">Maple Pecan Latte <span class="pl-badge">Seasonal</span></span><span class="pl-dots"></span><span class="pl-price">$5.40</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FILTER ===== -->
+  <section class="section-pad bg-cream" id="filter" aria-labelledby="filterHead">
+    <div class="container">
+      <div class="menu-banner" data-aos="fade-up" style="background-image:url('../assets/images/photo-1495474472287-4d71bcdd2085-w900.jpg');">
+        <div class="menu-section-head">
+          <div class="mi" aria-hidden="true"><i class="fas fa-filter"></i></div>
+          <div>
+            <h2 id="filterHead" style="margin:0;">Filter &amp; Pour Over</h2>
+            <p class="menu-section-desc" style="margin:0;font-size:0.95rem;">Hand-brewed to order from this week's rotating single origins, sourced direct from small family farms. Ask your barista what's on pour today.</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-split">
+        <div class="pricelist" data-aos="fade-right">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Batch Brew</span><span class="pl-dots"></span><span class="pl-price">$3.40</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">V60 Pour Over</span><span class="pl-dots"></span><span class="pl-price">$5.20</span></div>
+        </div>
+        <div class="pricelist" data-aos="fade-left">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Chemex (for two)</span><span class="pl-dots"></span><span class="pl-price">$9.00</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">Guest Roast Flight <span class="pl-badge">Tasting</span></span><span class="pl-dots"></span><span class="pl-price">$11.00</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COLD BAR ===== -->
+  <section class="section-pad" id="cold" aria-labelledby="coldHead">
+    <div class="container">
+      <div class="menu-banner" data-aos="fade-up" style="background-image:url('../assets/images/photo-1461023058943-07fcbe16d735-w520.jpg');">
+        <div class="menu-section-head">
+          <div class="mi" aria-hidden="true"><i class="fas fa-glass-water"></i></div>
+          <div>
+            <h2 id="coldHead" style="margin:0;">Cold Bar</h2>
+            <p class="menu-section-desc" style="margin:0;font-size:0.95rem;">Served over ice, made for warm afternoons. Our cold brew steeps a full 24 hours for a smooth, low-acid finish you can taste in every sip.</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-split">
+        <div class="pricelist" data-aos="fade-right">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Cold Brew</span><span class="pl-dots"></span><span class="pl-price">$4.80</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">Iced Latte</span><span class="pl-dots"></span><span class="pl-price">$5.00</span></div>
+        </div>
+        <div class="pricelist" data-aos="fade-left">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Espresso Tonic <span class="pl-badge">Refreshing</span></span><span class="pl-dots"></span><span class="pl-price">$5.40</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">Seasonal Fruit Soda</span><span class="pl-dots"></span><span class="pl-price">$4.60</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TEA ===== -->
+  <section class="section-pad bg-cream" id="tea" aria-labelledby="teaHead">
+    <div class="container">
+      <div class="menu-banner" data-aos="fade-up" style="background-image:url('../assets/images/photo-1515823662972-da6a2e4d3002-w520.jpg');">
+        <div class="menu-section-head">
+          <div class="mi" aria-hidden="true"><i class="fas fa-leaf"></i></div>
+          <div>
+            <h2 id="teaHead" style="margin:0;">Tea &amp; Matcha</h2>
+            <p class="menu-section-desc" style="margin:0;font-size:0.95rem;">Loose-leaf teas and ceremonial-grade matcha, whisked to order the traditional way — a gentler lift for the non-coffee crowd.</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-split">
+        <div class="pricelist" data-aos="fade-right">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Loose-Leaf Pot</span><span class="pl-dots"></span><span class="pl-price">$4.00</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">Matcha Latte <span class="pl-badge">Vegan</span></span><span class="pl-dots"></span><span class="pl-price">$5.20</span></div>
+        </div>
+        <div class="pricelist" data-aos="fade-left">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Masala Chai Latte</span><span class="pl-dots"></span><span class="pl-price">$4.80</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">Hot Chocolate</span><span class="pl-dots"></span><span class="pl-price">$4.60</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BAKERY ===== -->
+  <section class="section-pad" id="bakery" aria-labelledby="bakeryHead">
+    <div class="container">
+      <div class="menu-banner" data-aos="fade-up" style="background-image:url('../assets/images/photo-1509440159596-0249088772ff-w1200.jpg');">
+        <div class="menu-section-head">
+          <div class="mi" aria-hidden="true"><i class="fas fa-bread-slice"></i></div>
+          <div>
+            <h2 id="bakeryHead" style="margin:0;">Bakery &amp; Pastries</h2>
+            <p class="menu-section-desc" style="margin:0;font-size:0.95rem;">Baked from scratch in our kitchen before the doors open — laminated by hand, filled with real butter, and usually gone by early afternoon.</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-split">
+        <div class="pricelist" data-aos="fade-right">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Butter Croissant</span><span class="pl-dots"></span><span class="pl-price">$3.80</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">Pain au Chocolat</span><span class="pl-dots"></span><span class="pl-price">$4.20</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="160"><span class="pl-name">Cardamom Cinnamon Bun <span class="pl-badge">Fan Favourite</span></span><span class="pl-dots"></span><span class="pl-price">$4.20</span></div>
+        </div>
+        <div class="pricelist" data-aos="fade-left">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Sourdough Loaf</span><span class="pl-dots"></span><span class="pl-price">$6.50</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">Almond &amp; Pear Danish</span><span class="pl-dots"></span><span class="pl-price">$4.60</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="160"><span class="pl-name">Banana Walnut Loaf Slice</span><span class="pl-dots"></span><span class="pl-price">$3.60</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BRUNCH ===== -->
+  <section class="section-pad bg-cream" id="brunch" aria-labelledby="brunchHead">
+    <div class="container">
+      <div class="menu-banner" data-aos="fade-up" style="background-image:url('../assets/images/photo-1525351484163-7529414344d8-w520.jpg');">
+        <div class="menu-section-head">
+          <div class="mi" aria-hidden="true"><i class="fas fa-egg"></i></div>
+          <div>
+            <h2 id="brunchHead" style="margin:0;">All-Day Brunch</h2>
+            <p class="menu-section-desc" style="margin:0;font-size:0.95rem;">Served until close, made on our own sourdough — from the same starter that's been alive since 2011. (V) vegetarian · (VE) vegan.</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-split">
+        <div class="pricelist" data-aos="fade-right">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Smashed Avo Sourdough <span class="pl-badge">V</span></span><span class="pl-dots"></span><span class="pl-price">$9.50</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">Shakshuka &amp; Toast</span><span class="pl-dots"></span><span class="pl-price">$11.50</span></div>
+        </div>
+        <div class="pricelist" data-aos="fade-left">
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="0"><span class="pl-name">Granola &amp; Yoghurt Bowl <span class="pl-badge">VE</span></span><span class="pl-dots"></span><span class="pl-price">$8.00</span></div>
+          <div class="pricelist-row" data-crumb-burst data-aos="fade-up" data-aos-delay="80"><span class="pl-name">Croque Madame</span><span class="pl-dots"></span><span class="pl-price">$12.00</span></div>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--text-muted);font-size:0.85rem;margin-top:28px;" data-aos="fade-up">Allergens available on request. A discretionary 5% service charge applies to table service.</p>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-section">
+    <div class="sprinkle-field" data-sprinkles="24" aria-hidden="true"></div>
+    <div style="max-width:700px;margin:0 auto;padding:0 24px;position:relative;z-index:1;" data-aos="zoom-in">
+      <h2 style="color:#fff;margin-bottom:16px;">Hungry Yet?</h2>
+      <p style="color:rgba(255,255,255,0.9);margin-bottom:36px;font-size:1.05rem;">Save a table so it's ready when you arrive — or read the story behind our signature espresso.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="reservations.html" class="btn btn-outline-white btn-lg btn-magnetic"><i class="fas fa-calendar-check" aria-hidden="true"></i> Reserve a Table</a>
+        <a href="menu-details.html" class="btn btn-lg btn-magnetic" style="background:#fff;color:var(--secondary);border-color:#fff;"><i class="fas fa-mug-hot" aria-hidden="true"></i> Signature Espresso</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
+              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            </a>
+          </div>
+          <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <nav class="footer-links" aria-label="Footer links">
+            <a href="about.html">Our Story</a><a href="menu.html">Menu</a><a href="reservations.html">Reservations</a>
+            <a href="pricing.html">Catering &amp; Plans</a><a href="blog.html">Journal</a><a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">The Menu</h4>
+          <nav class="footer-links" aria-label="Menu categories">
+            <a href="#espresso">Espresso &amp; Milk</a><a href="#filter">Filter &amp; Pour Over</a><a href="#bakery">Bakery &amp; Pastries</a>
+            <a href="#brunch">All-Day Brunch</a><a href="#cold">Cold Bar</a><a href="#tea">Tea &amp; Matcha</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">Visit Us</h4>
+          <address style="font-style:normal;">
+            <div class="footer-contact-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
+            <div class="footer-contact-item"><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a></div>
+            <div class="footer-contact-item"><i class="fas fa-clock" aria-hidden="true"></i><span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
+          </address>
+          <div style="margin-top:20px;">
+            <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
+              <label for="newsletterEmail" class="sr-only">Email address</label>
+              <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
+              <button type="submit" class="btn btn-primary btn-sm" style="width:100%;"><i class="fas fa-paper-plane" aria-hidden="true"></i> Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Accessibility</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top btn-magnetic" aria-label="Back to top"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/effects.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

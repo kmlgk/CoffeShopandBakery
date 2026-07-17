@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account – Brew &amp; Crumb</title>
+  <meta name="description" content="Create a Brew & Crumb account to book tables, start a bean subscription, and earn rewards on every visit." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- AOS (scroll reveal) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/effects.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <style>
+    /* Form on the LEFT, visual on the RIGHT for register (mirror of login) */
+    .auth-page { min-height:100vh; display:grid; grid-template-columns:1fr 1.05fr; }
+    .auth-visual { position:relative; overflow:hidden; background:linear-gradient(rgba(42,30,22,0.55),rgba(42,30,22,0.78)),url("../assets/images/photo-1509440159596-0249088772ff-w1200.jpg") center/cover no-repeat; display:flex; flex-direction:column; justify-content:space-between; padding:48px; color:#fff; }
+    .auth-visual .brand-text { color:#fff; }
+    .auth-visual .av-quote { max-width:420px; }
+    .auth-visual .av-quote h2 { color:#fff; font-size:2rem; line-height:1.25; margin-bottom:14px; }
+    .auth-visual .av-quote p { color:rgba(255,255,255,0.8); }
+    .av-perk { display:flex; gap:12px; align-items:center; margin-bottom:14px; color:rgba(255,255,255,0.9); font-size:0.92rem; }
+    .av-perk i { color:var(--accent); width:20px; }
+    .auth-form-side { display:flex; align-items:center; justify-content:center; padding:48px 24px; background:var(--white); order:-1; }
+    .auth-card { width:100%; max-width:440px; }
+    .auth-card h1 { font-size:1.9rem; margin-bottom:6px; }
+    .auth-sub { color:var(--text-muted); margin-bottom:28px; }
+    .a-field { margin-bottom:18px; }
+    .a-label { display:block; font-size:0.85rem; font-weight:700; color:var(--dark); margin-bottom:7px; }
+    .a-input { width:100%; padding:13px 16px; border:2px solid var(--border); border-radius:var(--radius); font-family:var(--font-body); font-size:0.94rem; background:var(--white); color:var(--dark); outline:none; transition:all var(--transition); }
+    .a-input:focus { border-color:var(--primary); box-shadow:0 0 0 4px rgba(155,106,67,0.12); }
+    .pw-wrap { position:relative; }
+    .pw-toggle { position:absolute; right:14px; top:50%; transform:translateY(-50%); background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:0.95rem; }
+    .a-check { display:flex; align-items:flex-start; gap:9px; color:var(--text-muted); font-size:0.85rem; margin-bottom:22px; }
+    .social-auth { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:18px; }
+    .btn-social { display:flex; align-items:center; justify-content:center; gap:9px; padding:12px; border:2px solid var(--border); border-radius:var(--radius); background:var(--white); color:var(--dark); font-weight:700; font-size:0.86rem; cursor:pointer; transition:all var(--transition); }
+    .btn-social:hover { border-color:var(--primary); color:var(--primary); }
+    .a-divider { display:flex; align-items:center; gap:14px; margin:24px 0; color:var(--text-muted); font-size:0.82rem; }
+    .a-divider::before, .a-divider::after { content:''; flex:1; height:1px; background:var(--border); }
+    .auth-note { text-align:center; margin-top:26px; font-size:0.9rem; color:var(--text-muted); }
+    .float-controls { position:fixed; top:20px; right:20px; display:flex; gap:8px; z-index:10; }
+    @media (max-width:860px){ .auth-page { grid-template-columns:1fr; } .auth-visual { display:none; } }
+  </style>
+</head>
+<body>
+
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <div class="page-loader" role="status" aria-label="Loading"><div class="loader-spinner"></div></div>
+
+  <div class="float-controls">
+    <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+    <button class="rtl-toggle theme-toggle" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+  </div>
+
+  <div class="auth-page">
+    <!-- Form panel (left) -->
+    <main class="auth-form-side">
+      <div class="auth-card" data-aos="zoom-in">
+        <h1>Join the <span class="text-gradient">club</span></h1>
+        <p class="auth-sub">Create your Brew &amp; Crumb account in seconds.</p>
+
+        <div class="social-auth">
+          <button class="btn-social" type="button"><i class="fab fa-google" aria-hidden="true"></i> Google</button>
+          <button class="btn-social" type="button"><i class="fab fa-apple" aria-hidden="true"></i> Apple</button>
+        </div>
+        <div class="a-divider">or sign up with email</div>
+
+        <form data-validate data-success="Account created — welcome to the club! ☕" aria-label="Create account form" novalidate>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div class="a-field">
+              <label class="a-label" for="rFirst">First name</label>
+              <input type="text" id="rFirst" class="a-input" placeholder="Alex" required aria-required="true" />
+              <span class="form-error" role="alert">Required.</span>
+            </div>
+            <div class="a-field">
+              <label class="a-label" for="rLast">Last name</label>
+              <input type="text" id="rLast" class="a-input" placeholder="Rivera" required aria-required="true" />
+              <span class="form-error" role="alert">Required.</span>
+            </div>
+          </div>
+          <div class="a-field">
+            <label class="a-label" for="rEmail">Email address</label>
+            <input type="email" id="rEmail" class="a-input" placeholder="you@example.com" required aria-required="true" />
+            <span class="form-error" role="alert">Please enter a valid email.</span>
+          </div>
+          <div class="a-field">
+            <label class="a-label" for="rPass">Password</label>
+            <div class="pw-wrap">
+              <input type="password" id="rPass" class="a-input" placeholder="At least 8 characters" required aria-required="true" />
+              <button type="button" class="pw-toggle" aria-label="Show password"><i class="fas fa-eye" aria-hidden="true"></i></button>
+            </div>
+            <span class="form-error" role="alert">Please choose a password.</span>
+          </div>
+          <label class="a-check"><input type="checkbox" required aria-required="true" /> <span>I agree to the <a href="#" style="font-weight:700;">Terms</a> and <a href="#" style="font-weight:700;">Privacy Policy</a>.</span></label>
+          <button type="submit" class="btn btn-primary btn-lg btn-magnetic" style="width:100%;justify-content:center;"><i class="fas fa-user-plus" aria-hidden="true"></i> Create Account</button>
+        </form>
+
+        <p class="auth-note">Already have an account? <a href="login.html" style="font-weight:700;">Sign in</a></p>
+        <p class="auth-note" style="margin-top:14px;"><a href="index.html"><i class="fas fa-arrow-left" aria-hidden="true"></i> Back to the café</a></p>
+      </div>
+    </main>
+
+    <!-- Visual panel (right) -->
+    <aside class="auth-visual" aria-hidden="true">
+      <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="float-field" data-float-icons="6" aria-hidden="true"></div>
+      <a href="index.html" class="navbar-brand" style="position:relative;z-index:1;">
+        <div class="brand-logo"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      </a>
+      <div class="av-quote" style="position:relative;z-index:1;">
+        <h2>Perks for regulars.</h2>
+        <p>Members get a little extra love every time they visit.</p>
+        <div style="margin-top:22px;">
+          <div class="av-perk"><i class="fas fa-star" aria-hidden="true"></i> Earn a free drink every 9th cup</div>
+          <div class="av-perk"><i class="fas fa-calendar-check" aria-hidden="true"></i> Faster table reservations</div>
+          <div class="av-perk"><i class="fas fa-box" aria-hidden="true"></i> Manage your bean subscription</div>
+          <div class="av-perk"><i class="fas fa-gift" aria-hidden="true"></i> Birthday treat, on the house</div>
+        </div>
+      </div>
+      <div style="font-size:0.82rem;color:rgba(255,255,255,0.7);position:relative;z-index:1;">Free to join · No spam, ever</div>
+    </aside>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/effects.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//tmp/**)",
+      "Bash(node render_logo.js)",
+      "Bash(cp /c/tmp/pw_check/logo_icon_raw.png \"/c/Users/pc/AppData/Local/Temp/claude/d--Naveen-karthika-CoffeShopandBakery/2056d9fe-3a8f-43c5-b5fd-381afe3cd616/scratchpad/logo_icon_raw.png\")",
+      "Bash(node render_preview.js)"
+    ]
+  }
+}

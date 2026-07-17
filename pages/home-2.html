@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brew &amp; Crumb – The Roastery &amp; Espresso Bar</title>
+  <meta name="description" content="Brew & Crumb Roastery — small-batch beans roasted on-site, single-origin espresso, and a bean subscription delivered to your door. Meet the roast." />
+  <meta property="og:title" content="Brew & Crumb – The Roastery & Espresso Bar" />
+  <meta property="og:description" content="Small-batch, on-site roasting and a fresh-bean subscription." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- AOS (scroll reveal) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/effects.css" />
+  <link rel="stylesheet" href="../assets/css/dark-mode.css" />
+  <link rel="stylesheet" href="../assets/css/rtl.css" />
+  <style>
+    .roast-hero {
+      min-height: 92vh; display: flex; align-items: center; position: relative; overflow: hidden;
+      padding-top: var(--nav-height);
+      background: linear-gradient(rgba(26,16,10,0.82), rgba(26,16,10,0.88)), url("../assets/images/photo-1447933601403-0c6688de566e-w1600.jpg") center/cover no-repeat;
+    }
+    .roast-hero h1, .roast-hero p { color: #fff; }
+    .roast-hero .lead { color: rgba(255,255,255,0.8); }
+    .roast-badge {
+      display:inline-flex; align-items:center; gap:8px; background: rgba(255,255,255,0.1);
+      border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:50px; padding:8px 18px;
+      font-size:0.82rem; font-weight:700; margin-bottom:24px; backdrop-filter: blur(6px);
+    }
+    .roast-badge i { color: var(--accent); }
+    .roast-stats { display:flex; gap:40px; flex-wrap:wrap; margin-top:44px; }
+    .roast-stats .number { color:#fff; font-family:var(--font-heading); font-size:2rem; font-weight:700; }
+    .roast-stats .label { color:rgba(255,255,255,0.7); font-size:0.82rem; }
+    .roast-card {
+      background: var(--white); border:1px solid var(--border); border-radius: var(--radius-lg);
+      overflow:hidden; transition: all var(--transition); height:100%;
+    }
+    .roast-card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px var(--shadow-md); border-color: var(--primary); }
+    .roast-card .rc-top { padding:26px 26px 0; display:flex; justify-content:space-between; align-items:flex-start; }
+    .roast-level { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#fff; padding:4px 12px; border-radius:50px; }
+    .roast-body { padding: 18px 26px 26px; }
+    .roast-notes { display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 18px; }
+    .roast-note { font-size:0.76rem; font-weight:700; color:var(--secondary); background:rgba(110,139,110,0.14); padding:4px 12px; border-radius:50px; }
+    .bean-dots { display:flex; gap:4px; }
+    .bean-dots i { color: var(--primary); font-size:0.7rem; }
+    .bean-dots i.off { color: var(--border); }
+    .cta-section { background: linear-gradient(135deg, var(--dark), var(--dark-soft)); padding: 80px 0; text-align:center; position: relative; overflow: hidden; }
+    .hero-steam-badge { position: absolute; top: -18px; right: 40px; width: 58px; height: 58px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; box-shadow: 0 10px 26px rgba(155,106,67,0.4); z-index: 2; }
+    .hero-steam-badge .coffee-steam { position: absolute; top: -46px; left: 6px; }
+    @media (max-width:768px){ .roast-hero { min-height: auto; padding: 120px 0 70px; } }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <div class="page-loader" role="status" aria-label="Loading"><div class="loader-spinner"></div></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
+        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      </a>
+      <ul class="nav-menu" id="navMenu" role="menubar">
+        <li class="dropdown" role="none">
+          <a href="index.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Home <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
+        <li class="dropdown" role="none">
+          <a href="menu.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Menu <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
+            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
+          </ul>
+        </li>
+        <li role="none"><a href="reservations.html" class="nav-link" role="menuitem">Reservations</a></li>
+        <li role="none"><a href="pricing.html" class="nav-link" role="menuitem">Pricing</a></li>
+        <li role="none"><a href="blog.html" class="nav-link" role="menuitem">Journal</a></li>
+        <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
+        <li class="nav-mobile-actions" role="none">
+          <div class="mobile-action-toggles">
+            <button class="theme-toggle theme-toggle--menu" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+            <button class="rtl-toggle theme-toggle theme-toggle--menu" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+          </div>
+          <div class="mobile-action-auth">
+            <a href="login.html" class="btn-nav-login">Login</a>
+            <a href="register.html" class="btn-nav-login">Register</a>
+          </div>
+          <a href="reservations.html" class="btn-nav-order" style="width:100%;justify-content:center;">Book a Table</a>
+          <div class="mobile-action-links">
+            <a href="reservations.html"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a>
+            <a href="admin-dashboard.html"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a>
+          </div>
+        </li>
+      </ul>
+      <div class="navbar-actions">
+        <button class="theme-toggle" aria-label="Toggle dark mode"><i class="fas fa-moon" aria-hidden="true"></i></button>
+        <button class="rtl-toggle theme-toggle" aria-label="Switch to RTL" aria-pressed="false" title="Toggle RTL layout">RTL</button>
+        <a href="reservations.html" class="btn-nav-order">Book a Table</a>
+        <div class="account-dropdown">
+          <button class="account-toggle" aria-label="Account menu" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user" aria-hidden="true"></i></button>
+          <ul class="account-menu" role="menu" aria-label="Account">
+            <li role="none"><a href="login.html" class="account-item" role="menuitem"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> Sign In</a></li>
+            <li role="none"><a href="register.html" class="account-item" role="menuitem"><i class="fas fa-user-plus" aria-hidden="true"></i> Create Account</a></li>
+            <li role="none" class="account-sep"><a href="reservations.html" class="account-item" role="menuitem"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a></li>
+            <li role="none"><a href="admin-dashboard.html" class="account-item account-item--staff" role="menuitem"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a></li>
+          </ul>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== ROASTERY HERO ===== -->
+  <section class="roast-hero" aria-labelledby="roastHeading">
+    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="float-field" data-float-icons="6" aria-hidden="true"></div>
+    <div class="container">
+      <div style="max-width:640px;position:relative;z-index:1;" data-aos="fade-right" data-aos-duration="800">
+        <div class="roast-badge badge-shimmer"><i class="fas fa-fire-flame-curved" aria-hidden="true"></i> Small-batch · Roasted on Kettle Street</div>
+        <h1 id="roastHeading">From Green Bean<br>to Your <span class="text-gradient">Cup</span></h1>
+        <p class="lead" style="font-size:1.15rem;max-width:520px;">We roast in small batches every week on our vintage drum roaster. Taste the difference freshness makes — at the bar or delivered to your door.</p>
+        <div class="hero-cta" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;">
+          <a href="pricing.html" class="btn btn-primary btn-lg btn-magnetic"><i class="fas fa-box" aria-hidden="true"></i> Bean Subscription</a>
+          <a href="menu-details.html" class="btn btn-outline-white btn-lg btn-magnetic"><i class="fas fa-mug-hot" aria-hidden="true"></i> Our Espresso</a>
+        </div>
+        <div class="roast-stats">
+          <div data-aos="fade-up" data-aos-delay="0"><div class="number" data-count="6" data-suffix="">6</div><div class="label">Single Origins</div></div>
+          <div data-aos="fade-up" data-aos-delay="80"><div class="number" data-count="40" data-suffix="kg">40kg</div><div class="label">Roasted Weekly</div></div>
+          <div data-aos="fade-up" data-aos-delay="160"><div class="number" data-count="100" data-suffix="%">100%</div><div class="label">Direct Trade</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="icing-drip icing-white" aria-hidden="true"></div>
+  </section>
+
+  <!-- ===== OUR ROASTS ===== -->
+  <section class="section-pad" aria-labelledby="roastsHeading">
+    <div class="container">
+      <div class="section-header center" data-aos="fade-up">
+        <div class="badge-label">This Week's Shelf</div>
+        <h2 id="roastsHeading">Beans We're Roasting Now</h2>
+        <div class="divider-line"></div>
+        <p>A rotating line-up of single origins and house blends. Whole bean or ground to order.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;">
+        <article class="roast-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="0">
+          <div class="rc-top">
+            <div>
+              <h4 style="margin:0 0 4px;">Kettle Street Blend</h4>
+              <div style="font-size:0.82rem;color:var(--text-muted);">House Espresso</div>
+            </div>
+            <span class="roast-level" style="background:var(--primary-dark);">Dark</span>
+          </div>
+          <div class="roast-body">
+            <div class="roast-notes"><span class="roast-note">Cocoa</span><span class="roast-note">Hazelnut</span><span class="roast-note">Brown Sugar</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="bean-dots" aria-label="Roast level 4 of 5"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle off"></i></div>
+              <div class="menu-price">$16<span style="font-size:0.8rem;color:var(--text-muted);font-family:var(--font-body);font-weight:400;">/250g</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="roast-card" data-tilt data-aos="fade-up" data-aos-delay="80">
+          <div class="rc-top">
+            <div>
+              <h4 style="margin:0 0 4px;">Honey Colombia</h4>
+              <div style="font-size:0.82rem;color:var(--text-muted);">Single Origin · Huila</div>
+            </div>
+            <span class="roast-level" style="background:var(--primary);">Medium</span>
+          </div>
+          <div class="roast-body">
+            <div class="roast-notes"><span class="roast-note">Red Apple</span><span class="roast-note">Caramel</span><span class="roast-note">Cocoa</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="bean-dots" aria-label="Roast level 3 of 5"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle off"></i><i class="fas fa-circle off"></i></div>
+              <div class="menu-price">$18<span style="font-size:0.8rem;color:var(--text-muted);font-family:var(--font-body);font-weight:400;">/250g</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="roast-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="160">
+          <div class="rc-top">
+            <div>
+              <h4 style="margin:0 0 4px;">Ethiopia Yirgacheffe</h4>
+              <div style="font-size:0.82rem;color:var(--text-muted);">Single Origin · Washed</div>
+            </div>
+            <span class="roast-level" style="background:var(--secondary);">Light</span>
+          </div>
+          <div class="roast-body">
+            <div class="roast-notes"><span class="roast-note">Jasmine</span><span class="roast-note">Bergamot</span><span class="roast-note">Peach</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="bean-dots" aria-label="Roast level 2 of 5"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle off"></i><i class="fas fa-circle off"></i><i class="fas fa-circle off"></i></div>
+              <div class="menu-price">$19<span style="font-size:0.8rem;color:var(--text-muted);font-family:var(--font-body);font-weight:400;">/250g</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="roast-card" data-tilt data-aos="fade-up" data-aos-delay="240">
+          <div class="rc-top">
+            <div>
+              <h4 style="margin:0 0 4px;">Midnight Decaf</h4>
+              <div style="font-size:0.82rem;color:var(--text-muted);">Swiss Water Process</div>
+            </div>
+            <span class="roast-level" style="background:var(--dark);">Decaf</span>
+          </div>
+          <div class="roast-body">
+            <div class="roast-notes"><span class="roast-note">Dark Chocolate</span><span class="roast-note">Walnut</span><span class="roast-note">Malt</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div class="bean-dots" aria-label="Roast level 4 of 5"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle off"></i></div>
+              <div class="menu-price">$17<span style="font-size:0.8rem;color:var(--text-muted);font-family:var(--font-body);font-weight:400;">/250g</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW WE ROAST ===== -->
+  <section class="section-pad bg-cream" aria-labelledby="processHeading">
+    <div class="container">
+      <div class="section-header center" data-aos="fade-up">
+        <div class="badge-label">The Craft</div>
+        <h2 id="processHeading">How the Magic Happens</h2>
+        <div class="divider-line"></div>
+        <p>Four steps from raw green coffee to the cup in your hand.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;" class="process-grid">
+        <div class="process-step" data-aos="fade-up" data-aos-delay="0"><div class="step-number" aria-hidden="true">1</div><h4>Source</h4><p>We buy direct from farms and co-ops, paying above market for quality and care.</p></div>
+        <div class="process-step" data-aos="fade-up" data-aos-delay="80"><div class="step-number" aria-hidden="true">2</div><h4>Roast</h4><p>Small 12kg batches on our drum roaster, profiled to bring out each origin's best.</p></div>
+        <div class="process-step" data-aos="fade-up" data-aos-delay="160"><div class="step-number" aria-hidden="true">3</div><h4>Rest</h4><p>Beans rest 3–5 days to degas, so your first cup is balanced, not raw.</p></div>
+        <div class="process-step" data-aos="fade-up" data-aos-delay="240"><div class="step-number" aria-hidden="true">4</div><h4>Brew</h4><p>Pulled at the bar or bagged for home within days of roasting. Always fresh.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SUBSCRIPTION TEASER ===== -->
+  <section class="section-pad" aria-labelledby="subHeading">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;" class="features-grid">
+        <div style="position:relative;" data-aos="fade-right">
+          <div class="hero-steam-badge" aria-hidden="true">
+            <i class="fas fa-mug-hot"></i>
+            <div class="coffee-steam"><span class="wisp"></span><span class="wisp"></span><span class="wisp"></span></div>
+          </div>
+          <img src="../assets/images/photo-1524350876685-274059332603-w620.jpg" alt="Bags of freshly roasted coffee beans ready to ship" style="border-radius:var(--radius-xl);width:100%;height:460px;object-fit:cover;box-shadow:0 24px 60px var(--shadow-md);" data-tilt data-crumb-burst loading="lazy" width="620" height="460" />
+        </div>
+        <div data-aos="fade-left">
+          <div class="section-header">
+            <div class="badge-label badge-shimmer">Never Run Out</div>
+            <h2 id="subHeading">Fresh Beans on<br>Your Schedule</h2>
+            <div class="divider-line"></div>
+            <p>Pick your roast, choose your rhythm — weekly, fortnightly, or monthly — and we'll roast to order and post it the same day. Pause or cancel any time.</p>
+          </div>
+          <ul style="display:grid;gap:14px;margin-bottom:28px;">
+            <li style="display:flex;gap:12px;align-items:center;"><i class="fas fa-circle-check" style="color:var(--primary);" aria-hidden="true"></i> Roasted the day it ships</li>
+            <li style="display:flex;gap:12px;align-items:center;"><i class="fas fa-circle-check" style="color:var(--primary);" aria-hidden="true"></i> Free local delivery, flat-rate nationwide</li>
+            <li style="display:flex;gap:12px;align-items:center;"><i class="fas fa-circle-check" style="color:var(--primary);" aria-hidden="true"></i> 10% off every bag &amp; in-café refills</li>
+          </ul>
+          <a href="pricing.html" class="btn btn-primary btn-lg btn-magnetic"><i class="fas fa-box" aria-hidden="true"></i> See Subscription Plans</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <div class="cta-section">
+    <div class="sprinkle-field" data-sprinkles="20" aria-hidden="true"></div>
+    <div style="max-width:700px;margin:0 auto;padding:0 24px;position:relative;z-index:1;" data-aos="zoom-in">
+      <h2 style="color:#fff;margin-bottom:16px;">Prefer to Taste First?</h2>
+      <p style="color:rgba(255,255,255,0.85);margin-bottom:36px;font-size:1.05rem;">Pop into the café, tell us how you brew at home, and we'll grind a bag just for you.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a href="reservations.html" class="btn btn-outline-white btn-lg btn-magnetic"><i class="fas fa-calendar-check" aria-hidden="true"></i> Reserve a Table</a>
+        <a href="contact.html" class="btn btn-lg btn-magnetic" style="background:#fff;color:var(--primary);border-color:#fff;"><i class="fas fa-location-dot" aria-hidden="true"></i> Find the Roastery</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+        <div>
+          <div class="footer-logo">
+            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
+              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
+              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            </a>
+          </div>
+          <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
+          <div class="footer-socials" aria-label="Social media links">
+            <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+            <a href="#" class="social-link" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Explore</h4>
+          <nav class="footer-links" aria-label="Footer links">
+            <a href="about.html">Our Story</a><a href="menu.html">Menu</a><a href="reservations.html">Reservations</a>
+            <a href="pricing.html">Catering &amp; Plans</a><a href="blog.html">Journal</a><a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">The Menu</h4>
+          <nav class="footer-links" aria-label="Menu categories">
+            <a href="menu.html">Espresso &amp; Milk</a><a href="menu.html">Filter &amp; Pour Over</a><a href="menu.html">Bakery &amp; Pastries</a>
+            <a href="menu.html">All-Day Brunch</a><a href="menu.html">Cold Bar</a><a href="menu.html">Tea &amp; Matcha</a>
+          </nav>
+        </div>
+        <div>
+          <h4 class="footer-heading">Visit Us</h4>
+          <address style="font-style:normal;">
+            <div class="footer-contact-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
+            <div class="footer-contact-item"><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a></div>
+            <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a></div>
+            <div class="footer-contact-item"><i class="fas fa-clock" aria-hidden="true"></i><span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
+          </address>
+          <div style="margin-top:20px;">
+            <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
+              <label for="newsletterEmail" class="sr-only">Email address</label>
+              <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
+              <button type="submit" class="btn btn-primary btn-sm" style="width:100%;"><i class="fas fa-paper-plane" aria-hidden="true"></i> Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Accessibility</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top btn-magnetic" aria-label="Back to top"><i class="fas fa-chevron-up" aria-hidden="true"></i></button>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="../assets/js/effects.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
