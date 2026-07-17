@@ -198,16 +198,6 @@
   background-size: 1200px 46px;
 }
 [data-theme="dark"] .icing-drip { filter: invert(1) hue-rotate(180deg) brightness(0.18); }
-/* .hero is display:flex (to vertically-center its .container child). An
-   .icing-drip placed directly inside it becomes a second flex item and fights
-   the content column for width, squashing it off-center. Pull the divider out
-   of flex flow and pin it to the bottom edge instead — it's a decorative
-   overlay, not flex content. */
-.hero > .icing-drip {
-  position: absolute;
-  bottom: 0; left: 0;
-  z-index: 1;
-}
 .icing-drip.icing-white {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 60' preserveAspectRatio='none'%3E%3Cpath d='M0 0h1200v18c-20 20-40 32-60 32-30 0-30-26-60-26s-30 26-60 26-30-26-60-26-30 26-60 26-30-26-60-26-30 26-60 26-30-26-60-26-30 26-60 26-30-26-60-26-30 26-60 26-30-26-60-26-30 26-60 26-30-26-60-26-30 26-60 26-30-26-60-26-30 26-60 26v-52z' fill='%23FFFFFF'/%3E%3C/svg%3E");
 }
