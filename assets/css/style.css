@@ -1270,7 +1270,8 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 
   .nav-mobile-actions {
     display: flex; flex-direction: column; gap: 14px;
-    margin-top: 14px; padding-top: 18px; border-top: 1px solid var(--border);
+    margin-top: 14px; padding-top: 18px;
+     /* border-top: 1px solid var(--border); */
   }
   .mobile-action-toggles { display: flex; align-items: center; gap: 12px; }
   .mobile-action-toggles .theme-toggle--menu { display: inline-flex; }
