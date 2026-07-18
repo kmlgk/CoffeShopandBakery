@@ -1149,6 +1149,9 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 .map-frame { border: 0; width: 100%; height: 100%; min-height: 340px; display: block; filter: grayscale(0.2) sepia(0.15); }
 
 /* === Back to Top === */
+/* .btn-magnetic (effects.css) sets position:relative at equal specificity and
+   loads after this file, so pin position:fixed here with higher specificity. */
+.back-to-top.btn-magnetic,
 .back-to-top {
   position: fixed;
   bottom: 30px; right: 30px;
@@ -1163,12 +1166,17 @@ textarea.form-control { resize: vertical; min-height: 120px; }
   opacity: 0;
   visibility: hidden;
   transform: translateY(16px);
-  transition: all var(--transition);
+  transition: opacity var(--transition), visibility var(--transition), background var(--transition), box-shadow var(--transition);
   z-index: 900;
   border: none;
 }
 .back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
-.back-to-top:hover { background: var(--primary-dark); transform: translateY(-3px); }
+.back-to-top:hover { background: var(--primary-dark); }
+
+@media (max-width: 480px) {
+  .back-to-top.btn-magnetic,
+  .back-to-top { width: 42px; height: 42px; bottom: 18px; right: 18px; font-size: 0.9rem; }
+}
 
 /* === Loader === */
 .page-loader {
