@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin Dashboard – Brew &amp; Crumb</title>
-  <meta name="description" content="Brew & Crumb admin dashboard — analytics, orders, users, and messages for the coffee house & bakery." />
+  <title>Admin Dashboard – Hearth &amp; Oat</title>
+  <meta name="description" content="Hearth & Oat admin dashboard — analytics, orders, users, and messages for the coffee house & bakery." />
   <meta name="robots" content="noindex" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
@@ -70,21 +70,21 @@
     .data-table th { padding: 11px 18px; text-align: left; font-size: .72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .9px; background: var(--cream); border-bottom: 1px solid var(--border); }
     .data-table td { padding: 13px 18px; font-size: .87rem; color: var(--text); border-bottom: 1px solid var(--border); }
     .data-table tbody tr:last-child td { border: none; }
-    .data-table tbody tr:hover td { background: rgba(155,106,67,.04); }
+    .data-table tbody tr:hover td { background: rgba(190, 91, 46,.04); }
     .tbl-overflow { overflow-x: auto; }
 
     /* Badges */
     .badge { padding: 3px 10px; border-radius: 50px; font-size: .71rem; font-weight: 700; display: inline-flex; align-items: center; gap: 5px; }
     .badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
-    .badge.pending    { background: rgba(214,164,25,.16); color: #B7791F; } .badge.pending::before    { background: #B7791F; }
-    .badge.preparing  { background: rgba(155,106,67,.15); color: var(--primary); } .badge.preparing::before  { background: var(--primary); }
-    .badge.ready      { background: rgba(110,139,110,.18); color: #4F7050; } .badge.ready::before      { background: #4F7050; }
+    .badge.pending    { background: rgba(217, 142, 43,.16); color: #B7791F; } .badge.pending::before    { background: #B7791F; }
+    .badge.preparing  { background: rgba(190, 91, 46,.15); color: var(--primary); } .badge.preparing::before  { background: var(--primary); }
+    .badge.ready      { background: rgba(47, 93, 86,.18); color: #4F7050; } .badge.ready::before      { background: #4F7050; }
     .badge.completed  { background: rgba(72,187,120,.15); color: #2F855A; } .badge.completed::before  { background: #2F855A; }
     .badge.cancelled  { background: rgba(252,129,129,.15); color: #C53030; } .badge.cancelled::before  { background: #C53030; }
     .badge.active     { background: rgba(72,187,120,.15); color: #2F855A; } .badge.active::before     { background: #2F855A; }
     .badge.inactive   { background: rgba(160,160,160,.18); color: #718096; } .badge.inactive::before   { background: #A0AEC0; }
-    .badge.vip        { background: rgba(214,164,25,.16); color: #B7791F; } .badge.vip::before        { background: #D6A419; }
-    .badge.staff      { background: rgba(155,106,67,.15); color: var(--primary); } .badge.staff::before      { background: var(--primary); }
+    .badge.vip        { background: rgba(217, 142, 43,.16); color: #B7791F; } .badge.vip::before        { background: #D98E2B; }
+    .badge.staff      { background: rgba(190, 91, 46,.15); color: var(--primary); } .badge.staff::before      { background: var(--primary); }
     .badge.customer   { background: rgba(100,130,200,.12); color: #3755B0; } .badge.customer::before   { background: #3755B0; }
 
     /* Action buttons */
@@ -130,9 +130,9 @@
     .stat-card.c3::after { background: var(--accent); }
     .stat-card.c4::after { background: #48BB78; }
     .stat-icon { width: 46px; height: 46px; border-radius: var(--radius); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; margin-bottom: 16px; }
-    .stat-card.c1 .stat-icon { background: rgba(155,106,67,.12); color: var(--primary); }
-    .stat-card.c2 .stat-icon { background: rgba(110,139,110,.14); color: var(--secondary); }
-    .stat-card.c3 .stat-icon { background: rgba(214,164,25,.14); color: #B7791F; }
+    .stat-card.c1 .stat-icon { background: rgba(190, 91, 46,.12); color: var(--primary); }
+    .stat-card.c2 .stat-icon { background: rgba(47, 93, 86,.14); color: var(--secondary); }
+    .stat-card.c3 .stat-icon { background: rgba(217, 142, 43,.14); color: #B7791F; }
     .stat-card.c4 .stat-icon { background: rgba(72,187,120,.12); color: #48BB78; }
     .stat-value { font-family: var(--font-heading); font-size: 2rem; font-weight: 700; color: var(--dark); line-height: 1; margin-bottom: 4px; }
     .stat-label { font-size: .81rem; color: var(--text-muted); margin-bottom: 12px; }
@@ -195,7 +195,7 @@
     .msg-list-search .filter-input input { width: 100%; }
     .msg-item { display: flex; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--border); cursor: pointer; transition: background var(--transition); position: relative; }
     .msg-item:hover { background: var(--cream); }
-    .msg-item.active-msg { background: rgba(155,106,67,.06); border-left: 3px solid var(--primary); padding-left: 15px; }
+    .msg-item.active-msg { background: rgba(190, 91, 46,.06); border-left: 3px solid var(--primary); padding-left: 15px; }
     .msg-avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
     .msg-body { flex: 1; min-width: 0; }
     .msg-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px; }
@@ -254,8 +254,8 @@
 <!-- ===== SIDEBAR ===== -->
 <aside class="sidebar" id="adminSidebar" role="navigation" aria-label="Admin navigation">
   <div class="sidebar-brand">
-    <span class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></span>
-    <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+    <span class="brand-logo" aria-hidden="true"><i class="fas fa-fire" aria-hidden="true"></i></span>
+    <span class="brand-text">Hearth<span> &amp; Oat</span></span>
   </div>
 
   <div class="sidebar-section">Main</div>
@@ -495,15 +495,15 @@
           <div class="donut-wrap">
             <svg width="150" height="150" viewBox="0 0 42 42" class="donut-svg" role="img" aria-label="Revenue split donut chart">
               <circle cx="21" cy="21" r="15.915" fill="none" stroke="var(--border)" stroke-width="6"></circle>
-              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#9B6A43" stroke-width="6" stroke-dasharray="46 54" stroke-dashoffset="25"></circle>
-              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#6E8B6E" stroke-width="6" stroke-dasharray="27 73" stroke-dashoffset="79"></circle>
-              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#D6A419" stroke-width="6" stroke-dasharray="17 83" stroke-dashoffset="52"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#BE5B2E" stroke-width="6" stroke-dasharray="46 54" stroke-dashoffset="25"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#2F5D56" stroke-width="6" stroke-dasharray="27 73" stroke-dashoffset="79"></circle>
+              <circle cx="21" cy="21" r="15.915" fill="none" stroke="#D98E2B" stroke-width="6" stroke-dasharray="17 83" stroke-dashoffset="52"></circle>
               <circle cx="21" cy="21" r="15.915" fill="none" stroke="#48BB78" stroke-width="6" stroke-dasharray="10 90" stroke-dashoffset="35"></circle>
             </svg>
             <div class="donut-legend">
-              <div class="donut-legend-item"><span class="donut-legend-color" style="background:#9B6A43;"></span><span class="donut-legend-label">Coffee &amp; Drinks</span><span class="donut-legend-val">46%</span></div>
-              <div class="donut-legend-item"><span class="donut-legend-color" style="background:#6E8B6E;"></span><span class="donut-legend-label">Bakery</span><span class="donut-legend-val">27%</span></div>
-              <div class="donut-legend-item"><span class="donut-legend-color" style="background:#D6A419;"></span><span class="donut-legend-label">Beans &amp; Retail</span><span class="donut-legend-val">17%</span></div>
+              <div class="donut-legend-item"><span class="donut-legend-color" style="background:#BE5B2E;"></span><span class="donut-legend-label">Coffee &amp; Drinks</span><span class="donut-legend-val">46%</span></div>
+              <div class="donut-legend-item"><span class="donut-legend-color" style="background:#2F5D56;"></span><span class="donut-legend-label">Bakery</span><span class="donut-legend-val">27%</span></div>
+              <div class="donut-legend-item"><span class="donut-legend-color" style="background:#D98E2B;"></span><span class="donut-legend-label">Beans &amp; Retail</span><span class="donut-legend-val">17%</span></div>
               <div class="donut-legend-item"><span class="donut-legend-color" style="background:#48BB78;"></span><span class="donut-legend-label">Catering</span><span class="donut-legend-val">10%</span></div>
             </div>
           </div>
@@ -624,7 +624,7 @@
             <tbody>
               <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/avatar-32-s60.jpg" alt="Priya N." loading="lazy" width="34" height="34"/><div><div class="cell-name">Priya Nair</div><div class="cell-email">priya@email.com</div></div></div></td><td><span class="badge vip">VIP</span></td><td>48</td><td>Mar 2022</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button><button class="act-btn danger" title="Suspend"><i class="fas fa-ban"></i></button></div></td></tr>
               <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/avatar-12-s60.jpg" alt="Marcus L." loading="lazy" width="34" height="34"/><div><div class="cell-name">Marcus Lee</div><div class="cell-email">marcus@email.com</div></div></div></td><td><span class="badge customer">Customer</span></td><td>12</td><td>Jan 2024</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button><button class="act-btn danger" title="Suspend"><i class="fas fa-ban"></i></button></div></td></tr>
-              <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/photo-1595152772835-219674b2a8a6-w60.jpg" alt="Sam W." loading="lazy" width="34" height="34"/><div><div class="cell-name">Sam Whitlock</div><div class="cell-email">sam@brewandcrumb.example</div></div></div></td><td><span class="badge staff">Staff</span></td><td>—</td><td>2011</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button></div></td></tr>
+              <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/photo-1595152772835-219674b2a8a6-w60.jpg" alt="Sam W." loading="lazy" width="34" height="34"/><div><div class="cell-name">Sam Whitlock</div><div class="cell-email">sam@hearthandoat.example</div></div></div></td><td><span class="badge staff">Staff</span></td><td>—</td><td>2011</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button></div></td></tr>
               <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/avatar-45-s60.jpg" alt="Sofia K." loading="lazy" width="34" height="34"/><div><div class="cell-name">Sofia Kaur</div><div class="cell-email">sofia@events.co</div></div></div></td><td><span class="badge customer">Customer</span></td><td>6</td><td>Nov 2024</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button><button class="act-btn danger" title="Suspend"><i class="fas fa-ban"></i></button></div></td></tr>
               <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/avatar-52-s60.jpg" alt="Lena F." loading="lazy" width="34" height="34"/><div><div class="cell-name">Lena Fischer</div><div class="cell-email">lena@email.com</div></div></div></td><td><span class="badge customer">Customer</span></td><td>2</td><td>Jun 2025</td><td><span class="badge inactive">Inactive</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button><button class="act-btn danger" title="Suspend"><i class="fas fa-ban"></i></button></div></td></tr>
               <tr><td><input type="checkbox" class="cb" aria-label="Select user" /></td><td><div class="cell-user"><img src="../assets/images/avatar-25-s60.jpg" alt="Grace W." loading="lazy" width="34" height="34"/><div><div class="cell-name">Grace Wu</div><div class="cell-email">grace@email.com</div></div></div></td><td><span class="badge vip">VIP</span></td><td>33</td><td>Aug 2023</td><td><span class="badge active">Active</span></td><td><div class="act-btns"><button class="act-btn" title="View"><i class="fas fa-eye"></i></button><button class="act-btn" title="Edit"><i class="fas fa-pen"></i></button><button class="act-btn danger" title="Suspend"><i class="fas fa-ban"></i></button></div></td></tr>

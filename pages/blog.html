@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>The Journal – Brew Guides &amp; Coffee Stories | Brew &amp; Crumb</title>
-  <meta name="description" content="Brew guides, seasonal menus, bakery notes, and the people behind the beans — stories from the bar at Brew & Crumb coffee house and bakery." />
-  <meta property="og:title" content="The Journal | Brew & Crumb" />
+  <title>The Journal – Brew Guides &amp; Coffee Stories | Hearth &amp; Oat</title>
+  <meta name="description" content="Brew guides, seasonal menus, bakery notes, and the people behind the beans — stories from the bar at Hearth & Oat coffee house and bakery." />
+  <meta property="og:title" content="The Journal | Hearth & Oat" />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- AOS (scroll reveal) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
@@ -40,29 +40,22 @@
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
     <div class="navbar-inner">
-      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
-        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
-        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      <a href="index.html" class="navbar-brand" aria-label="Hearth & Oat Home">
+        <div class="brand-logo" aria-hidden="true"><i class="fas fa-fire" aria-hidden="true"></i></div>
+        <span class="brand-text">Hearth<span> &amp; Oat</span></span>
       </a>
       <ul class="nav-menu" id="navMenu" role="menubar">
         <li class="dropdown" role="none">
           <a href="index.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Home <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
-            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home 1</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home 2</a></li>
           </ul>
         </li>
         <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
-        <li class="dropdown" role="none">
-          <a href="menu.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Menu <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
-            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
-          </ul>
-        </li>
+        <li role="none"><a href="menu.html" class="nav-link" role="menuitem">Menu</a></li>
         <li role="none"><a href="reservations.html" class="nav-link" role="menuitem">Reservations</a></li>
         <li role="none"><a href="pricing.html" class="nav-link" role="menuitem">Pricing</a></li>
-        <li role="none"><a href="blog.html" class="nav-link active" role="menuitem">Journal</a></li>
         <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
         <li class="nav-mobile-actions" role="none">
           <div class="mobile-action-toggles">
@@ -99,9 +92,9 @@
   </nav>
 
   <!-- ===== PAGE HEADER ===== -->
-  <header class="page-header">
-    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div class="container">
+  <header class="photo-header photo-header--center" style="background-image:url('../assets/images/photo-1524350876685-274059332603-w620.jpg');">
+    <div class="photo-header-scrim"></div>
+    <div class="container" style="position:relative;z-index:1;">
       <nav class="breadcrumb" aria-label="Breadcrumb" data-aos="fade-up">
         <span class="breadcrumb-item"><a href="index.html">Home</a></span>
         <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
@@ -144,7 +137,7 @@
         </form>
       </div>
 
-      <div id="postGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:28px;">
+      <div id="postGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:28px;">
         <article class="blog-card" data-tilt data-aos="fade-up" data-aos-delay="0" data-category="brew">
           <div class="blog-img" data-crumb-burst><img src="../assets/images/photo-1495474472287-4d71bcdd2085-w500.jpg" alt="Pour over coffee brewing" loading="lazy" width="500" height="280" /><span class="blog-category">Brew Guide</span></div>
           <div class="blog-body"><div class="blog-meta"><span><i class="fas fa-calendar" aria-hidden="true"></i> Jun 24, 2025</span><span><i class="fas fa-user" aria-hidden="true"></i> Nora</span></div>
@@ -196,12 +189,12 @@
   <!-- ===== FOOTER ===== -->
   <footer class="footer" role="contentinfo">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+      <div style="display:grid;grid-template-columns:1.3fr 0.8fr 0.8fr 1.4fr;gap:32px;" class="footer-grid">
         <div>
           <div class="footer-logo">
-            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
-              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
-              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            <a href="index.html" class="navbar-brand" aria-label="Hearth & Oat">
+              <div class="brand-logo" aria-hidden="true"><i class="fas fa-fire" aria-hidden="true"></i></div>
+              <span class="brand-text">Hearth<span> &amp; Oat</span></span>
             </a>
           </div>
           <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
@@ -229,13 +222,14 @@
         <div>
           <h4 class="footer-heading">Visit Us</h4>
           <address style="font-style:normal;">
-            <div class="footer-contact-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
-            <div class="footer-contact-item"><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a></div>
-            <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a></div>
-            <div class="footer-contact-item"><i class="fas fa-clock" aria-hidden="true"></i><span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-location-dot" aria-hidden="true"></i></span><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-phone" aria-hidden="true"></i></span><a href="tel:+15552678932" dir="ltr">+1 (555) 267-8932</a></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span><a href="mailto:hello@hearthandoat.example">hello@hearthandoat.example</a></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-clock" aria-hidden="true"></i></span><span dir="ltr">Mon–Fri 7am–7pm &middot; Sat–Sun 8am–6pm</span></div>
           </address>
-          <div style="margin-top:20px;">
+          <div class="footer-newsletter-block">
             <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <p class="footer-newsletter-sub">Fresh roasts &amp; seasonal specials, once a month.</p>
             <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
               <label for="newsletterEmail" class="sr-only">Email address</label>
               <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
@@ -245,7 +239,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <p>&copy; 2025 <a href="index.html">Hearth &amp; Oat</a>. Made with care &amp; caffeine.</p>
         <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Accessibility</a></div>
       </div>
     </div>

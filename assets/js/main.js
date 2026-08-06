@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Brew & Crumb — Coffee & Bakery — Main JavaScript
+   Hearth & Oat — Coffee & Bakery — Main JavaScript
    Vanilla ES6+, no dependencies. Each function is self-guarding so pages
    only wire up the widgets they actually contain.
    ========================================================================== */
@@ -46,36 +46,34 @@ function initHamburger() {
   });
 }
 
-/* === Mobile dropdown accordion === */
+/* === Nav dropdown (click-to-open on every screen size, plus hover on desktop) === */
 function initMobileDropdowns() {
-  const mq = window.matchMedia('(max-width: 768px)');
+  const closeAll = (except) => {
+    document.querySelectorAll('.nav-menu .dropdown.open').forEach(d => {
+      if (d === except) return;
+      d.classList.remove('open');
+      const l = d.querySelector(':scope > .nav-link');
+      if (l) l.setAttribute('aria-expanded', 'false');
+    });
+  };
+
   document.querySelectorAll('.nav-menu .dropdown > .nav-link').forEach(link => {
     link.setAttribute('aria-expanded', 'false');
     link.addEventListener('click', (e) => {
-      if (!mq.matches) return;          // desktop keeps hover + navigation
       e.preventDefault();
       const parent = link.parentElement;
       const willOpen = !parent.classList.contains('open');
-      document.querySelectorAll('.nav-menu .dropdown.open').forEach(d => {
-        if (d !== parent) {
-          d.classList.remove('open');
-          const l = d.querySelector(':scope > .nav-link');
-          if (l) l.setAttribute('aria-expanded', 'false');
-        }
-      });
+      closeAll(willOpen ? parent : null);
       parent.classList.toggle('open', willOpen);
       link.setAttribute('aria-expanded', String(willOpen));
     });
   });
 
-  mq.addEventListener('change', (ev) => {
-    if (!ev.matches) {
-      document.querySelectorAll('.nav-menu .dropdown.open').forEach(d => {
-        d.classList.remove('open');
-        const l = d.querySelector(':scope > .nav-link');
-        if (l) l.setAttribute('aria-expanded', 'false');
-      });
-    }
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav-menu .dropdown')) closeAll();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAll();
   });
 }
 
@@ -142,6 +140,7 @@ function initRTL() {
     document.querySelectorAll('.rtl-toggle').forEach(btn => {
       btn.setAttribute('aria-pressed', dir === 'rtl');
       btn.setAttribute('aria-label', dir === 'rtl' ? 'Switch to LTR' : 'Switch to RTL');
+      btn.textContent = dir === 'rtl' ? 'LTR' : 'RTL';
     });
   };
 

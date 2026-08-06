@@ -1,4 +1,4 @@
-# Brew & Crumb — Coffee House & Bakery HTML Template
+# Hearth & Oat — Coffee House & Bakery HTML Template
 
 A warm, fully responsive multipurpose HTML template for **coffee shops, cafés, roasteries,
 and bakeries**. Hand-written HTML5, CSS3, and vanilla JavaScript — no build step, no
@@ -142,4 +142,4 @@ Replace all demo content, images, and business details before going live.
 Licensed to the end user per your marketplace license terms. Demo images and fonts retain
 their respective licenses above.
 
-**Brew & Crumb** — made with care & caffeine. ☕
+**Hearth & Oat** — made with care & caffeine. ☕

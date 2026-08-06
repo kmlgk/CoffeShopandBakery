@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact &amp; Find Us – Brew &amp; Crumb Coffee House</title>
-  <meta name="description" content="Find Brew & Crumb on Kettle Street in Maple Grove. Opening hours, directions, phone, email, and a quick message form — we usually reply within a few hours." />
-  <meta property="og:title" content="Contact | Brew & Crumb" />
+  <title>Contact &amp; Find Us – Hearth &amp; Oat Coffee House</title>
+  <meta name="description" content="Find Hearth & Oat on Kettle Street in Maple Grove. Opening hours, directions, phone, email, and a quick message form — we usually reply within a few hours." />
+  <meta property="og:title" content="Contact | Hearth & Oat" />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- AOS (scroll reveal) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
@@ -20,9 +20,24 @@
   <style>
     .contact-grid { display:grid; grid-template-columns:1fr 1.1fr; gap:48px; align-items:stretch; }
     .map-wrap { border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border); box-shadow:0 10px 32px var(--shadow); min-height:360px; }
-    .visit-steam-badge { position:absolute; top:-16px; right:24px; width:48px; height:48px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1rem; box-shadow:0 10px 26px rgba(155,106,67,0.4); z-index:2; }
+    .visit-steam-badge { position:absolute; top:-16px; right:24px; width:48px; height:48px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1rem; box-shadow:0 10px 26px rgba(190, 91, 46,0.4); z-index:2; }
     .visit-steam-badge .coffee-steam { position:absolute; top:-40px; left:2px; }
     @media (max-width:768px) { .visit-steam-badge { display:none; } }
+
+    /* ===== Contact hero: light split, mirrored from About (photo left / text right) ===== */
+    .contact-hero { background: var(--cream); padding: calc(var(--nav-height) + var(--nav-gap) + 48px) 0 0; position: relative; overflow: hidden; }
+    .contact-hero-grid { display: grid; grid-template-columns: 0.95fr 1fr; gap: 56px; align-items: center; padding-bottom: 56px; }
+    .contact-hero-photo { position: relative; clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%); box-shadow: 0 24px 56px var(--shadow-md); }
+    .contact-hero-photo img { width: 100%; height: 420px; object-fit: cover; display: block; }
+    .contact-hero-pin { position: absolute; bottom: 22px; right: -18px; background: var(--primary); color: #fff; font-weight: 700; font-size: 0.85rem; padding: 12px 20px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%); box-shadow: 0 12px 26px var(--shadow-md); display:flex; align-items:center; gap:8px; }
+    [dir="rtl"] .contact-hero-photo { clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%, 0 100%); }
+    [dir="rtl"] .contact-hero-pin { right: auto; left: -18px; clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px)); }
+    @media (max-width: 900px) {
+      .contact-hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .contact-hero-photo img { height: 300px; }
+      .contact-hero-pin { right: 16px; }
+      [dir="rtl"] .contact-hero-pin { left: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -35,29 +50,22 @@
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
     <div class="navbar-inner">
-      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
-        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
-        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      <a href="index.html" class="navbar-brand" aria-label="Hearth & Oat Home">
+        <div class="brand-logo" aria-hidden="true"><i class="fas fa-fire" aria-hidden="true"></i></div>
+        <span class="brand-text">Hearth<span> &amp; Oat</span></span>
       </a>
       <ul class="nav-menu" id="navMenu" role="menubar">
         <li class="dropdown" role="none">
           <a href="index.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Home <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
-            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home 1</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home 2</a></li>
           </ul>
         </li>
         <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
-        <li class="dropdown" role="none">
-          <a href="menu.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Menu <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
-            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
-          </ul>
-        </li>
+        <li role="none"><a href="menu.html" class="nav-link" role="menuitem">Menu</a></li>
         <li role="none"><a href="reservations.html" class="nav-link" role="menuitem">Reservations</a></li>
         <li role="none"><a href="pricing.html" class="nav-link" role="menuitem">Pricing</a></li>
-        <li role="none"><a href="blog.html" class="nav-link" role="menuitem">Journal</a></li>
         <li role="none"><a href="contact.html" class="nav-link active" role="menuitem">Contact</a></li>
         <li class="nav-mobile-actions" role="none">
           <div class="mobile-action-toggles">
@@ -94,16 +102,23 @@
   </nav>
 
   <!-- ===== PAGE HEADER ===== -->
-  <header class="page-header">
-    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
+  <header class="contact-hero">
     <div class="container">
-      <nav class="breadcrumb" aria-label="Breadcrumb" data-aos="fade-up">
-        <span class="breadcrumb-item"><a href="index.html">Home</a></span>
-        <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
-        <span class="breadcrumb-item active">Contact</span>
-      </nav>
-      <h1 data-aos="fade-up" data-aos-delay="80">Come Say Hello</h1>
-      <p data-aos="fade-up" data-aos-delay="160">Questions, catering, or just want to chat coffee? Drop us a line — or better yet, pop in for a cup.</p>
+      <div class="contact-hero-grid">
+        <div class="contact-hero-photo" data-aos="fade-right">
+          <img src="../assets/images/photo-1498804103079-a6351b050096-w760.jpg" alt="Overhead view of assorted coffees at the Hearth & Oat bar" loading="lazy" width="760" height="420" />
+          <div class="contact-hero-pin"><i class="fas fa-location-dot" aria-hidden="true"></i> Kettle Street</div>
+        </div>
+        <div data-aos="fade-left">
+          <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom:18px;">
+            <span class="breadcrumb-item" style="color:var(--text-muted);"><a href="index.html" style="color:var(--text-muted);">Home</a></span>
+            <span class="breadcrumb-sep" style="color:var(--border);"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+            <span class="breadcrumb-item active">Contact</span>
+          </nav>
+          <h1>Come Say <span class="text-gradient">Hello</span></h1>
+          <p class="lead">Questions, catering, or just want to chat coffee? Drop us a line — or better yet, pop in for a cup.</p>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -119,17 +134,17 @@
         <div class="contact-info-card" data-tilt data-aos="fade-up" data-aos-delay="80">
           <div class="ci-icon" aria-hidden="true"><i class="fas fa-phone"></i></div>
           <h4>Call</h4>
-          <p><a href="tel:+15552678932" style="color:var(--text-muted);">+1 (555) 267-8932</a><br>Mon–Fri, 8am–5pm</p>
+          <p><a href="tel:+15552678932" dir="ltr" style="color:var(--text-muted);">+1 (555) 267-8932</a><br><span dir="ltr">Mon–Fri, 8am–5pm</span></p>
         </div>
         <div class="contact-info-card" data-tilt data-aos="fade-up" data-aos-delay="160">
           <div class="ci-icon" aria-hidden="true"><i class="fas fa-envelope"></i></div>
           <h4>Email</h4>
-          <p><a href="mailto:hello@brewandcrumb.example" style="color:var(--text-muted);">hello@brewandcrumb.example</a><br>We reply within a few hours</p>
+          <p><a href="mailto:hello@hearthandoat.example" style="color:var(--text-muted);">hello@hearthandoat.example</a><br>We reply within a few hours</p>
         </div>
         <div class="contact-info-card" data-tilt data-aos="fade-up" data-aos-delay="240">
           <div class="ci-icon" aria-hidden="true"><i class="fas fa-clock"></i></div>
           <h4>Hours</h4>
-          <p>Mon–Fri 7am–7pm<br>Sat–Sun 8am–6pm</p>
+          <p><span dir="ltr">Mon–Fri 7am–7pm</span><br><span dir="ltr">Sat–Sun 8am–6pm</span></p>
         </div>
       </div>
     </div>
@@ -176,7 +191,7 @@
         <!-- Map + hours -->
         <div data-aos="fade-left">
           <div class="map-wrap" style="margin-bottom:24px;">
-            <iframe class="map-frame" title="Map to Brew & Crumb on Kettle Street" src="https://www.openstreetmap.org/export/embed.html?bbox=-122.86%2C45.48%2C-122.76%2C45.53&amp;layer=mapnik" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe class="map-frame" title="Map to Hearth & Oat on Kettle Street" src="https://www.openstreetmap.org/export/embed.html?bbox=-122.86%2C45.48%2C-122.76%2C45.53&amp;layer=mapnik" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div>
           <div class="info-panel" style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:26px;position:relative;">
             <div class="visit-steam-badge" aria-hidden="true">
@@ -203,12 +218,12 @@
   <!-- ===== FOOTER ===== -->
   <footer class="footer" role="contentinfo">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+      <div style="display:grid;grid-template-columns:1.3fr 0.8fr 0.8fr 1.4fr;gap:32px;" class="footer-grid">
         <div>
           <div class="footer-logo">
-            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
-              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
-              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            <a href="index.html" class="navbar-brand" aria-label="Hearth & Oat">
+              <div class="brand-logo" aria-hidden="true"><i class="fas fa-fire" aria-hidden="true"></i></div>
+              <span class="brand-text">Hearth<span> &amp; Oat</span></span>
             </a>
           </div>
           <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
@@ -236,13 +251,14 @@
         <div>
           <h4 class="footer-heading">Visit Us</h4>
           <address style="font-style:normal;">
-            <div class="footer-contact-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
-            <div class="footer-contact-item"><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a></div>
-            <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a></div>
-            <div class="footer-contact-item"><i class="fas fa-clock" aria-hidden="true"></i><span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-location-dot" aria-hidden="true"></i></span><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-phone" aria-hidden="true"></i></span><a href="tel:+15552678932" dir="ltr">+1 (555) 267-8932</a></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span><a href="mailto:hello@hearthandoat.example">hello@hearthandoat.example</a></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-clock" aria-hidden="true"></i></span><span dir="ltr">Mon–Fri 7am–7pm &middot; Sat–Sun 8am–6pm</span></div>
           </address>
-          <div style="margin-top:20px;">
+          <div class="footer-newsletter-block">
             <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <p class="footer-newsletter-sub">Fresh roasts &amp; seasonal specials, once a month.</p>
             <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
               <label for="newsletterEmail" class="sr-only">Email address</label>
               <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
@@ -252,7 +268,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <p>&copy; 2025 <a href="index.html">Hearth &amp; Oat</a>. Made with care &amp; caffeine.</p>
         <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Accessibility</a></div>
       </div>
     </div>

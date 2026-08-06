@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Brew &amp; Crumb – The Roastery &amp; Espresso Bar</title>
-  <meta name="description" content="Brew & Crumb Roastery — small-batch beans roasted on-site, single-origin espresso, and a bean subscription delivered to your door. Meet the roast." />
-  <meta property="og:title" content="Brew & Crumb – The Roastery & Espresso Bar" />
+  <title>Hearth &amp; Oat – The Roastery &amp; Espresso Bar</title>
+  <meta name="description" content="Hearth & Oat Roastery — small-batch beans roasted on-site, single-origin espresso, and a bean subscription delivered to your door. Meet the roast." />
+  <meta property="og:title" content="Hearth & Oat – The Roastery & Espresso Bar" />
   <meta property="og:description" content="Small-batch, on-site roasting and a fresh-bean subscription." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- AOS (scroll reveal) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
@@ -19,39 +19,66 @@
   <link rel="stylesheet" href="../assets/css/dark-mode.css" />
   <link rel="stylesheet" href="../assets/css/rtl.css" />
   <style>
-    .roast-hero {
-      min-height: 92vh; display: flex; align-items: center; position: relative; overflow: hidden;
-      padding-top: var(--nav-height);
-      background: linear-gradient(rgba(26,16,10,0.82), rgba(26,16,10,0.88)), url("../assets/images/photo-1447933601403-0c6688de566e-w1600.jpg") center/cover no-repeat;
-    }
-    .roast-hero h1, .roast-hero p { color: #fff; }
-    .roast-hero .lead { color: rgba(255,255,255,0.8); }
+    /* === Home 2 hero: modern asymmetric split (dark content panel + full-height
+       image panel with a notched inner edge and a floating stat card straddling
+       the seam) — replaces the old full-bleed photo-with-overlay treatment. === */
+    .roast-hero-v2 { position: relative; overflow: hidden; background: var(--dark); padding-top: calc(var(--nav-height) + var(--nav-gap)); }
+    .roast-hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: calc(100vh - var(--nav-height) - var(--nav-gap)); }
+    .roast-hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; padding: 56px 64px 56px 40px; }
+    .roast-hero-content h1, .roast-hero-content p { color: #fff; }
+    .roast-hero-content .lead { color: rgba(255,255,255,0.72); max-width: 480px; }
     .roast-badge {
       display:inline-flex; align-items:center; gap:8px; background: rgba(255,255,255,0.1);
-      border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:50px; padding:8px 18px;
-      font-size:0.82rem; font-weight:700; margin-bottom:24px; backdrop-filter: blur(6px);
+      border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:0;
+      clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+      padding:8px 18px; font-size:0.82rem; font-weight:700; margin-bottom:24px; backdrop-filter: blur(6px);
+      width: fit-content;
     }
     .roast-badge i { color: var(--accent); }
-    .roast-stats { display:flex; gap:40px; flex-wrap:wrap; margin-top:44px; }
-    .roast-stats .number { color:#fff; font-family:var(--font-heading); font-size:2rem; font-weight:700; }
-    .roast-stats .label { color:rgba(255,255,255,0.7); font-size:0.82rem; }
+    .roast-hero-media { position: relative; min-height: 320px; }
+    .roast-media-mask { position: absolute; inset: 0; overflow: hidden; clip-path: polygon(56px 0, 100% 0, 100% 100%, 0 100%, 0 56px); }
+    .roast-media-mask img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .roast-float-stat {
+      position: absolute; left: -140px; bottom: 48px; z-index: 2;
+      background: var(--white); display: flex; gap: 26px;
+      padding: 22px 30px; box-shadow: 0 24px 54px rgba(0,0,0,0.32);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 22px 100%, 0 calc(100% - 22px));
+    }
+    .roast-float-stat .number { color: var(--primary); font-family: var(--font-heading); font-size: 1.7rem; font-weight: 700; line-height: 1; }
+    .roast-float-stat .label { color: var(--text-muted); font-size: 0.74rem; margin-top: 4px; white-space: nowrap; }
+    [dir="rtl"] .roast-media-mask { clip-path: polygon(0 0, calc(100% - 56px) 0, 100% 56px, 100% 100%, 0 100%); }
+    [dir="rtl"] .roast-float-stat { left: auto; right: -140px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%); }
+    @media (max-width: 1140px) {
+      .roast-float-stat { left: auto; right: 24px; bottom: 24px; gap: 18px; padding: 18px 20px; }
+      [dir="rtl"] .roast-float-stat { right: auto; left: 24px; }
+    }
+    @media (max-width: 900px) {
+      .roast-hero-grid { grid-template-columns: 1fr; min-height: auto; }
+      .roast-hero-content { padding: 48px 24px 32px; order: 1; }
+      .roast-hero-media { order: 0; min-height: 280px; }
+      .roast-media-mask { clip-path: none; }
+      [dir="rtl"] .roast-media-mask { clip-path: none; }
+      .roast-float-stat { position: static; margin: -1px 24px 0; }
+    }
     .roast-card {
-      background: var(--white); border:1px solid var(--border); border-radius: var(--radius-lg);
+      background: var(--white); border:1px solid var(--border); border-radius: 0;
+      border-left: 4px solid var(--secondary);
       overflow:hidden; transition: all var(--transition); height:100%;
     }
-    .roast-card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px var(--shadow-md); border-color: var(--primary); }
+    .roast-card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px var(--shadow-md); border-left-color: var(--primary); }
     .roast-card .rc-top { padding:26px 26px 0; display:flex; justify-content:space-between; align-items:flex-start; }
-    .roast-level { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#fff; padding:4px 12px; border-radius:50px; }
+    .roast-level { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#fff; padding:4px 12px 4px 10px; border-radius:0; clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%); }
     .roast-body { padding: 18px 26px 26px; }
     .roast-notes { display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 18px; }
-    .roast-note { font-size:0.76rem; font-weight:700; color:var(--secondary); background:rgba(110,139,110,0.14); padding:4px 12px; border-radius:50px; }
+    .roast-note { font-size:0.76rem; font-weight:700; color:var(--secondary); background:rgba(47, 93, 86,0.14); padding:4px 12px; border-radius:50px; }
     .bean-dots { display:flex; gap:4px; }
     .bean-dots i { color: var(--primary); font-size:0.7rem; }
     .bean-dots i.off { color: var(--border); }
     .cta-section { background: linear-gradient(135deg, var(--dark), var(--dark-soft)); padding: 80px 0; text-align:center; position: relative; overflow: hidden; }
-    .hero-steam-badge { position: absolute; top: -18px; right: 40px; width: 58px; height: 58px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; box-shadow: 0 10px 26px rgba(155,106,67,0.4); z-index: 2; }
+    [data-theme="dark"] .cta-section { background: linear-gradient(135deg, #0C0805 0%, #17100A 100%); }
+    .hero-steam-badge { position: absolute; top: -18px; right: 40px; width: 58px; height: 58px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; box-shadow: 0 10px 26px rgba(190, 91, 46,0.4); z-index: 2; }
     .hero-steam-badge .coffee-steam { position: absolute; top: -46px; left: 6px; }
-    @media (max-width:768px){ .roast-hero { min-height: auto; padding: 120px 0 70px; } }
+    @media (max-width:768px){ .roast-hero { min-height: auto; padding: 146px 0 70px; } }
   </style>
 </head>
 <body>
@@ -64,29 +91,22 @@
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
     <div class="navbar-inner">
-      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
-        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
-        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      <a href="index.html" class="navbar-brand" aria-label="Hearth & Oat Home">
+        <div class="brand-logo" aria-hidden="true"><i class="fas fa-fire" aria-hidden="true"></i></div>
+        <span class="brand-text">Hearth<span> &amp; Oat</span></span>
       </a>
       <ul class="nav-menu" id="navMenu" role="menubar">
         <li class="dropdown" role="none">
           <a href="index.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Home <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
-            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home 1</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home 2</a></li>
           </ul>
         </li>
         <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
-        <li class="dropdown" role="none">
-          <a href="menu.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Menu <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
-            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
-          </ul>
-        </li>
+        <li role="none"><a href="menu.html" class="nav-link" role="menuitem">Menu</a></li>
         <li role="none"><a href="reservations.html" class="nav-link" role="menuitem">Reservations</a></li>
         <li role="none"><a href="pricing.html" class="nav-link" role="menuitem">Pricing</a></li>
-        <li role="none"><a href="blog.html" class="nav-link" role="menuitem">Journal</a></li>
         <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
         <li class="nav-mobile-actions" role="none">
           <div class="mobile-action-toggles">
@@ -122,27 +142,29 @@
     </div>
   </nav>
 
-  <!-- ===== ROASTERY HERO ===== -->
-  <section class="roast-hero" aria-labelledby="roastHeading">
-    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div class="float-field" data-float-icons="6" aria-hidden="true"></div>
-    <div class="container">
-      <div style="max-width:640px;position:relative;z-index:1;" data-aos="fade-right" data-aos-duration="800">
+  <!-- ===== ROASTERY HERO (modern asymmetric split) ===== -->
+  <section class="roast-hero-v2" aria-labelledby="roastHeading">
+    <div class="roast-hero-grid">
+      <div class="roast-hero-content" data-aos="fade-right" data-aos-duration="800">
         <div class="roast-badge badge-shimmer"><i class="fas fa-fire-flame-curved" aria-hidden="true"></i> Small-batch · Roasted on Kettle Street</div>
         <h1 id="roastHeading">From Green Bean<br>to Your <span class="text-gradient">Cup</span></h1>
-        <p class="lead" style="font-size:1.15rem;max-width:520px;">We roast in small batches every week on our vintage drum roaster. Taste the difference freshness makes — at the bar or delivered to your door.</p>
-        <div class="hero-cta" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:32px;">
+        <p class="lead">We roast in small batches every week on our vintage drum roaster. Taste the difference freshness makes — at the bar or delivered to your door.</p>
+        <div class="hero-cta" style="display:flex;gap:14px;flex-wrap:wrap;margin-top:28px;">
           <a href="pricing.html" class="btn btn-primary btn-lg btn-magnetic"><i class="fas fa-box" aria-hidden="true"></i> Bean Subscription</a>
           <a href="menu-details.html" class="btn btn-outline-white btn-lg btn-magnetic"><i class="fas fa-mug-hot" aria-hidden="true"></i> Our Espresso</a>
         </div>
-        <div class="roast-stats">
-          <div data-aos="fade-up" data-aos-delay="0"><div class="number" data-count="6" data-suffix="">6</div><div class="label">Single Origins</div></div>
-          <div data-aos="fade-up" data-aos-delay="80"><div class="number" data-count="40" data-suffix="kg">40kg</div><div class="label">Roasted Weekly</div></div>
-          <div data-aos="fade-up" data-aos-delay="160"><div class="number" data-count="100" data-suffix="%">100%</div><div class="label">Direct Trade</div></div>
+      </div>
+      <div class="roast-hero-media" data-aos="fade-left" data-aos-duration="800">
+        <div class="roast-media-mask">
+          <img src="../assets/images/photo-1447933601403-0c6688de566e-w1200.jpg" alt="Close-up of freshly roasted coffee beans on the roastery shelf" loading="lazy" width="1200" height="800" />
+        </div>
+        <div class="roast-float-stat" data-aos="zoom-in" data-aos-delay="200">
+          <div><div class="number" data-count="6" data-suffix="">6</div><div class="label">Single Origins</div></div>
+          <div><div class="number" data-count="40" data-suffix="kg">40kg</div><div class="label">Roasted Weekly</div></div>
+          <div><div class="number" data-count="100" data-suffix="%">100%</div><div class="label">Direct Trade</div></div>
         </div>
       </div>
     </div>
-    <div class="icing-drip icing-white" aria-hidden="true"></div>
   </section>
 
   <!-- ===== OUR ROASTS ===== -->
@@ -155,7 +177,7 @@
         <p>A rotating line-up of single origins and house blends. Whole bean or ground to order.</p>
       </div>
 
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:28px;">
         <article class="roast-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="0">
           <div class="rc-top">
             <div>
@@ -213,7 +235,7 @@
               <h4 style="margin:0 0 4px;">Midnight Decaf</h4>
               <div style="font-size:0.82rem;color:var(--text-muted);">Swiss Water Process</div>
             </div>
-            <span class="roast-level" style="background:var(--dark);">Decaf</span>
+            <span class="roast-level" style="background:#2A1D14;">Decaf</span>
           </div>
           <div class="roast-body">
             <div class="roast-notes"><span class="roast-note">Dark Chocolate</span><span class="roast-note">Walnut</span><span class="roast-note">Malt</span></div>
@@ -290,12 +312,12 @@
   <!-- ===== FOOTER ===== -->
   <footer class="footer" role="contentinfo">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+      <div style="display:grid;grid-template-columns:1.3fr 0.8fr 0.8fr 1.4fr;gap:32px;" class="footer-grid">
         <div>
           <div class="footer-logo">
-            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
-              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
-              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            <a href="index.html" class="navbar-brand" aria-label="Hearth & Oat">
+              <div class="brand-logo" aria-hidden="true"><i class="fas fa-fire" aria-hidden="true"></i></div>
+              <span class="brand-text">Hearth<span> &amp; Oat</span></span>
             </a>
           </div>
           <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
@@ -323,13 +345,14 @@
         <div>
           <h4 class="footer-heading">Visit Us</h4>
           <address style="font-style:normal;">
-            <div class="footer-contact-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
-            <div class="footer-contact-item"><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a></div>
-            <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a></div>
-            <div class="footer-contact-item"><i class="fas fa-clock" aria-hidden="true"></i><span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-location-dot" aria-hidden="true"></i></span><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-phone" aria-hidden="true"></i></span><a href="tel:+15552678932" dir="ltr">+1 (555) 267-8932</a></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span><a href="mailto:hello@hearthandoat.example">hello@hearthandoat.example</a></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-clock" aria-hidden="true"></i></span><span dir="ltr">Mon–Fri 7am–7pm &middot; Sat–Sun 8am–6pm</span></div>
           </address>
-          <div style="margin-top:20px;">
+          <div class="footer-newsletter-block">
             <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <p class="footer-newsletter-sub">Fresh roasts &amp; seasonal specials, once a month.</p>
             <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
               <label for="newsletterEmail" class="sr-only">Email address</label>
               <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
@@ -339,7 +362,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <p>&copy; 2025 <a href="index.html">Hearth &amp; Oat</a>. Made with care &amp; caffeine.</p>
         <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Accessibility</a></div>
       </div>
     </div>

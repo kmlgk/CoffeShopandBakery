@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Brew &amp; Crumb – Our Story, Team &amp; Craft</title>
-  <meta name="description" content="Meet Brew & Crumb — a family-run coffee house and bakery on Kettle Street. Our story, our values, and the people who pull your shots and bake your bread." />
-  <meta property="og:title" content="About Brew & Crumb" />
+  <title>About Hearth &amp; Oat – Our Story, Team &amp; Craft</title>
+  <meta name="description" content="Meet Hearth & Oat — a family-run coffee house and bakery on Kettle Street. Our story, our values, and the people who pull your shots and bake your bread." />
+  <meta property="og:title" content="About Hearth & Oat" />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- AOS (scroll reveal) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
@@ -18,17 +18,58 @@
   <link rel="stylesheet" href="../assets/css/dark-mode.css" />
   <link rel="stylesheet" href="../assets/css/rtl.css" />
   <style>
-    .hero-steam-badge { position: absolute; top: -18px; right: 40px; width: 58px; height: 58px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; box-shadow: 0 10px 26px rgba(155,106,67,0.4); z-index: 2; }
+    .hero-steam-badge { position: absolute; top: -18px; right: 40px; width: 58px; height: 58px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; box-shadow: 0 10px 26px rgba(190, 91, 46,0.4); z-index: 2; }
     .hero-steam-badge .coffee-steam { position: absolute; top: -46px; left: 6px; }
-    .value-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:32px 26px; height:100%; transition:all var(--transition); position:relative; overflow:hidden; }
-    .value-card:hover { transform:translateY(-4px); box-shadow:0 14px 36px var(--shadow); border-color:var(--primary); }
-    .value-num { position:absolute; top:-10px; right:16px; font-family:var(--font-heading); font-size:4rem; font-weight:700; color:var(--cream-dark); line-height:1; }
-    .value-icon { width:56px; height:56px; border-radius:var(--radius); background:linear-gradient(135deg,rgba(155,106,67,0.15),rgba(155,106,67,0.05)); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:1.4rem; margin-bottom:18px; }
-    .timeline { position:relative; max-width:820px; margin:0 auto; padding:10px 0; }
-    .timeline::before { content:''; position:absolute; left:24px; top:0; bottom:0; width:2px; background:linear-gradient(to bottom,var(--primary),var(--cream-dark)); }
-    .timeline-item { position:relative; padding-left:70px; margin-bottom:36px; }
-    .timeline-item::before { content:''; position:absolute; left:15px; top:4px; width:20px; height:20px; border-radius:50%; background:var(--primary); border:4px solid var(--white); box-shadow:0 0 0 2px var(--primary); }
-    .timeline-year { font-family:var(--font-heading); font-weight:700; color:var(--primary); font-size:1.1rem; margin-bottom:4px; }
+
+    /* ===== About hero: light split (text left / notched photo right) ===== */
+    .about-hero { background: var(--cream); padding: calc(var(--nav-height) + var(--nav-gap) + 48px) 0 0; position: relative; overflow: hidden; }
+    .about-hero-grid { display: grid; grid-template-columns: 1fr 0.95fr; gap: 56px; align-items: center; padding-bottom: 56px; }
+    .about-hero-photo { position: relative; clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%, 0 30px); box-shadow: 0 24px 56px var(--shadow-md); }
+    .about-hero-photo img { width: 100%; height: 460px; object-fit: cover; display: block; }
+    .about-hero-tag { position: absolute; top: 22px; left: -18px; background: var(--dark); color: #fff; font-weight: 700; font-size: 0.8rem; padding: 10px 20px; clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px)); box-shadow: 0 12px 26px var(--shadow-md); }
+    [dir="rtl"] .about-hero-photo { clip-path: polygon(0 0, calc(100% - 30px) 0, 100% 30px, 100% 100%, 0 100%); }
+    [dir="rtl"] .about-hero-tag { left: auto; right: -18px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%); }
+    @media (max-width: 900px) {
+      .about-hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .about-hero-photo { order: -1; }
+      .about-hero-photo img { height: 300px; }
+      .about-hero-tag { left: 16px; }
+      [dir="rtl"] .about-hero-tag { right: 16px; }
+    }
+    /* ===== Our House Values: editorial stacked list (replaces boxed card grid) ===== */
+    .value-row { display:flex; align-items:flex-start; gap:28px; padding:30px 4px; border-bottom:1px solid var(--border); transition:all var(--transition); }
+    .value-row:first-child { border-top:1px solid var(--border); }
+    .value-row:hover { background: var(--cream); }
+    .value-row-num { font-family:var(--font-heading); font-size:1.3rem; font-weight:700; color:var(--border); flex-shrink:0; width:52px; }
+    .value-icon { width:56px; height:56px; border-radius:0; clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px)); background:linear-gradient(135deg,rgba(190, 91, 46,0.15),rgba(190, 91, 46,0.05)); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; transition:all var(--transition); }
+    .value-row:hover .value-icon { background:var(--primary); color:#fff; }
+    .value-row-body h4 { margin-bottom:6px; }
+    .value-row-body p { margin:0; color:var(--text-muted); font-size:0.94rem; max-width:560px; }
+    [dir="rtl"] .value-icon { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 12px); }
+
+    /* ===== The Journey So Far: alternating photo timeline with a center rail
+       (replaces the horizontal scroll-snap card strip — photos are new;
+       previous version was text-only cards). ===== */
+    .journey-rail { position: relative; }
+    .journey-rail::before { content:''; position:absolute; left:50%; top:6px; bottom:6px; width:2px; background:var(--border); transform:translateX(-50%); }
+    .journey-item { display:grid; grid-template-columns: 1fr 64px 1fr; align-items:center; gap:0 40px; position:relative; margin-bottom:56px; }
+    .journey-item:last-child { margin-bottom:0; }
+    .journey-node { grid-column:2; display:flex; justify-content:center; position:relative; z-index:1; }
+    .journey-node span { width:16px; height:16px; border-radius:50%; background:var(--white); border:3px solid var(--dot, var(--primary)); display:block; box-shadow:0 0 0 6px var(--cream); }
+    .journey-photo { position:relative; clip-path: polygon(0 0, calc(100% - 22px) 0, 100% 22px, 100% 100%, 0 100%); box-shadow:0 18px 40px var(--shadow); }
+    .journey-photo img { width:100%; height:230px; object-fit:cover; display:block; }
+    .journey-year-tag { position:absolute; top:0; left:0; background:var(--dot, var(--primary)); color:#fff; font-family:var(--font-heading); font-weight:700; font-size:1.1rem; padding:8px 18px; clip-path: polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%); }
+    .journey-text h4 { margin-bottom:8px; }
+    .journey-text p { margin:0; color:var(--text-muted); font-size:0.94rem; }
+    [dir="rtl"] .journey-photo { clip-path: polygon(22px 0, 100% 0, 100% 100%, 0 100%, 0 22px); }
+    [dir="rtl"] .journey-year-tag { left:auto; right:0; clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%); }
+    @media (max-width: 860px) {
+      .journey-rail::before { display:none; }
+      .journey-item { grid-template-columns: 1fr; gap:16px; margin-bottom:36px; }
+      .journey-node { display:none; }
+      .journey-photo { order:-1; }
+      .journey-photo img { height:200px; }
+    }
     .team-card { background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; text-align:center; transition:all var(--transition); }
     .team-card:hover { transform:translateY(-6px); box-shadow:0 18px 44px var(--shadow-md); }
     .team-img { height:280px; overflow:hidden; }
@@ -51,29 +92,22 @@
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
     <div class="navbar-inner">
-      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
-        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
-        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      <a href="index.html" class="navbar-brand" aria-label="Hearth & Oat Home">
+        <div class="brand-logo" aria-hidden="true"><i class="fas fa-fire" aria-hidden="true"></i></div>
+        <span class="brand-text">Hearth<span> &amp; Oat</span></span>
       </a>
       <ul class="nav-menu" id="navMenu" role="menubar">
         <li class="dropdown" role="none">
           <a href="index.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Home <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
-            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home 1</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home 2</a></li>
           </ul>
         </li>
         <li role="none"><a href="about.html" class="nav-link active" role="menuitem">About</a></li>
-        <li class="dropdown" role="none">
-          <a href="menu.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Menu <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
-            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
-          </ul>
-        </li>
+        <li role="none"><a href="menu.html" class="nav-link" role="menuitem">Menu</a></li>
         <li role="none"><a href="reservations.html" class="nav-link" role="menuitem">Reservations</a></li>
         <li role="none"><a href="pricing.html" class="nav-link" role="menuitem">Pricing</a></li>
-        <li role="none"><a href="blog.html" class="nav-link" role="menuitem">Journal</a></li>
         <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
         <li class="nav-mobile-actions" role="none">
           <div class="mobile-action-toggles">
@@ -110,19 +144,24 @@
   </nav>
 
   <!-- ===== PAGE HEADER ===== -->
-  <header class="page-header">
-    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div class="float-field" data-float-icons="5" aria-hidden="true"></div>
-    <div class="container" data-aos="fade-up">
-      <nav class="breadcrumb" aria-label="Breadcrumb">
-        <span class="breadcrumb-item"><a href="index.html">Home</a></span>
-        <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
-        <span class="breadcrumb-item active">About</span>
-      </nav>
-      <h1>Our Story on <span class="text-gradient">the Corner</span></h1>
-      <p>Fourteen years of early mornings, good beans, and the neighbourhood that made us who we are.</p>
+  <header class="about-hero">
+    <div class="container">
+      <div class="about-hero-grid">
+        <div data-aos="fade-right">
+          <nav class="breadcrumb" aria-label="Breadcrumb" style="margin-bottom:18px;">
+            <span class="breadcrumb-item" style="color:var(--text-muted);"><a href="index.html" style="color:var(--text-muted);">Home</a></span>
+            <span class="breadcrumb-sep" style="color:var(--border);"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
+            <span class="breadcrumb-item active">About</span>
+          </nav>
+          <h1>Our Story on <span class="text-gradient">the Corner</span></h1>
+          <p class="lead">Fourteen years of early mornings, good beans, and the neighbourhood that made us who we are.</p>
+        </div>
+        <div class="about-hero-photo" data-aos="fade-left">
+          <img src="../assets/images/photo-1442512595331-e89e73853f31-w620.jpg" alt="Barista preparing coffee at the Hearth & Oat counter" loading="lazy" width="620" height="460" />
+          <div class="about-hero-tag">Est. 2011 · Kettle Street</div>
+        </div>
+      </div>
     </div>
-    <div class="icing-drip icing-white" aria-hidden="true"></div>
   </header>
 
   <!-- ===== STORY ===== -->
@@ -146,7 +185,7 @@
             <h2 id="storyHeading">A Roaster, an Oven,<br>and a Lot of Heart</h2>
             <div class="divider-line"></div>
           </div>
-          <p>Brew &amp; Crumb began in 2011 when Nora, a barista with a battered espresso machine, and Sam, a baker who couldn't sit still, took over a tiny shopfront on Kettle Street. The plan was simple: serve the kind of coffee and bread they'd want themselves, to the people next door.</p>
+          <p>Hearth &amp; Oat began in 2011 when Nora, a barista with a battered espresso machine, and Sam, a baker who couldn't sit still, took over a tiny shopfront on Kettle Street. The plan was simple: serve the kind of coffee and bread they'd want themselves, to the people next door.</p>
           <p>Fourteen years later, not much has changed. We still roast our own beans in small batches, still mix the sourdough by hand each night, and still know most of our regulars by name — and by their usual order.</p>
           <p style="margin-bottom:28px;">We're proud to be a genuine "third place": not home, not work, just a warm room where the neighbourhood slows down for a few minutes and feels a little more human.</p>
           <div style="display:flex;gap:36px;flex-wrap:wrap;">
@@ -168,30 +207,26 @@
         <div class="divider-line"></div>
         <p>Four things we won't compromise on, no matter how busy the morning rush gets.</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;" class="values-grid">
-        <div class="value-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="0">
-          <span class="value-num" aria-hidden="true">01</span>
+      <div>
+        <div class="value-row" data-aos="fade-up" data-aos-delay="0">
+          <span class="value-row-num" aria-hidden="true">01</span>
           <div class="value-icon" aria-hidden="true"><i class="fas fa-seedling"></i></div>
-          <h4>Source Kindly</h4>
-          <p style="font-size:0.9rem;color:var(--text-muted);margin:0;">Direct trade, fair prices, and long relationships with the farms behind our beans.</p>
+          <div class="value-row-body"><h4>Source Kindly</h4><p>Direct trade, fair prices, and long relationships with the farms behind our beans.</p></div>
         </div>
-        <div class="value-card" data-tilt data-aos="fade-up" data-aos-delay="80">
-          <span class="value-num" aria-hidden="true">02</span>
+        <div class="value-row" data-aos="fade-up" data-aos-delay="80">
+          <span class="value-row-num" aria-hidden="true">02</span>
           <div class="value-icon" aria-hidden="true"><i class="fas fa-hand-holding-heart"></i></div>
-          <h4>Make by Hand</h4>
-          <p style="font-size:0.9rem;color:var(--text-muted);margin:0;">Roasted, mixed, shaped, and pulled by people who care — never on autopilot.</p>
+          <div class="value-row-body"><h4>Make by Hand</h4><p>Roasted, mixed, shaped, and pulled by people who care — never on autopilot.</p></div>
         </div>
-        <div class="value-card" data-tilt data-crumb-burst data-aos="fade-up" data-aos-delay="160">
-          <span class="value-num" aria-hidden="true">03</span>
+        <div class="value-row" data-aos="fade-up" data-aos-delay="160">
+          <span class="value-row-num" aria-hidden="true">03</span>
           <div class="value-icon" aria-hidden="true"><i class="fas fa-leaf"></i></div>
-          <h4>Waste Less</h4>
-          <p style="font-size:0.9rem;color:var(--text-muted);margin:0;">Compostable cups, day-old bakes to the shelter, and spent grounds for the community garden.</p>
+          <div class="value-row-body"><h4>Waste Less</h4><p>Compostable cups, day-old bakes to the shelter, and spent grounds for the community garden.</p></div>
         </div>
-        <div class="value-card" data-tilt data-aos="fade-up" data-aos-delay="240">
-          <span class="value-num" aria-hidden="true">04</span>
+        <div class="value-row" data-aos="fade-up" data-aos-delay="240">
+          <span class="value-row-num" aria-hidden="true">04</span>
           <div class="value-icon" aria-hidden="true"><i class="fas fa-people-group"></i></div>
-          <h4>Welcome All</h4>
-          <p style="font-size:0.9rem;color:var(--text-muted);margin:0;">A seat for everyone, a fair wage for our team, and a warm hello every single time.</p>
+          <div class="value-row-body"><h4>Welcome All</h4><p>A seat for everyone, a fair wage for our team, and a warm hello every single time.</p></div>
         </div>
       </div>
     </div>
@@ -205,12 +240,66 @@
         <h2 id="historyHeading">The Journey So Far</h2>
         <div class="divider-line"></div>
       </div>
-      <div class="timeline">
-        <div class="timeline-item" data-aos="fade-up" data-aos-delay="0"><div class="timeline-year">2011</div><h4>The Doors Open</h4><p style="color:var(--text-muted);font-size:0.92rem;">A one-machine espresso bar and a home oven. Twelve seats and a lot of optimism.</p></div>
-        <div class="timeline-item" data-aos="fade-up" data-aos-delay="80"><div class="timeline-year">2015</div><h4>We Start Roasting</h4><p style="color:var(--text-muted);font-size:0.92rem;">Our vintage drum roaster arrives. We begin sourcing green coffee direct from farms.</p></div>
-        <div class="timeline-item" data-aos="fade-up" data-aos-delay="160"><div class="timeline-year">2019</div><h4>The Bakery Grows Up</h4><p style="color:var(--text-muted);font-size:0.92rem;">A dedicated bake kitchen opens next door, doubling our sourdough and pastry output.</p></div>
-        <div class="timeline-item" data-aos="fade-up" data-aos-delay="240"><div class="timeline-year">2023</div><h4>Bean Subscriptions Launch</h4><p style="color:var(--text-muted);font-size:0.92rem;">Fresh-roasted beans now ship to homes across the country, roasted the day they leave us.</p></div>
-        <div class="timeline-item" data-aos="fade-up" data-aos-delay="320"><div class="timeline-year">2025</div><h4>Still on the Corner</h4><p style="color:var(--text-muted);font-size:0.92rem;">Same street, same values — now with a warm room for reservations and community events.</p></div>
+      <div class="journey-rail">
+        <div class="journey-item" style="--dot:var(--primary);" data-aos="fade-right">
+          <div class="journey-photo">
+            <img src="../assets/images/photo-1511920170033-f8396924c348-w520.jpg" alt="Espresso portafilters with grounds, beans, and a poured latte" loading="lazy" width="520" height="380" />
+            <span class="journey-year-tag">2011</span>
+          </div>
+          <div class="journey-node" aria-hidden="true"><span></span></div>
+          <div class="journey-text">
+            <h4>The Doors Open</h4>
+            <p>A one-machine espresso bar and a home oven. Twelve seats and a lot of optimism.</p>
+          </div>
+        </div>
+
+        <div class="journey-item" style="--dot:var(--secondary);" data-aos="fade-left">
+          <div class="journey-text">
+            <h4>We Start Roasting</h4>
+            <p>Our vintage drum roaster arrives. We begin sourcing green coffee direct from farms.</p>
+          </div>
+          <div class="journey-node" aria-hidden="true"><span></span></div>
+          <div class="journey-photo">
+            <img src="../assets/images/photo-1497515114629-f71d768fd07c-w520.jpg" alt="Steaming cup of coffee on a bed of roasted beans" loading="lazy" width="520" height="347" />
+            <span class="journey-year-tag">2015</span>
+          </div>
+        </div>
+
+        <div class="journey-item" style="--dot:var(--accent);" data-aos="fade-right">
+          <div class="journey-photo">
+            <img src="../assets/images/photo-1509440159596-0249088772ff-w520.jpg" alt="Fresh-baked artisan sourdough loaves with wheat stalks" loading="lazy" width="520" height="347" />
+            <span class="journey-year-tag">2019</span>
+          </div>
+          <div class="journey-node" aria-hidden="true"><span></span></div>
+          <div class="journey-text">
+            <h4>The Bakery Grows Up</h4>
+            <p>A dedicated bake kitchen opens next door, doubling our sourdough and pastry output.</p>
+          </div>
+        </div>
+
+        <div class="journey-item" style="--dot:var(--primary);" data-aos="fade-left">
+          <div class="journey-text">
+            <h4>Bean Subscriptions Launch</h4>
+            <p>Fresh-roasted beans now ship to homes across the country, roasted the day they leave us.</p>
+          </div>
+          <div class="journey-node" aria-hidden="true"><span></span></div>
+          <div class="journey-photo">
+            <img src="../assets/images/photo-1524350876685-274059332603-w520.jpg" alt="Burlap sack overflowing with roasted coffee beans" loading="lazy" width="520" height="347" />
+            <span class="journey-year-tag">2023</span>
+          </div>
+        </div>
+
+        <div class="journey-item" style="--dot:var(--secondary);" data-aos="fade-right">
+          <div class="journey-photo">
+            <img src="../assets/images/photo-1495474472287-4d71bcdd2085-w520.jpg" alt="Friends toasting coffee cups together at a wooden table" loading="lazy" width="520" height="347" />
+            <span class="journey-year-tag">2025</span>
+          </div>
+          <div class="journey-node" aria-hidden="true"><span></span></div>
+          <div class="journey-text">
+            <h4>Still on the Corner</h4>
+            <p>Same street, same values — now with a warm room for reservations and community events.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -269,12 +358,12 @@
   <!-- ===== FOOTER ===== -->
   <footer class="footer" role="contentinfo">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+      <div style="display:grid;grid-template-columns:1.3fr 0.8fr 0.8fr 1.4fr;gap:32px;" class="footer-grid">
         <div>
           <div class="footer-logo">
-            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
-              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
-              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            <a href="index.html" class="navbar-brand" aria-label="Hearth & Oat">
+              <div class="brand-logo" aria-hidden="true"><i class="fas fa-fire" aria-hidden="true"></i></div>
+              <span class="brand-text">Hearth<span> &amp; Oat</span></span>
             </a>
           </div>
           <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
@@ -302,13 +391,14 @@
         <div>
           <h4 class="footer-heading">Visit Us</h4>
           <address style="font-style:normal;">
-            <div class="footer-contact-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
-            <div class="footer-contact-item"><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a></div>
-            <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a></div>
-            <div class="footer-contact-item"><i class="fas fa-clock" aria-hidden="true"></i><span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-location-dot" aria-hidden="true"></i></span><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-phone" aria-hidden="true"></i></span><a href="tel:+15552678932" dir="ltr">+1 (555) 267-8932</a></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span><a href="mailto:hello@hearthandoat.example">hello@hearthandoat.example</a></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-clock" aria-hidden="true"></i></span><span dir="ltr">Mon–Fri 7am–7pm &middot; Sat–Sun 8am–6pm</span></div>
           </address>
-          <div style="margin-top:20px;">
+          <div class="footer-newsletter-block">
             <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <p class="footer-newsletter-sub">Fresh roasts &amp; seasonal specials, once a month.</p>
             <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
               <label for="newsletterEmail" class="sr-only">Email address</label>
               <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
@@ -318,7 +408,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <p>&copy; 2025 <a href="index.html">Hearth &amp; Oat</a>. Made with care &amp; caffeine.</p>
         <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Accessibility</a></div>
       </div>
     </div>

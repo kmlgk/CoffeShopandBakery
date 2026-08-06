@@ -1,21 +1,21 @@
 /* ==========================================================================
-   Brew & Crumb — Coffee & Bakery — RTL (Right-to-Left) Support
+   Hearth & Oat — Coffee & Bakery — RTL (Right-to-Left) Support
    Selector: [dir="rtl"] on <html>
    ========================================================================== */
 
 [dir="rtl"] body { direction: rtl; text-align: right; }
 
-/* === Navbar === */
-[dir="rtl"] .navbar-inner    { flex-direction: row-reverse; }
-[dir="rtl"] .navbar-brand    { flex-direction: row-reverse; }
-[dir="rtl"] .nav-menu        { flex-direction: row-reverse; }
-[dir="rtl"] .navbar-actions  { flex-direction: row-reverse; }
+/* === Navbar ===
+   Note: no flex-direction override here. .navbar-inner/.nav-menu/etc. are plain
+   `flex-direction: row` containers that already inherit `direction: rtl` from
+   [dir="rtl"] on <html> — flexbox auto-mirrors a row container's main axis from
+   that. Adding `row-reverse` on top double-reverses back to LTR visual order,
+   which was the actual "nav menu not changing" bug. */
 [dir="rtl"] .dropdown-menu   { left: auto; right: 0; }
 
 /* === Hero === */
 [dir="rtl"] .hero-content         { text-align: right; }
 [dir="rtl"] .hero-cta             { justify-content: flex-end; }
-[dir="rtl"] .hero-stats           { flex-direction: row-reverse; }
 [dir="rtl"] .hero-float-card.card-1 { left: auto; right: -30px; }
 [dir="rtl"] .hero-float-card.card-2 { right: auto; left: -20px; }
 
@@ -26,40 +26,41 @@
 [dir="rtl"] .center .divider-line   { margin: 16px auto 24px; }
 
 /* === Cards & Links === */
-[dir="rtl"] .category-link   { flex-direction: row-reverse; }
 [dir="rtl"] .category-link i { transform: rotate(180deg); }
-[dir="rtl"] .category-badge  { right: auto; left: 14px; }
-[dir="rtl"] .blog-category   { left: auto; right: 14px; }
-[dir="rtl"] .blog-meta       { flex-direction: row-reverse; }
-[dir="rtl"] .read-more       { flex-direction: row-reverse; }
+[dir="rtl"] .category-card   { clip-path: polygon(22px 0, 100% 0, 100% 100%, 0 100%, 0 22px); }
+[dir="rtl"] .category-badge  { left: auto; right: 14px; padding: 5px 10px 5px 12px; clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%); }
+[dir="rtl"] .blog-category   { left: auto; right: 14px; padding: 5px 10px 5px 12px; clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%); }
 [dir="rtl"] .read-more i     { transform: rotate(180deg); }
-[dir="rtl"] .feature-card    { text-align: right; }
+[dir="rtl"] .feature-card    { text-align: right; border-left: 1px solid var(--border); border-right: 4px solid var(--primary); }
+[dir="rtl"] .feature-card:hover { border-right-color: var(--accent); }
+
+/* === Room Bento === */
+[dir="rtl"] .room-tile,
+[dir="rtl"] .room-tile--quote { clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 0 100%); }
+[dir="rtl"] .room-tag { left: auto; right: 14px; padding: 6px 10px 6px 12px; clip-path: polygon(0 0, 100% 0, 100% 100%, 8px 100%); }
+[dir="rtl"] .room-tile--quote { text-align: right; }
+[dir="rtl"] .room-quote-link i { transform: rotate(180deg); }
+[dir="rtl"] .room-quote-link:hover i { transform: rotate(180deg) translateX(4px); }
 
 /* === Menu Card === */
-[dir="rtl"] .menu-card       { flex-direction: row-reverse; }
+[dir="rtl"] .menu-card       { clip-path: polygon(0 0, 100% 0, 100% 100%, 18px 100%, 0 calc(100% - 18px)); }
 [dir="rtl"] .menu-price .old { margin-left: 0; margin-right: 6px; }
 
 /* === Price list === */
 [dir="rtl"] .pl-badge { margin-left: 0; margin-right: 8px; }
 
 /* === Testimonials === */
-[dir="rtl"] .testimonial-author { flex-direction: row-reverse; }
 
 /* === FAQ === */
-[dir="rtl"] .faq-question { flex-direction: row-reverse; }
 
 /* === Process Steps === */
 [dir="rtl"] .process-step    { text-align: right; }
 [dir="rtl"] .step-connector  { right: auto; left: -50%; }
 
 /* === Reservation === */
-[dir="rtl"] .reserve-steps    { flex-direction: row-reverse; }
-[dir="rtl"] .reserve-step     { flex-direction: row-reverse; }
 [dir="rtl"] .chip-row         { justify-content: flex-start; }
-[dir="rtl"] .side-post        { flex-direction: row-reverse; }
 
 /* === Buttons === */
-[dir="rtl"] .btn { flex-direction: row-reverse; }
 
 /* === Select arrow === */
 [dir="rtl"] select.form-control {
@@ -69,19 +70,19 @@
 }
 
 /* === Breadcrumb === */
-[dir="rtl"] .breadcrumb     { flex-direction: row-reverse; }
 [dir="rtl"] .breadcrumb-sep { transform: rotate(180deg); }
 
 /* === Pricing === */
-[dir="rtl"] .pricing-features li { flex-direction: row-reverse; }
+
+/* === Product detail size table (menu-details.html) === */
+[dir="rtl"] .size-table th,
+[dir="rtl"] .size-table td { text-align: right; }
+[dir="rtl"] .pricing-card  { clip-path: polygon(26px 0, 100% 0, 100% 100%, 0 100%, 0 26px); }
+[dir="rtl"] .popular-badge { left: auto; right: 0; padding: 7px 14px 7px 18px; clip-path: polygon(0 0, 100% 0, 100% 100%, 10px 100%); }
 
 /* === Footer === */
 [dir="rtl"] .footer-links a,
 [dir="rtl"] .footer-contact-item   { text-align: right; }
-[dir="rtl"] .footer-contact-item   { flex-direction: row-reverse; }
-[dir="rtl"] .footer-socials        { flex-direction: row-reverse; }
-[dir="rtl"] .footer-bottom         { flex-direction: row-reverse; }
-[dir="rtl"] .footer-bottom-links   { flex-direction: row-reverse; }
 
 /* === Back to Top === */
 [dir="rtl"] .back-to-top { right: auto; left: 30px; }
@@ -99,19 +100,11 @@
 [dir="rtl"] .sidebar { left: auto; right: 0; }
 [dir="rtl"] .admin-main { margin-left: 0; margin-right: var(--sidebar-w); }
 [dir="rtl"] .sidebar-nav { direction: rtl; }
-[dir="rtl"] .sidebar-link { flex-direction: row-reverse; text-align: right; }
+[dir="rtl"] .sidebar-link { text-align: right; }
 [dir="rtl"] .sidebar-badge { margin-left: 0; margin-right: auto; }
-[dir="rtl"] .sidebar-footer { flex-direction: row-reverse; }
 [dir="rtl"] .sidebar-logout { margin-left: 0; margin-right: auto; }
-[dir="rtl"] .topbar { flex-direction: row-reverse; }
-[dir="rtl"] .topbar-left,
-[dir="rtl"] .topbar-right { flex-direction: row-reverse; }
 [dir="rtl"] .notif-dot { right: auto; left: 6px; }
 [dir="rtl"] .data-table th { text-align: right; }
-[dir="rtl"] .cell-user,
-[dir="rtl"] .msg-item,
-[dir="rtl"] .msg-detail-sender,
-[dir="rtl"] .donut-legend-item { flex-direction: row-reverse; }
 [dir="rtl"] .prog-track { direction: rtl; }
 [dir="rtl"] .msg-sidebar { border-right: none; border-left: 1px solid var(--border); }
 [dir="rtl"] .msg-item.active-msg { border-left: none; border-right: 3px solid var(--primary); padding-left: 18px; padding-right: 15px; }
@@ -134,8 +127,6 @@
   [dir="rtl"] .hero-float-card.card-2 { left: 0; right: auto; }
   [dir="rtl"] .menu-card { flex-direction: column; }
 
-  /* Re-assert column drawer for RTL (desktop row-reverse rule outranks the media rule) */
-  [dir="rtl"] .nav-menu          { flex-direction: column; }
   [dir="rtl"] .nav-menu .nav-link { text-align: right; padding: 14px 4px; }
   [dir="rtl"] .nav-link .fa-chevron-down { margin-left: 0; margin-right: 5px; }
   [dir="rtl"] .dropdown-menu     { padding: 4px 12px 4px 0; }

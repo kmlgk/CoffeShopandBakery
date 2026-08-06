@@ -1,7 +1,7 @@
 /* ==========================================================================
-   Brew & Crumb — Premium Effects
+   Hearth & Oat — Premium Effects
    AOS + GSAP wiring, ambient coffee-bean / sprinkle fields, crumb-burst,
-   magnetic buttons, tilt cards, cursor bean trail, scroll progress.
+   magnetic buttons, tilt cards, scroll progress.
    Self-guarding like main.js: every init checks its target exists first,
    and every animation-heavy feature checks prefers-reduced-motion.
    ========================================================================== */
@@ -120,7 +120,7 @@ function initSprinkleFields() {
    crumbs from the cursor position on hover-enter, once per hover. */
 function initCrumbBurst() {
   if (REDUCED_MOTION) return;
-  const colors = ['#9B6A43', '#D6A419', '#6E8B6E', '#D97B6C', '#F7EFE4'];
+  const colors = ['#BE5B2E', '#D98E2B', '#2F5D56', '#D97B6C', '#FAF1E4'];
 
   function burst(x, y) {
     const count = 10;
@@ -161,18 +161,13 @@ function initCrumbBurst() {
   });
 }
 
-/* === Magnetic buttons === */
+/* === Magnetic buttons ===
+   Disabled per explicit request — the continuous mousemove-driven pull
+   fighting the CSS transform transition read as a "shake" on hover.
+   Left as a no-op (rather than deleted) so the .btn-magnetic class and the
+   call site stay valid; buttons keep their normal CSS lift/glow :hover. */
 function initMagneticButtons() {
-  if (!CAN_HOVER || REDUCED_MOTION) return;
-  document.querySelectorAll('.btn-magnetic').forEach((btn) => {
-    btn.addEventListener('mousemove', (e) => {
-      const rect = btn.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
-      btn.style.transform = `translate(${x * 0.22}px, ${y * 0.32}px)`;
-    });
-    btn.addEventListener('mouseleave', () => { btn.style.transform = 'translate(0, 0)'; });
-  });
+  return;
 }
 
 /* === Tilt cards === */
@@ -191,38 +186,9 @@ function initTiltCards() {
   });
 }
 
-/* === Cursor coffee-bean trail (desktop, motion-safe only) === */
+/* Cursor coffee-bean trail — removed per explicit request. */
 function initCursorTrail() {
-  if (!CAN_HOVER || REDUCED_MOTION) return;
-  const zone = document.querySelector('[data-cursor-trail]');
-  if (!zone) return;
-
-  const beans = [];
-  for (let i = 0; i < 5; i++) {
-    const bean = document.createElement('div');
-    bean.className = 'cursor-bean';
-    document.body.appendChild(bean);
-    beans.push({ el: bean, x: 0, y: 0 });
-  }
-
-  let mouseX = 0, mouseY = 0, active = false;
-  zone.addEventListener('mouseenter', () => { active = true; beans.forEach(b => b.el.style.opacity = '0.7'); });
-  zone.addEventListener('mouseleave', () => { active = false; beans.forEach(b => b.el.style.opacity = '0'); });
-  zone.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-
-  function loop() {
-    if (active) {
-      let x = mouseX, y = mouseY;
-      beans.forEach((b, i) => {
-        b.x += (x - b.x) * 0.28;
-        b.y += (y - b.y) * 0.28;
-        b.el.style.transform = `translate(${b.x - 5}px, ${b.y - 7}px) rotate(${i * 22}deg)`;
-        x = b.x; y = b.y;
-      });
-    }
-    requestAnimationFrame(loop);
-  }
-  requestAnimationFrame(loop);
+  return;
 }
 
 /* === Scroll progress bar === */

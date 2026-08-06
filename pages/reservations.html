@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reserve a Table – Brew &amp; Crumb Coffee House</title>
-  <meta name="description" content="Book a cosy table at Brew & Crumb in seconds. Pick your party size, date and time, and we'll confirm by email. Tables for 1–8; catering and private hire available." />
-  <meta property="og:title" content="Reserve a Table | Brew & Crumb" />
+  <title>Reserve a Table – Hearth &amp; Oat Coffee House</title>
+  <meta name="description" content="Book a cosy table at Hearth & Oat in seconds. Pick your party size, date and time, and we'll confirm by email. Tables for 1–8; catering and private hire available." />
+  <meta property="og:title" content="Reserve a Table | Hearth & Oat" />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Nunito+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <!-- AOS (scroll reveal) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
@@ -23,9 +23,48 @@
     .field-label { font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-bottom:12px; display:block; }
     .perk { display:flex; gap:14px; align-items:flex-start; margin-bottom:18px; }
     .perk i { color:var(--primary); font-size:1.1rem; width:22px; text-align:center; margin-top:3px; flex-shrink:0; }
-    .reserve-steam-badge { position:absolute; top:-18px; right:30px; width:54px; height:54px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.1rem; box-shadow:0 10px 26px rgba(155,106,67,0.4); z-index:2; }
+    .reserve-steam-badge { position:absolute; top:-18px; right:30px; width:54px; height:54px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.1rem; box-shadow:0 10px 26px rgba(190, 91, 46,0.4); z-index:2; }
     .reserve-steam-badge .coffee-steam { position:absolute; top:-44px; left:4px; }
     @media (max-width:768px) { .reserve-steam-badge { display:none; } }
+
+    /* ===== Ambience strip (the room you're booking) ===== */
+    .ambience-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .ambience-tile { position:relative; overflow:hidden; clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%); box-shadow:0 8px 24px var(--shadow); }
+    .ambience-tile img { width:100%; height:190px; object-fit:cover; display:block; transition:transform 0.5s ease; }
+    .ambience-tile:hover img { transform:scale(1.08); }
+    .ambience-tile span { position:absolute; bottom:0; left:0; right:0; padding:10px 14px; font-size:0.78rem; font-weight:700; color:#fff; background:linear-gradient(to top, rgba(31,23,18,0.85), transparent); }
+    [dir="rtl"] .ambience-tile { clip-path: polygon(16px 0, 100% 0, 100% 100%, 0 100%, 0 16px); }
+    @media (max-width:768px) { .ambience-strip { grid-template-columns:repeat(2,1fr); } }
+
+    /* ===== Trust float: overlaps the header/content seam instead of sitting
+       in normal flow as a plain bar ===== */
+    .trust-float { background:var(--white); border-radius:var(--radius-lg); box-shadow:0 20px 50px var(--shadow-md); margin-top:-46px; padding:22px 30px; display:flex; justify-content:space-around; align-items:center; flex-wrap:wrap; gap:18px 28px; position:relative; z-index:2; }
+    .trust-float .ti { display:flex; align-items:center; gap:10px; font-size:0.88rem; font-weight:700; color:var(--text); }
+    .trust-float .ti i { color:var(--primary); font-size:1.1rem; }
+    [data-theme="dark"] .trust-float { background:#241810; }
+    @media (max-width:640px) { .trust-float { margin-top:-32px; padding:18px 20px; justify-content:center; } }
+
+    /* ===== How Booking Works ===== */
+    .rb-steps { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; position:relative; }
+    @media (max-width:860px) { .rb-steps { grid-template-columns:1fr; gap:16px; } }
+
+    /* ===== Private Events & Group Dining ===== */
+    .events-split { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+    .events-photo { position:relative; clip-path: polygon(28px 0, 100% 0, 100% 100%, 0 100%, 0 28px); box-shadow:0 22px 50px var(--shadow-md); }
+    .events-photo img { width:100%; height:420px; object-fit:cover; display:block; }
+    .events-badge { position:absolute; top:20px; left:-16px; background:var(--secondary); color:#fff; font-weight:700; font-size:0.82rem; padding:9px 18px; clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px)); box-shadow:0 12px 26px var(--shadow-md); }
+    .events-perks { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:22px 0 26px; }
+    .events-perk { display:flex; align-items:flex-start; gap:10px; font-size:0.88rem; }
+    .events-perk i { color:var(--secondary); margin-top:3px; }
+    [dir="rtl"] .events-photo { clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%); }
+    [dir="rtl"] .events-badge { left:auto; right:-16px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%); }
+    @media (max-width:900px) {
+      .events-split { grid-template-columns:1fr; gap:32px; }
+      .events-photo { order:-1; }
+      .events-photo img { height:280px; }
+      .events-badge { left:16px; }
+      [dir="rtl"] .events-badge { right:16px; left:auto; }
+    }
   </style>
 </head>
 <body>
@@ -38,29 +77,22 @@
   <!-- ===== NAVBAR ===== -->
   <nav class="navbar glass-nav" role="navigation" aria-label="Main navigation">
     <div class="navbar-inner">
-      <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb Home">
-        <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
-        <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+      <a href="index.html" class="navbar-brand" aria-label="Hearth & Oat Home">
+        <div class="brand-logo" aria-hidden="true"><i class="fas fa-fire" aria-hidden="true"></i></div>
+        <span class="brand-text">Hearth<span> &amp; Oat</span></span>
       </a>
       <ul class="nav-menu" id="navMenu" role="menubar">
         <li class="dropdown" role="none">
           <a href="index.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Home <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="index.html" class="dropdown-item" role="menuitem">Home v1 – Coffee House</a></li>
-            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home v2 – Roastery</a></li>
+            <li><a href="index.html" class="dropdown-item" role="menuitem">Home 1</a></li>
+            <li><a href="home-2.html" class="dropdown-item" role="menuitem">Home 2</a></li>
           </ul>
         </li>
         <li role="none"><a href="about.html" class="nav-link" role="menuitem">About</a></li>
-        <li class="dropdown" role="none">
-          <a href="menu.html" class="nav-link" role="menuitem" aria-haspopup="true" aria-expanded="false">Menu <i class="fas fa-chevron-down" aria-hidden="true"></i></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="menu.html" class="dropdown-item" role="menuitem">Full Menu</a></li>
-            <li><a href="menu-details.html" class="dropdown-item" role="menuitem">Signature Espresso</a></li>
-          </ul>
-        </li>
+        <li role="none"><a href="menu.html" class="nav-link" role="menuitem">Menu</a></li>
         <li role="none"><a href="reservations.html" class="nav-link active" role="menuitem">Reservations</a></li>
         <li role="none"><a href="pricing.html" class="nav-link" role="menuitem">Pricing</a></li>
-        <li role="none"><a href="blog.html" class="nav-link" role="menuitem">Journal</a></li>
         <li role="none"><a href="contact.html" class="nav-link" role="menuitem">Contact</a></li>
         <li class="nav-mobile-actions" role="none">
           <div class="mobile-action-toggles">
@@ -96,10 +128,10 @@
     </div>
   </nav>
 
-  <!-- ===== PAGE HEADER ===== -->
-  <header class="page-header">
-    <div class="gradient-mesh" aria-hidden="true"><span></span><span></span><span></span></div>
-    <div class="container">
+  <!-- ===== PAGE HEADER (full-bleed photo) ===== -->
+  <header class="photo-header" style="background-image:url('../assets/images/photo-1521017432531-fbd92d768814-w640.jpg');">
+    <div class="photo-header-scrim"></div>
+    <div class="container" style="position:relative;z-index:1;">
       <nav class="breadcrumb" aria-label="Breadcrumb" data-aos="fade-up">
         <span class="breadcrumb-item"><a href="index.html">Home</a></span>
         <span class="breadcrumb-sep"><i class="fas fa-chevron-right" aria-hidden="true"></i></span>
@@ -109,6 +141,73 @@
       <p data-aos="fade-up" data-aos-delay="160">Small groups, quiet work sessions, or a weekend catch-up — book your spot and we'll have it ready with a fresh pot on the go.</p>
     </div>
   </header>
+
+  <!-- ===== TRUST FLOAT (overlaps header/content seam) ===== -->
+  <div class="container">
+    <div class="trust-float" data-aos="fade-up">
+      <div class="ti"><i class="fas fa-bolt" aria-hidden="true"></i> Confirmed within the hour</div>
+      <div class="ti"><i class="fas fa-credit-card" aria-hidden="true"></i> No card required</div>
+      <div class="ti"><i class="fas fa-star" aria-hidden="true"></i> 4.9★ from 312 reviews</div>
+      <div class="ti"><i class="fas fa-users" aria-hidden="true"></i> Tables for 1–8</div>
+    </div>
+  </div>
+
+  <!-- ===== AMBIENCE: THE ROOM YOU'RE BOOKING ===== -->
+  <section class="section-pad-sm" aria-labelledby="ambienceHeading">
+    <div class="container">
+      <div class="section-header center" data-aos="fade-up">
+        <div class="badge-label">A Peek Inside</div>
+        <h2 id="ambienceHeading">The Room You're Booking</h2>
+        <p>Warm timber, soft light, and a seat with your name on it — however many of you there are.</p>
+      </div>
+      <div class="ambience-strip">
+        <div class="ambience-tile" data-aos="fade-up" data-aos-delay="0">
+          <img src="../assets/images/photo-1521017432531-fbd92d768814-w640.jpg" alt="Cosy window seating nook with cushions and plants" loading="lazy" width="640" height="380" />
+          <span>The Window Nook</span>
+        </div>
+        <div class="ambience-tile" data-aos="fade-up" data-aos-delay="80">
+          <img src="../assets/images/photo-1554118811-1e0d58224f24-w560.jpg" alt="Long communal table with hanging lights" loading="lazy" width="560" height="380" />
+          <span>The Long Table</span>
+        </div>
+        <div class="ambience-tile" data-aos="fade-up" data-aos-delay="160">
+          <img src="../assets/images/photo-1445116572660-236099ec97a0-w420.jpg" alt="Quiet corner table with a latte and an open book" loading="lazy" width="420" height="380" />
+          <span>Quiet Corner</span>
+        </div>
+        <div class="ambience-tile" data-aos="fade-up" data-aos-delay="240">
+          <img src="../assets/images/photo-1498804103079-a6351b050096-w760.jpg" alt="Overhead view of assorted coffees at the Hearth & Oat bar" loading="lazy" width="760" height="380" />
+          <span>The Coffee Bar</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOW BOOKING WORKS ===== -->
+  <section class="section-pad-sm bg-cream" aria-labelledby="howHeading">
+    <div class="container">
+      <div class="section-header center" data-aos="fade-up">
+        <div class="badge-label">Simple by Design</div>
+        <h2 id="howHeading">How Booking Works</h2>
+        <p>Three steps, no account needed, confirmed the same day.</p>
+      </div>
+      <div class="rb-steps">
+        <div class="process-step" data-aos="fade-up" data-aos-delay="0">
+          <div class="step-number" aria-hidden="true">1</div>
+          <h4>Pick a Time</h4>
+          <p>Choose your party size, date, and a slot below — takes under a minute.</p>
+        </div>
+        <div class="process-step" data-aos="fade-up" data-aos-delay="80">
+          <div class="step-number" aria-hidden="true">2</div>
+          <h4>We Confirm</h4>
+          <p>We check the room and email you a confirmation within the hour, usually faster.</p>
+        </div>
+        <div class="process-step" data-aos="fade-up" data-aos-delay="160">
+          <div class="step-number" aria-hidden="true">3</div>
+          <h4>Arrive &amp; Relax</h4>
+          <p>Your table's held for 15 minutes past your slot. No card, no cancellation fee.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- ===== RESERVATION ===== -->
   <section class="section-pad">
@@ -251,15 +350,70 @@
     </div>
   </section>
 
+  <!-- ===== PRIVATE EVENTS & GROUP DINING ===== -->
+  <section class="section-pad" aria-labelledby="eventsHeading">
+    <div class="container">
+      <div class="events-split">
+        <div data-aos="fade-right">
+          <div class="badge-label">Beyond the Everyday Table</div>
+          <h2 id="eventsHeading" style="margin:14px 0 16px;">Private Events &amp; Group Dining</h2>
+          <p style="color:var(--text-muted);margin-bottom:0;">Birthdays, book clubs, team off-sites, or the whole café after hours — we set the room up around what you need and handle the food and coffee ourselves.</p>
+          <div class="events-perks">
+            <div class="events-perk"><i class="fas fa-users" aria-hidden="true"></i> Groups of 9–40</div>
+            <div class="events-perk"><i class="fas fa-mug-hot" aria-hidden="true"></i> Coffee cart on-site</div>
+            <div class="events-perk"><i class="fas fa-clock" aria-hidden="true"></i> After-hours hire</div>
+            <div class="events-perk"><i class="fas fa-utensils" aria-hidden="true"></i> Custom pastry platters</div>
+          </div>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;">
+            <a href="pricing.html" class="btn btn-primary btn-lg btn-magnetic"><i class="fas fa-arrow-right" aria-hidden="true"></i> See Catering &amp; Plans</a>
+            <a href="contact.html" class="btn btn-outline btn-lg btn-magnetic"><i class="fas fa-envelope" aria-hidden="true"></i> Ask a Question</a>
+          </div>
+        </div>
+        <div class="events-photo" data-aos="fade-left">
+          <img src="../assets/images/photo-1515823662972-da6a2e4d3002-w520.jpg" alt="A spread of croissants and a latte laid out for a group" loading="lazy" width="520" height="420" />
+          <span class="events-badge">Catering Included</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESERVATION FAQ ===== -->
+  <section class="section-pad-sm bg-cream" aria-labelledby="resFaqHeading">
+    <div class="container" style="max-width:760px;">
+      <div class="section-header center" data-aos="fade-up">
+        <div class="badge-label">Before You Book</div>
+        <h2 id="resFaqHeading">Reservation Questions</h2>
+      </div>
+      <div data-aos="fade-up">
+        <div class="faq-item open">
+          <div class="faq-question">Do you charge for cancellations? <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-answer"><div class="faq-answer-inner">No — this is a request, not a paid booking. Just let us know if your plans change so we can free up the table.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">Can I just walk in instead? <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-answer"><div class="faq-answer-inner">Always welcome — walk-ins are seated first-come, first-served. Reserving just guarantees a table at busy times.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">What if my party is larger than 8? <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-answer"><div class="faq-answer-inner">Give us a call — we can often combine tables or set up the long table for bigger groups and events.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question">How long do you hold the table? <span class="faq-icon" aria-hidden="true"><i class="fas fa-plus"></i></span></div>
+          <div class="faq-answer"><div class="faq-answer-inner">15 minutes past your reserved time. After that we may release it, so a quick call if you're running late helps.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== FOOTER ===== -->
   <footer class="footer" role="contentinfo">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:48px;" class="footer-grid">
+      <div style="display:grid;grid-template-columns:1.3fr 0.8fr 0.8fr 1.4fr;gap:32px;" class="footer-grid">
         <div>
           <div class="footer-logo">
-            <a href="index.html" class="navbar-brand" aria-label="Brew & Crumb">
-              <div class="brand-logo" aria-hidden="true"><img src="../assets/images/logo-mark.png" alt="" class="brand-logo-icon" /></div>
-              <span class="brand-text">Brew<span> &amp; Crumb</span></span>
+            <a href="index.html" class="navbar-brand" aria-label="Hearth & Oat">
+              <div class="brand-logo" aria-hidden="true"><i class="fas fa-fire" aria-hidden="true"></i></div>
+              <span class="brand-text">Hearth<span> &amp; Oat</span></span>
             </a>
           </div>
           <p class="footer-desc">A neighbourhood coffee house and bakery. Specialty coffee, fresh bakes, and a warm place to slow down.</p>
@@ -287,13 +441,14 @@
         <div>
           <h4 class="footer-heading">Visit Us</h4>
           <address style="font-style:normal;">
-            <div class="footer-contact-item"><i class="fas fa-location-dot" aria-hidden="true"></i><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
-            <div class="footer-contact-item"><i class="fas fa-phone" aria-hidden="true"></i><a href="tel:+15552678932" style="color:rgba(255,255,255,0.6);">+1 (555) 267-8932</a></div>
-            <div class="footer-contact-item"><i class="fas fa-envelope" aria-hidden="true"></i><a href="mailto:hello@brewandcrumb.example" style="color:rgba(255,255,255,0.6);">hello@brewandcrumb.example</a></div>
-            <div class="footer-contact-item"><i class="fas fa-clock" aria-hidden="true"></i><span>Mon–Fri 7am–7pm · Sat–Sun 8am–6pm</span></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-location-dot" aria-hidden="true"></i></span><span>18 Kettle Street, Maple Grove, OR 97005</span></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-phone" aria-hidden="true"></i></span><a href="tel:+15552678932" dir="ltr">+1 (555) 267-8932</a></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-envelope" aria-hidden="true"></i></span><a href="mailto:hello@hearthandoat.example">hello@hearthandoat.example</a></div>
+            <div class="footer-contact-item"><span class="fci-icon"><i class="fas fa-clock" aria-hidden="true"></i></span><span dir="ltr">Mon–Fri 7am–7pm &middot; Sat–Sun 8am–6pm</span></div>
           </address>
-          <div style="margin-top:20px;">
+          <div class="footer-newsletter-block">
             <h5 class="footer-heading" style="font-size:0.9rem;">Newsletter</h5>
+            <p class="footer-newsletter-sub">Fresh roasts &amp; seasonal specials, once a month.</p>
             <form class="footer-newsletter newsletter-form" aria-label="Newsletter signup">
               <label for="newsletterEmail" class="sr-only">Email address</label>
               <input type="email" id="newsletterEmail" placeholder="Your email address…" aria-label="Email for newsletter" />
@@ -303,7 +458,7 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 <a href="index.html">Brew &amp; Crumb</a>. Made with care &amp; caffeine.</p>
+        <p>&copy; 2025 <a href="index.html">Hearth &amp; Oat</a>. Made with care &amp; caffeine.</p>
         <div class="footer-bottom-links"><a href="#">Privacy Policy</a><a href="#">Terms of Service</a><a href="#">Accessibility</a></div>
       </div>
     </div>
