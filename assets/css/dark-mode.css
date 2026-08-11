@@ -112,12 +112,14 @@
 [data-theme="dark"] .form-card,
 [data-theme="dark"] .reserve-steps { background: #241810; }
 [data-theme="dark"] .form-control {
-  background: #17100A;
+  background-color: #17100A;
   border-color: var(--border);
   color: #F3E7D6;
 }
 [data-theme="dark"] .form-control:focus { border-color: var(--primary); }
 [data-theme="dark"] .form-label { color: #F3E7D6; }
+[data-theme="dark"] input.form-control[type="date"],
+[data-theme="dark"] input.form-control[type="time"] { color-scheme: dark; }
 
 [data-theme="dark"] .chip { background: #2C1E13; border-color: var(--border); color: #C7A986; }
 [data-theme="dark"] .chip.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
@@ -173,7 +175,7 @@
 
 /* Misc */
 [data-theme="dark"] .hamburger span { background: #F3E7D6; }
-[data-theme="dark"] .step-connector { background: linear-gradient(90deg, var(--primary), #3A2717); }
+[data-theme="dark"] .step-connector { background: var(--primary); }
 [data-theme="dark"] .section-header p { color: #97806B; }
 [data-theme="dark"] .back-to-top { box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
 [data-theme="dark"] .map-frame { filter: grayscale(0.3) invert(0.9) hue-rotate(180deg); }

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="../assets/images/logo-icon.png" />
   <title>Hearth &amp; Oat – The Roastery &amp; Espresso Bar</title>
   <meta name="description" content="Hearth & Oat Roastery — small-batch beans roasted on-site, single-origin espresso, and a bean subscription delivered to your door. Meet the roast." />
   <meta property="og:title" content="Hearth & Oat – The Roastery & Espresso Bar" />
@@ -24,7 +25,7 @@
        the seam) — replaces the old full-bleed photo-with-overlay treatment. === */
     .roast-hero-v2 { position: relative; overflow: hidden; background: var(--dark); padding-top: calc(var(--nav-height) + var(--nav-gap)); }
     .roast-hero-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; min-height: calc(100vh - var(--nav-height) - var(--nav-gap)); }
-    .roast-hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; padding: 56px 64px 56px 40px; }
+    .roast-hero-content { position: relative; z-index: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 56px 64px; }
     .roast-hero-content h1, .roast-hero-content p { color: #fff; }
     .roast-hero-content .lead { color: rgba(255,255,255,0.72); max-width: 480px; }
     .roast-badge {
@@ -48,13 +49,19 @@
     .roast-float-stat .label { color: var(--text-muted); font-size: 0.74rem; margin-top: 4px; white-space: nowrap; }
     [dir="rtl"] .roast-media-mask { clip-path: polygon(0 0, calc(100% - 56px) 0, 100% 56px, 100% 100%, 0 100%); }
     [dir="rtl"] .roast-float-stat { left: auto; right: -140px; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%); }
+    /* The lead paragraph is English copy inside an RTL-directioned block — without
+       an explicit LTR run, the bidi algorithm reorders trailing punctuation (e.g.
+       the sentence's final period jumps to the front of the wrapped line). Force
+       the text run itself LTR while text-align:right (inherited) still keeps the
+       block flush against the right edge, matching the rest of the RTL layout. */
+    [dir="rtl"] .roast-hero-content .lead { direction: ltr; text-align: right; }
     @media (max-width: 1140px) {
       .roast-float-stat { left: auto; right: 24px; bottom: 24px; gap: 18px; padding: 18px 20px; }
       [dir="rtl"] .roast-float-stat { right: auto; left: 24px; }
     }
     @media (max-width: 900px) {
       .roast-hero-grid { grid-template-columns: 1fr; min-height: auto; }
-      .roast-hero-content { padding: 48px 24px 32px; order: 1; }
+      .roast-hero-content { padding: 48px 24px 32px; order: 1; align-items: flex-start; }
       .roast-hero-media { order: 0; min-height: 280px; }
       .roast-media-mask { clip-path: none; }
       [dir="rtl"] .roast-media-mask { clip-path: none; }
@@ -64,11 +71,13 @@
       background: var(--white); border:1px solid var(--border); border-radius: 0;
       border-left: 4px solid var(--secondary);
       overflow:hidden; transition: all var(--transition); height:100%;
+      display:flex; flex-direction:column;
     }
     .roast-card:hover { transform: translateY(-6px); box-shadow: 0 18px 44px var(--shadow-md); border-left-color: var(--primary); }
     .roast-card .rc-top { padding:26px 26px 0; display:flex; justify-content:space-between; align-items:flex-start; }
     .roast-level { font-size:0.72rem; font-weight:700; text-transform:uppercase; letter-spacing:1px; color:#fff; padding:4px 12px 4px 10px; border-radius:0; clip-path: polygon(0 0, 100% 0, calc(100% - 6px) 100%, 0 100%); }
-    .roast-body { padding: 18px 26px 26px; }
+    .roast-body { padding: 18px 26px 26px; display:flex; flex-direction:column; flex:1; }
+    .roast-price-row { display:flex; justify-content:space-between; align-items:center; margin-top:auto; }
     .roast-notes { display:flex; gap:8px; flex-wrap:wrap; margin:14px 0 18px; }
     .roast-note { font-size:0.76rem; font-weight:700; color:var(--secondary); background:rgba(47, 93, 86,0.14); padding:4px 12px; border-radius:50px; }
     .bean-dots { display:flex; gap:4px; }
@@ -117,7 +126,7 @@
             <a href="login.html" class="btn-nav-login">Login</a>
             <a href="register.html" class="btn-nav-login">Register</a>
           </div> -->
-          <!-- <a href="reservations.html" class="btn-nav-order" style="width:100%;justify-content:center;">Book a Table</a> -->
+          <a href="reservations.html" class="btn-nav-order" style="width:100%;justify-content:center;">Book a Table</a>
           <!-- <div class="mobile-action-links">
             <a href="reservations.html"><i class="fas fa-calendar-check" aria-hidden="true"></i> My Reservations</a>
             <a href="admin-dashboard.html"><i class="fas fa-gauge-high" aria-hidden="true"></i> Staff / Admin</a>
@@ -188,7 +197,7 @@
           </div>
           <div class="roast-body">
             <div class="roast-notes"><span class="roast-note">Cocoa</span><span class="roast-note">Hazelnut</span><span class="roast-note">Brown Sugar</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="roast-price-row">
               <div class="bean-dots" aria-label="Roast level 4 of 5"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle off"></i></div>
               <div class="menu-price">$16<span style="font-size:0.8rem;color:var(--text-muted);font-family:var(--font-body);font-weight:400;">/250g</span></div>
             </div>
@@ -205,7 +214,7 @@
           </div>
           <div class="roast-body">
             <div class="roast-notes"><span class="roast-note">Red Apple</span><span class="roast-note">Caramel</span><span class="roast-note">Cocoa</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="roast-price-row">
               <div class="bean-dots" aria-label="Roast level 3 of 5"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle off"></i><i class="fas fa-circle off"></i></div>
               <div class="menu-price">$18<span style="font-size:0.8rem;color:var(--text-muted);font-family:var(--font-body);font-weight:400;">/250g</span></div>
             </div>
@@ -222,7 +231,7 @@
           </div>
           <div class="roast-body">
             <div class="roast-notes"><span class="roast-note">Jasmine</span><span class="roast-note">Bergamot</span><span class="roast-note">Peach</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="roast-price-row">
               <div class="bean-dots" aria-label="Roast level 2 of 5"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle off"></i><i class="fas fa-circle off"></i><i class="fas fa-circle off"></i></div>
               <div class="menu-price">$19<span style="font-size:0.8rem;color:var(--text-muted);font-family:var(--font-body);font-weight:400;">/250g</span></div>
             </div>
@@ -239,7 +248,7 @@
           </div>
           <div class="roast-body">
             <div class="roast-notes"><span class="roast-note">Dark Chocolate</span><span class="roast-note">Walnut</span><span class="roast-note">Malt</span></div>
-            <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div class="roast-price-row">
               <div class="bean-dots" aria-label="Roast level 4 of 5"><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle"></i><i class="fas fa-circle off"></i></div>
               <div class="menu-price">$17<span style="font-size:0.8rem;color:var(--text-muted);font-family:var(--font-body);font-weight:400;">/250g</span></div>
             </div>
@@ -259,9 +268,9 @@
         <p>Four steps from raw green coffee to the cup in your hand.</p>
       </div>
       <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;" class="process-grid">
-        <div class="process-step" data-aos="fade-up" data-aos-delay="0"><div class="step-number" aria-hidden="true">1</div><h4>Source</h4><p>We buy direct from farms and co-ops, paying above market for quality and care.</p></div>
-        <div class="process-step" data-aos="fade-up" data-aos-delay="80"><div class="step-number" aria-hidden="true">2</div><h4>Roast</h4><p>Small 12kg batches on our drum roaster, profiled to bring out each origin's best.</p></div>
-        <div class="process-step" data-aos="fade-up" data-aos-delay="160"><div class="step-number" aria-hidden="true">3</div><h4>Rest</h4><p>Beans rest 3–5 days to degas, so your first cup is balanced, not raw.</p></div>
+        <div class="process-step" data-aos="fade-up" data-aos-delay="0"><div class="step-connector" aria-hidden="true"></div><div class="step-number" aria-hidden="true">1</div><h4>Source</h4><p>We buy direct from farms and co-ops, paying above market for quality and care.</p></div>
+        <div class="process-step" data-aos="fade-up" data-aos-delay="80"><div class="step-connector" aria-hidden="true"></div><div class="step-number" aria-hidden="true">2</div><h4>Roast</h4><p>Small 12kg batches on our drum roaster, profiled to bring out each origin's best.</p></div>
+        <div class="process-step" data-aos="fade-up" data-aos-delay="160"><div class="step-connector" aria-hidden="true"></div><div class="step-number" aria-hidden="true">3</div><h4>Rest</h4><p>Beans rest 3–5 days to degas, so your first cup is balanced, not raw.</p></div>
         <div class="process-step" data-aos="fade-up" data-aos-delay="240"><div class="step-number" aria-hidden="true">4</div><h4>Brew</h4><p>Pulled at the bar or bagged for home within days of roasting. Always fresh.</p></div>
       </div>
     </div>
